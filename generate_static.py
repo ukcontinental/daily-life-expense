@@ -16,6 +16,9 @@ GROCERY = [
     {"id":3, "date":"2026-04-17","time":"12:38","store":"FreshPro Foodmart","addr":"Richmond Hill, ON",
      "items":[{"name":"番石榴","price":7.34},{"name":"黑莓 x2","price":7.98}],
      "subtotal":15.32,"hst":0.00,"total":15.32,"payment":"Mastercard ****4134"},
+    {"id":4, "date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
+     "items":[{"name":"甘藍菜 (Green Kale)","price":2.59}],
+     "subtotal":2.59,"hst":0.00,"total":2.60,"payment":"Cash"},
 ]
 
 DATA = {
