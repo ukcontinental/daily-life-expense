@@ -7,41 +7,41 @@ from datetime import datetime
 
 # ============ 全部資料 ============
 GROCERY = [
-    {"id":1, "date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
+    {"date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
      "items":[{"name":"12GAL 折疊儲物箱（車用）","price":12.49}],
      "subtotal":12.49,"hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
-    {"id":2, "date":"2026-04-16","time":"–","store":"Chuang's Company LTD.","addr":"Richmond Hill, ON",
+    {"date":"2026-04-16","time":"–","store":"Chuang's Company LTD.","addr":"Richmond Hill, ON",
      "items":[{"name":"營業芋頭包子 x10","price":5.50}],
      "subtotal":5.50,"hst":0.00,"total":5.50,"payment":"–"},
-    {"id":3, "date":"2026-04-17","time":"12:38","store":"FreshPro Foodmart","addr":"Richmond Hill, ON",
+    {"date":"2026-04-17","time":"12:38","store":"FreshPro Foodmart","addr":"Richmond Hill, ON",
      "items":[{"name":"番石榴","price":7.34},{"name":"黑莓 x2","price":7.98}],
      "subtotal":15.32,"hst":0.00,"total":15.32,"payment":"Mastercard ****4134"},
-    {"id":4, "date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
+    {"date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"甘藍菜 (Green Kale)","price":2.59}],
      "subtotal":2.59,"hst":0.00,"total":2.60,"payment":"Cash"},
 ]
 
 DATA = {
     "sienna": [
-        {"id":5,  "date":"2025-12-12","time":"23:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":59.479,"ppl":1.053,"total":62.63,"ptsEarn":598,"ptsBal":18290},
-        {"id":6,  "date":"2026-01-10","time":"23:07","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":45.580,"ppl":1.059,"total":48.28,"ptsEarn":450,"ptsBal":1010},
-        {"id":7,  "date":"2026-01-28","time":"23:15","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":56.564,"ppl":1.079,"total":61.03,"ptsEarn":2560,"ptsBal":17900},
-        {"id":8,  "date":"2026-02-18","time":"23:23","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":58.962,"ppl":1.129,"total":66.57,"ptsEarn":580,"ptsBal":19520},
-        {"id":1,  "date":"2026-03-07","time":"23:05","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":44.031,"ppl":1.399,"total":61.60,"ptsEarn":440,"ptsBal":1290},
-        {"id":2,  "date":"2026-03-10","time":"23:26","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":63.117,"ppl":1.539,"total":97.14,"ptsEarn":630,"ptsBal":7020},
-        {"id":9,  "date":"2026-03-23","time":"23:27","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":51.240,"ppl":1.629,"total":83.47,"ptsEarn":510,"ptsBal":7530},
-        {"id":3,  "date":"2026-04-02","time":"23:19","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":60.377,"ppl":1.666,"total":100.59,"ptsEarn":600,"ptsBal":8235},
-        {"id":4,  "date":"2026-04-06","time":"23:16","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":40.754,"ppl":1.726,"total":70.34,"ptsEarn":400,"ptsBal":8635},
-        {"id":10, "date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
-        {"id":11, "date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596,"payment":"Visa ****4106"},
+        {"date":"2025-12-12","time":"23:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":59.479,"ppl":1.053,"total":62.63,"ptsEarn":598,"ptsBal":18290},
+        {"date":"2026-01-10","time":"23:07","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":45.580,"ppl":1.059,"total":48.28,"ptsEarn":450,"ptsBal":1010},
+        {"date":"2026-01-28","time":"23:15","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":56.564,"ppl":1.079,"total":61.03,"ptsEarn":2560,"ptsBal":17900},
+        {"date":"2026-02-18","time":"23:23","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":58.962,"ppl":1.129,"total":66.57,"ptsEarn":580,"ptsBal":19520},
+        {"date":"2026-03-07","time":"23:05","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":44.031,"ppl":1.399,"total":61.60,"ptsEarn":440,"ptsBal":1290},
+        {"date":"2026-03-10","time":"23:26","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":63.117,"ppl":1.539,"total":97.14,"ptsEarn":630,"ptsBal":7020},
+        {"date":"2026-03-23","time":"23:27","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":51.240,"ppl":1.629,"total":83.47,"ptsEarn":510,"ptsBal":7530},
+        {"date":"2026-04-02","time":"23:19","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":60.377,"ppl":1.666,"total":100.59,"ptsEarn":600,"ptsBal":8235},
+        {"date":"2026-04-06","time":"23:16","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":40.754,"ppl":1.726,"total":70.34,"ptsEarn":400,"ptsBal":8635},
+        {"date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
+        {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596,"payment":"Visa ****4106"},
     ],
     "c300": [
-        {"id":1,  "date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
+        {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
     ]
 }
 
 # ============ SVG 共用：畫折線圖 ============
-def _line_svg(labels, vals, color_line, color_fill, color_dot, color_label, fmt_val, height=110):
+def _line_svg(labels, vals, color_line, color_fill, color_label, fmt_val, height=110):
     n = len(vals)
     if n == 0:
         return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="#3a4a6a" text-anchor="middle" font-size="9">無資料</text></svg>'
@@ -70,17 +70,17 @@ def _line_svg(labels, vals, color_line, color_fill, color_dot, color_label, fmt_
     # 資料點 + 標籤
     for i in range(n):
         x, y = px(i), py(vals[i])
-        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.8" fill="{color_dot}"/>')
+        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.8" fill="{color_line}"/>')
         parts.append(f'<text x="{x:.1f}" y="{y-6:.1f}" fill="{color_label}" font-size="7.5" text-anchor="middle">{fmt_val(vals[i])}</text>')
         parts.append(f'<text x="{x:.1f}" y="{height-3}" fill="#3a4a62" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
     return f'<svg width="100%" viewBox="0 0 {width} {height}" style="overflow:visible">{"".join(parts)}</svg>'
 
 # ============ SVG 折線圖（油價走勢）============
 def make_price_svg(records):
-    if not records: return _line_svg([], [], "#3a7bd5", "rgba(58,123,213,0.15)", "#3a7bd5", "#5a9ad5", lambda v: f"{v:.1f}")
+    if not records: return _line_svg([], [], "#3a7bd5", "rgba(58,123,213,0.15)", "#5a9ad5", lambda v: f"{v:.1f}")
     labels = [r["date"][5:] for r in records]
     vals   = [r["ppl"] * 100 for r in records]
-    return _line_svg(labels, vals, "#3a7bd5", "rgba(58,123,213,0.15)", "#3a7bd5", "#5a9ad5", lambda v: f"{v:.1f}")
+    return _line_svg(labels, vals, "#3a7bd5", "rgba(58,123,213,0.15)", "#5a9ad5", lambda v: f"{v:.1f}")
 
 # ============ SVG 折線圖（油耗效率 L/100km）============
 def make_eff_svg(records):
@@ -89,16 +89,23 @@ def make_eff_svg(records):
         return f'<svg width="100%" viewBox="0 0 340 110"><text x="50%" y="55" fill="#3a4a6a" text-anchor="middle" font-size="9">填寫里程後顯示</text></svg>'
     labels = [d[0] for d in eff]
     vals   = [d[1] for d in eff]
-    return _line_svg(labels, vals, "#4caf90", "rgba(76,175,144,0.15)", "#4caf90", "#4caf90", lambda v: f"{v:.2f}")
+    return _line_svg(labels, vals, "#4caf90", "rgba(76,175,144,0.15)", "#4caf90", lambda v: f"{v:.2f}")
+
+# ============ 圖表外框（共用包裹樣式）============
+def chart_block(title, svg):
+    return f"""<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">{title}</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{svg}</div>
+</div>"""
 
 # ============ SVG 折線圖（支出趨勢）============
 def make_spending_svg(records, date_key="date", total_key="total"):
     """通用支出趨勢折線圖，records 按日期排序"""
-    if not records: return _line_svg([], [], "#f7a048", "rgba(247,160,72,0.15)", "#f7a048", "#f7a048", lambda v: f"${v:.0f}")
+    if not records: return _line_svg([], [], "#f7a048", "rgba(247,160,72,0.15)", "#f7a048", lambda v: f"${v:.0f}")
     sorted_r = sorted(records, key=lambda r: r[date_key])
     labels = [r[date_key][5:] for r in sorted_r]   # MM-DD
     vals   = [r[total_key]    for r in sorted_r]
-    return _line_svg(labels, vals, "#f7a048", "rgba(247,160,72,0.15)", "#f7a048", "#f7c948", lambda v: f"${v:.0f}")
+    return _line_svg(labels, vals, "#f7a048", "rgba(247,160,72,0.15)", "#f7c948", lambda v: f"${v:.0f}")
 
 # ============ 單筆記錄卡片 ============
 def make_record_card(r):
@@ -189,18 +196,9 @@ def make_car_section(car_key, car_label):
   </div>
 </div>
 <!-- 圖表 -->
-<div style="margin-bottom:16px">
-  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">📈 油價走勢 (¢/L)</div>
-  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{price_svg}</div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">🚗 油耗效率 (L/100km)</div>
-  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{eff_svg}</div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">💸 每次加油花費 ($)</div>
-  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{spend_svg}</div>
-</div>
+{chart_block("📈 油價走勢 (¢/L)", price_svg)}
+{chart_block("🚗 油耗效率 (L/100km)", eff_svg)}
+{chart_block("💸 每次加油花費 ($)", spend_svg)}
 <!-- 記錄列表 -->
 {cards_html}"""
 
@@ -246,10 +244,7 @@ def make_grocery_section():
     <div style="font-size:11px;color:#4a4a6a">筆記錄</div>
   </div>
 </div>
-<div style="margin-bottom:16px">
-  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">💸 每筆支出趨勢 ($)</div>
-  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{spend_svg}</div>
-</div>
+{chart_block("💸 每筆支出趨勢 ($)", spend_svg)}
 {cards_html}"""
 
 # ============ 完整 HTML ============
