@@ -34,6 +34,7 @@ DATA = {
         {"date":"2026-04-06","time":"23:16","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":40.754,"ppl":1.726,"total":70.34,"ptsEarn":400,"ptsBal":8635},
         {"date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
         {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596,"payment":"Visa ****4106"},
+        {"date":"2026-04-27","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":39.658,"ppl":1.616,"total":64.09,"ptsEarn":4390,"ptsBal":21986,"km":558.5},
     ],
     "c300": [
         {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
@@ -97,6 +98,10 @@ def chart_block(title, svg):
   <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">{title}</div>
   <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden">{svg}</div>
 </div>"""
+
+# ============ 空狀態（共用）============
+def empty_state(icon, label):
+    return f'<div class="empty"><div class="ico">{icon}</div><div>尚無{label}記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>'
 
 # ============ SVG 折線圖（支出趨勢）============
 def make_spending_svg(records, date_key="date", total_key="total"):
@@ -226,7 +231,7 @@ def make_grocery_card(r):
 
 def make_grocery_section():
     if not GROCERY:
-        return '<div class="empty"><div class="ico">🛒</div><div>尚無超市記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>'
+        return empty_state("🛒", "超市")
     total_spent = sum(r["total"] for r in GROCERY)
     total_tx    = len(GROCERY)
     spend_svg   = make_spending_svg(GROCERY)
@@ -330,12 +335,12 @@ body:has(#other:target)    #gas {{ display:none; }}
 
 <!-- 🍽 餐廳 -->
 <div id="dining" class="sec">
-  <div class="empty"><div class="ico">🍽</div><div>尚無餐廳記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>
+  {empty_state("🍽", "餐廳")}
 </div>
 
 <!-- 📦 其他 -->
 <div id="other" class="sec">
-  <div class="empty"><div class="ico">📦</div><div>尚無其他記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>
+  {empty_state("📦", "其他")}
 </div>
 
 </body>
