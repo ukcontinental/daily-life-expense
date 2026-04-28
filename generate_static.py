@@ -19,6 +19,18 @@ GROCERY = [
     {"date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"甘藍菜 (Green Kale)","price":2.59}],
      "subtotal":2.59,"hst":0.00,"total":2.60,"payment":"Cash"},
+    {"date":"2026-04-25","time":"11:07","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
+     "items":[{"name":"韓國魚餅","price":5.99},{"name":"走地雞蛋 18粒","price":7.99},{"name":"中廚 燒餅系列","price":9.99},{"name":"新鮮金錢腱","price":17.35},{"name":"Onion 2LB","price":1.79},{"name":"Onion 2LB","price":1.21},{"name":"CM 皮蛋/紅心鹹蛋","price":2.99},{"name":"豐業 上海五香豆乾","price":3.99},{"name":"白蘿蔔","price":2.28},{"name":"新鮮金錢腱","price":16.95},{"name":"芥蘭菇","price":2.99},{"name":"有頭菠菜","price":3.02},{"name":"番薯葉","price":5.79},{"name":"草莓 x2","price":11.76},{"name":"Lucky 7's 牛油果","price":3.59},{"name":"Sweet Potato","price":12.23},{"name":"蜜豆","price":4.04}],
+     "subtotal":113.95,"hst":0.00,"total":113.95,"payment":"Visa ****0891"},
+    {"date":"2026-04-25","time":"10:36","store":"Kuo Hua 國華","addr":"270 Ferrier Street, Markham, ON L3R 2Z5",
+     "items":[{"name":"KC 港橋拱包 650g","price":5.99},{"name":"AGV 蜜底瓜片 140g","price":2.49},{"name":"AGV 豆乾筋 170g","price":2.49},{"name":"AGV 鮮脆瓜 180g","price":2.49},{"name":"蒜味香腸","price":8.99},{"name":"國華無刺虱目魚肚 180g","price":9.90},{"name":"麒麟 新竹米粉 340g","price":2.99}],
+     "subtotal":35.34,"hst":0.00,"total":35.34,"payment":"Cash"},
+    {"date":"2026-04-25","time":"11:51","store":"T&T Supermarket","addr":"9255 Woodbine Avenue, Markham, ON L6C 1Y9",
+     "items":[{"name":"Kewpie 沙拉醬","price":5.97},{"name":"大腸切片","price":6.85},{"name":"十粒粽（冷）","price":42.21},{"name":"T&T 保溫袋","price":2.50},{"name":"頂級叉燒肉片 x2","price":12.21},{"name":"水晶梨","price":2.78},{"name":"盒裝精品貝貝小南瓜","price":4.98},{"name":"日昇西施豆腐","price":2.59},{"name":"T&T 中式豬肉腸","price":7.59},{"name":"保溫袋折扣","price":-2.50}],
+     "subtotal":85.18,"hst":0.89,"total":86.07,"payment":"Visa ****0891"},
+    {"date":"2026-04-25","time":"21:29","store":"Walmart","addr":"1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3",
+     "items":[{"name":"RESG 1.38kg","price":11.47},{"name":"PNT BTR 750g","price":5.97},{"name":"Dole Pineapple","price":2.47},{"name":"CL Cltuna SJ x4","price":7.52},{"name":"Tabasco Red","price":7.27}],
+     "subtotal":34.70,"hst":1.49,"total":36.19,"payment":"Visa ****0891"},
 ]
 
 DATA = {
