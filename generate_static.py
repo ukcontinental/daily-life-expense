@@ -294,6 +294,18 @@ body:has(#dining:target)   #gas,
 body:has(#other:target)    #gas {{ display:none; }}
 /* 被 target 的分頁顯示 */
 :target {{ display:block !important; }}
+/* ── 導航列底線：預設加油為作用中 ── */
+.nav a[href="#gas"]     {{ color:#7eb8f7; border-bottom-color:#3a7bd5; }}
+/* 切換到其他分頁時，加油取消作用中 */
+body:has(#grocery:target)  .nav a[href="#gas"]     {{ color:#5a5a8a; border-bottom-color:transparent; }}
+body:has(#dining:target)   .nav a[href="#gas"]     {{ color:#5a5a8a; border-bottom-color:transparent; }}
+body:has(#other:target)    .nav a[href="#gas"]     {{ color:#5a5a8a; border-bottom-color:transparent; }}
+/* 各分頁被 target 時對應連結亮起 */
+body:has(#grocery:target)  .nav a[href="#grocery"] {{ color:#7eb8f7; border-bottom-color:#3a7bd5; }}
+body:has(#dining:target)   .nav a[href="#dining"]  {{ color:#7eb8f7; border-bottom-color:#3a7bd5; }}
+body:has(#other:target)    .nav a[href="#other"]   {{ color:#7eb8f7; border-bottom-color:#3a7bd5; }}
+/* gas-c300 屬於加油分頁，底線保持在加油 */
+body:has(#gas-c300:target) .nav a[href="#gas"]     {{ color:#7eb8f7; border-bottom-color:#3a7bd5; }}
 </style>
 </head>
 <body>
@@ -304,10 +316,10 @@ body:has(#other:target)    #gas {{ display:none; }}
 </div>
 
 <div class="nav">
-  <a href="#gas"      style="color:#7eb8f7;border-bottom:3px solid #3a7bd5">⛽ 加油</a>
-  <a href="#grocery"  style="color:#5a5a8a;border-bottom:3px solid transparent">🛒 超市</a>
-  <a href="#dining"   style="color:#5a5a8a;border-bottom:3px solid transparent">🍽 餐廳</a>
-  <a href="#other"    style="color:#5a5a8a;border-bottom:3px solid transparent">📦 其他</a>
+  <a href="#gas">⛽ 加油</a>
+  <a href="#grocery">🛒 超市</a>
+  <a href="#dining">🍽 餐廳</a>
+  <a href="#other">📦 其他</a>
 </div>
 
 <!-- ⛽ 加油 — Sienna -->
