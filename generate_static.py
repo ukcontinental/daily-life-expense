@@ -159,12 +159,7 @@ def make_record_card(r):
 def make_car_section(car_key, car_label):
     records = DATA[car_key]
     if not records:
-        icon = "🚗"
-        return f"""<div style="text-align:center;padding:50px 20px;color:#4a4a6a">
-  <div style="font-size:44px;margin-bottom:12px">{icon}</div>
-  <div>尚無 {car_label} 記錄</div>
-  <div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據照片傳給 Claude 即可新增</div>
-</div>"""
+        return empty_state("🚗", car_label)
 
     total_spent  = sum(r["total"]  for r in records)
     total_litres = sum(r["litres"] for r in records)

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="包山包海包生活">
+<title>包山包海包生活</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#0d0d1a; color:#e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+.hdr { background:#16213e; padding:14px 16px 10px; border-bottom:1px solid #252545; position:sticky; top:0; z-index:10; }
+.hdr h1 { font-size:19px; color:#7eb8f7; font-weight:700; }
+.hdr p  { font-size:11px; color:#4a4a6a; margin-top:2px; }
+.nav { display:flex; background:#16213e; border-bottom:1px solid #252545; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.nav a { flex:1; min-width:72px; padding:11px 6px; color:#5a5a8a; font-size:13px; text-align:center; border-bottom:3px solid transparent; white-space:nowrap; text-decoration:none; display:block; }
+.car-tabs { display:flex; gap:8px; margin:14px 0; }
+.car-tabs a { flex:1; padding:10px 8px; border:2px solid #252545; border-radius:10px; background:#14142a; color:#6a6a9a; font-size:13px; text-align:center; text-decoration:none; display:block; }
+.car-tabs a.on { border-color:#3a7bd5; color:#7eb8f7; background:#1a2840; }
+.sec { padding:14px; }
+.empty { text-align:center; padding:50px 20px; color:#3a3a5a; }
+.empty .ico { font-size:44px; margin-bottom:12px; }
+/* 所有分頁預設隱藏，#gas 為預設顯示 */
+.sec { display:none; }
+#gas { display:block; }
+/* 切換邏輯：有其他分頁被 target 時，隱藏預設的 #gas */
+body:has(#gas-c300:target) #gas,
+body:has(#grocery:target)  #gas,
+body:has(#dining:target)   #gas,
+body:has(#other:target)    #gas { display:none; }
+/* 被 target 的分頁顯示 */
+:target { display:block !important; }
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>🏠 包山包海包生活</h1>
+  <p>最後更新：2026-04-21 10:18</p>
+</div>
+
+<div class="nav">
+  <a href="#gas"      style="color:#7eb8f7;border-bottom:3px solid #3a7bd5">⛽ 加油</a>
+  <a href="#grocery"  style="color:#5a5a8a;border-bottom:3px solid transparent">🛒 超市</a>
+  <a href="#dining"   style="color:#5a5a8a;border-bottom:3px solid transparent">🍽 餐廳</a>
+  <a href="#other"    style="color:#5a5a8a;border-bottom:3px solid transparent">📦 其他</a>
+</div>
+
+<!-- ⛽ 加油 — Sienna -->
+<div id="gas" class="sec">
+  <div class="car-tabs">
+    <a href="#gas"      class="on">🚐 Sienna<br><small style="font-size:10px;color:#4a6a9a">白色 · 87 REG · 11筆</small></a>
+    <a href="#gas-c300"    >🚗 C300<br><small style="font-size:10px;color:#3a3a5a">黑色 · 91 Premium · 1筆</small></a>
+  </div>
+  
+<!-- PC 點數 -->
+<div style="background:linear-gradient(135deg,#162816,#0d160d);border:1px solid #253525;border-radius:12px;padding:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+  <div>
+    <div style="font-size:11px;color:#4a7a4a;margin-bottom:4px">PC Optimum 餘額</div>
+    <div style="font-size:28px;font-weight:700;color:#4caf90">17,596</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:11px;color:#3a5a3a;margin-bottom:4px">全期累計賺取</div>
+    <div style="font-size:20px;font-weight:700;color:#7eb8f7">+7,698</div>
+  </div>
+</div>
+<!-- 統計 -->
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總花費</div>
+    <div style="font-size:22px;font-weight:700;color:#f7c948">$796</div>
+    <div style="font-size:11px;color:#4a4a6a">CAD · 11 次</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總加油量</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">574</div>
+    <div style="font-size:11px;color:#4a4a6a">公升</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">平均油價</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">139.6</div>
+    <div style="font-size:11px;color:#4a4a6a">¢/L</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">最新油價</div>
+    <div style="font-size:22px;font-weight:700;color:#4caf90">147.6</div>
+    <div style="font-size:11px;color:#4a4a6a">¢/L</div>
+  </div>
+</div>
+<!-- 圖表 -->
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">📈 油價走勢 (¢/L)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 580 110" style="overflow:visible"><line x1="36" y1="79.0" x2="570" y2="79.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="82.0" fill="#3a4a62" font-size="7.5" text-anchor="end">105.3</text><line x1="36" y1="50.0" x2="570" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">138.9</text><line x1="36" y1="21.0" x2="570" y2="21.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="24.0" fill="#3a4a62" font-size="7.5" text-anchor="end">172.6</text><polygon points="36.0,86 36.0,79.0 89.4,78.5 142.8,76.8 196.2,72.5 249.6,49.2 303.0,37.1 356.4,29.3 409.8,26.1 463.2,21.0 516.6,31.9 570.0,42.5 570.0,86" fill="rgba(58,123,213,0.15)"/><polyline points="36.0,79.0 89.4,78.5 142.8,76.8 196.2,72.5 249.6,49.2 303.0,37.1 356.4,29.3 409.8,26.1 463.2,21.0 516.6,31.9 570.0,42.5" fill="none" stroke="#3a7bd5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="79.0" r="2.8" fill="#3a7bd5"/><text x="36.0" y="73.0" fill="#5a9ad5" font-size="7.5" text-anchor="middle">105.3</text><text x="36.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">12-12</text><circle cx="89.4" cy="78.5" r="2.8" fill="#3a7bd5"/><text x="89.4" y="72.5" fill="#5a9ad5" font-size="7.5" text-anchor="middle">105.9</text><text x="89.4" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">01-10</text><circle cx="142.8" cy="76.8" r="2.8" fill="#3a7bd5"/><text x="142.8" y="70.8" fill="#5a9ad5" font-size="7.5" text-anchor="middle">107.9</text><text x="142.8" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">01-28</text><circle cx="196.2" cy="72.5" r="2.8" fill="#3a7bd5"/><text x="196.2" y="66.5" fill="#5a9ad5" font-size="7.5" text-anchor="middle">112.9</text><text x="196.2" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">02-18</text><circle cx="249.6" cy="49.2" r="2.8" fill="#3a7bd5"/><text x="249.6" y="43.2" fill="#5a9ad5" font-size="7.5" text-anchor="middle">139.9</text><text x="249.6" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-07</text><circle cx="303.0" cy="37.1" r="2.8" fill="#3a7bd5"/><text x="303.0" y="31.1" fill="#5a9ad5" font-size="7.5" text-anchor="middle">153.9</text><text x="303.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-10</text><circle cx="356.4" cy="29.3" r="2.8" fill="#3a7bd5"/><text x="356.4" y="23.3" fill="#5a9ad5" font-size="7.5" text-anchor="middle">162.9</text><text x="356.4" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-23</text><circle cx="409.8" cy="26.1" r="2.8" fill="#3a7bd5"/><text x="409.8" y="20.1" fill="#5a9ad5" font-size="7.5" text-anchor="middle">166.6</text><text x="409.8" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-02</text><circle cx="463.2" cy="21.0" r="2.8" fill="#3a7bd5"/><text x="463.2" y="15.0" fill="#5a9ad5" font-size="7.5" text-anchor="middle">172.6</text><text x="463.2" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-06</text><circle cx="516.6" cy="31.9" r="2.8" fill="#3a7bd5"/><text x="516.6" y="25.9" fill="#5a9ad5" font-size="7.5" text-anchor="middle">159.9</text><text x="516.6" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text><circle cx="570.0" cy="42.5" r="2.8" fill="#3a7bd5"/><text x="570.0" y="36.5" fill="#5a9ad5" font-size="7.5" text-anchor="middle">147.6</text><text x="570.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-20</text></svg></div>
+</div>
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">🚗 油耗效率 (L/100km)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">7.78</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">7.78</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">7.78</text><circle cx="183.0" cy="50.0" r="2.8" fill="#4caf90"/><text x="183.0" y="44.0" fill="#4caf90" font-size="7.5" text-anchor="middle">7.78</text><text x="183.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+</div>
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">💸 每次加油花費 ($)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 580 110" style="overflow:visible"><line x1="36" y1="79.0" x2="570" y2="79.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="82.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$48</text><line x1="36" y1="50.0" x2="570" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$74</text><line x1="36" y1="21.0" x2="570" y2="21.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="24.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$101</text><polygon points="36.0,86 36.0,63.1 89.4,79.0 142.8,64.9 196.2,58.7 249.6,64.2 303.0,24.8 356.4,40.0 409.8,21.0 463.2,54.5 516.6,48.9 570.0,56.7 570.0,86" fill="rgba(247,160,72,0.15)"/><polyline points="36.0,63.1 89.4,79.0 142.8,64.9 196.2,58.7 249.6,64.2 303.0,24.8 356.4,40.0 409.8,21.0 463.2,54.5 516.6,48.9 570.0,56.7" fill="none" stroke="#f7a048" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="63.1" r="2.8" fill="#f7a048"/><text x="36.0" y="57.1" fill="#f7c948" font-size="7.5" text-anchor="middle">$63</text><text x="36.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">12-12</text><circle cx="89.4" cy="79.0" r="2.8" fill="#f7a048"/><text x="89.4" y="73.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$48</text><text x="89.4" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">01-10</text><circle cx="142.8" cy="64.9" r="2.8" fill="#f7a048"/><text x="142.8" y="58.9" fill="#f7c948" font-size="7.5" text-anchor="middle">$61</text><text x="142.8" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">01-28</text><circle cx="196.2" cy="58.7" r="2.8" fill="#f7a048"/><text x="196.2" y="52.7" fill="#f7c948" font-size="7.5" text-anchor="middle">$67</text><text x="196.2" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">02-18</text><circle cx="249.6" cy="64.2" r="2.8" fill="#f7a048"/><text x="249.6" y="58.2" fill="#f7c948" font-size="7.5" text-anchor="middle">$62</text><text x="249.6" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-07</text><circle cx="303.0" cy="24.8" r="2.8" fill="#f7a048"/><text x="303.0" y="18.8" fill="#f7c948" font-size="7.5" text-anchor="middle">$97</text><text x="303.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-10</text><circle cx="356.4" cy="40.0" r="2.8" fill="#f7a048"/><text x="356.4" y="34.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$83</text><text x="356.4" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">03-23</text><circle cx="409.8" cy="21.0" r="2.8" fill="#f7a048"/><text x="409.8" y="15.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$101</text><text x="409.8" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-02</text><circle cx="463.2" cy="54.5" r="2.8" fill="#f7a048"/><text x="463.2" y="48.5" fill="#f7c948" font-size="7.5" text-anchor="middle">$70</text><text x="463.2" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-06</text><circle cx="516.6" cy="48.9" r="2.8" fill="#f7a048"/><text x="516.6" y="42.9" fill="#f7c948" font-size="7.5" text-anchor="middle">$75</text><text x="516.6" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text><circle cx="570.0" cy="56.7" r="2.8" fill="#f7a048"/><text x="570.0" y="50.7" fill="#f7c948" font-size="7.5" text-anchor="middle">$68</text><text x="570.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-20</text></svg></div>
+</div>
+<!-- 記錄列表 -->
+
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-20 23:18</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$68.42</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">46.354 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">147.6 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+460</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">17,596</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-13 23:38</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$75.47</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">47.200 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">159.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+470</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">17,136</b></span>
+  </div>
+  <div style="margin-top:8px;padding-top:8px;border-top:1px solid #1e1e3a;display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">里程 <b style="color:#c8d8a8">606.4 km</b></span>
+    <span style="font-size:12px;color:#5a7a9a">效率 <b style="color:#4caf90">12.85 km/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">油耗 <b style="color:#4caf90">7.78 L/100km</b></span>
+    <span style="font-size:12px;color:#5a7a9a">每公里 <b style="color:#f7c948">$0.1245</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-06 23:16</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$70.34</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">40.754 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">172.6 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+400</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">8,635</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-02 23:19</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$100.59</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">60.377 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">166.6 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+600</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">8,235</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-03-23 23:27</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$83.47</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">51.240 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">162.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+510</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">7,530</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-03-10 23:26</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$97.14</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">63.117 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">153.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+630</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">7,020</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-03-07 23:05</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$61.60</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">44.031 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">139.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+440</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">1,290</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-02-18 23:23</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$66.57</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">58.962 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">112.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+580</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">19,520</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-01-28 23:15</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$61.03</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">56.564 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">107.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+2560</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">17,900</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-01-10 23:07</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$48.28</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">45.580 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">105.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+450</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">1,010</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2025-12-12 23:12</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$62.63</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">59.479 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">105.3 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+598</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">18,290</b></span>
+  </div>
+</div>
+</div>
+
+<!-- ⛽ 加油 — C300 -->
+<div id="gas-c300" class="sec">
+  <div class="car-tabs">
+    <a href="#gas"         >🚐 Sienna<br><small style="font-size:10px;color:#3a3a5a">白色 · 87 REG · 11筆</small></a>
+    <a href="#gas-c300" class="on">🚗 C300<br><small style="font-size:10px;color:#4a6a9a">黑色 · 91 Premium · 1筆</small></a>
+  </div>
+  
+<!-- PC 點數 -->
+<div style="background:linear-gradient(135deg,#162816,#0d160d);border:1px solid #253525;border-radius:12px;padding:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+  <div>
+    <div style="font-size:11px;color:#4a7a4a;margin-bottom:4px">PC Optimum 餘額</div>
+    <div style="font-size:28px;font-weight:700;color:#4caf90">16,666</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:11px;color:#3a5a3a;margin-bottom:4px">全期累計賺取</div>
+    <div style="font-size:20px;font-weight:700;color:#7eb8f7">+530</div>
+  </div>
+</div>
+<!-- 統計 -->
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總花費</div>
+    <div style="font-size:22px;font-weight:700;color:#f7c948">$103</div>
+    <div style="font-size:11px;color:#4a4a6a">CAD · 1 次</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總加油量</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">54</div>
+    <div style="font-size:11px;color:#4a4a6a">公升</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">平均油價</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">190.9</div>
+    <div style="font-size:11px;color:#4a4a6a">¢/L</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">最新油價</div>
+    <div style="font-size:22px;font-weight:700;color:#4caf90">190.9</div>
+    <div style="font-size:11px;color:#4a4a6a">¢/L</div>
+  </div>
+</div>
+<!-- 圖表 -->
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">📈 油價走勢 (¢/L)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">190.9</text><circle cx="183.0" cy="50.0" r="2.8" fill="#3a7bd5"/><text x="183.0" y="44.0" fill="#5a9ad5" font-size="7.5" text-anchor="middle">190.9</text><text x="183.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+</div>
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">🚗 油耗效率 (L/100km)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">10.16</text><circle cx="183.0" cy="50.0" r="2.8" fill="#4caf90"/><text x="183.0" y="44.0" fill="#4caf90" font-size="7.5" text-anchor="middle">10.16</text><text x="183.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+</div>
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">💸 每次加油花費 ($)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$103</text><circle cx="183.0" cy="50.0" r="2.8" fill="#f7a048"/><text x="183.0" y="44.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$103</text><text x="183.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+</div>
+<!-- 記錄列表 -->
+
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-13 23:10</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$102.85</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">⛽ Esso Circle K</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 12338 Yonge St, Richmond Hill, ON</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">油量 <b style="color:#a0b8d8">53.878 L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">單價 <b style="color:#a0b8d8">190.9 ¢/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC點 <b style="color:#a0b8d8">+530</b></span>
+    <span style="font-size:12px;color:#5a7a9a">PC餘額 <b style="color:#7eb8f7">16,666</b></span>
+  </div>
+  <div style="margin-top:8px;padding-top:8px;border-top:1px solid #1e1e3a;display:flex;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#5a7a9a">里程 <b style="color:#c8d8a8">530.3 km</b></span>
+    <span style="font-size:12px;color:#5a7a9a">效率 <b style="color:#4caf90">9.84 km/L</b></span>
+    <span style="font-size:12px;color:#5a7a9a">油耗 <b style="color:#4caf90">10.16 L/100km</b></span>
+    <span style="font-size:12px;color:#5a7a9a">每公里 <b style="color:#f7c948">$0.1939</b></span>
+  </div>
+</div>
+</div>
+
+<!-- 🛒 超市 -->
+<div id="grocery" class="sec">
+  
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總花費</div>
+    <div style="font-size:22px;font-weight:700;color:#f7c948">$34.93</div>
+    <div style="font-size:11px;color:#4a4a6a">CAD · 3 次</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">筆數</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">3</div>
+    <div style="font-size:11px;color:#4a4a6a">筆記錄</div>
+  </div>
+</div>
+<div style="margin-bottom:16px">
+  <div style="font-size:13px;color:#7a7aaa;margin-bottom:8px;font-weight:600">💸 每筆支出趨勢 ($)</div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="79.0" x2="330" y2="79.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="82.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$6</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="53.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$10</text><line x1="36" y1="21.0" x2="330" y2="21.0" stroke="#1c1c32" stroke-width="0.8"/><text x="33" y="24.0" fill="#3a4a62" font-size="7.5" text-anchor="end">$15</text><polygon points="36.0,86 36.0,28.1 183.0,79.0 330.0,21.0 330.0,86" fill="rgba(247,160,72,0.15)"/><polyline points="36.0,28.1 183.0,79.0 330.0,21.0" fill="none" stroke="#f7a048" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="28.1" r="2.8" fill="#f7a048"/><text x="36.0" y="22.1" fill="#f7c948" font-size="7.5" text-anchor="middle">$14</text><text x="36.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-13</text><circle cx="183.0" cy="79.0" r="2.8" fill="#f7a048"/><text x="183.0" y="73.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$6</text><text x="183.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-16</text><circle cx="330.0" cy="21.0" r="2.8" fill="#f7a048"/><text x="330.0" y="15.0" fill="#f7c948" font-size="7.5" text-anchor="middle">$15</text><text x="330.0" y="107" fill="#3a4a62" font-size="7.5" text-anchor="middle">04-17</text></svg></div>
+</div>
+
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-17 12:38</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$15.32</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">🛒 FreshPro Foodmart</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 Richmond Hill, ON</div>
+  <div style="border-top:1px solid #1e1e3a;padding-top:8px;margin-top:4px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#c0c0d8;margin-bottom:2px"><span>番石榴</span><span>$7.34</span></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#c0c0d8;margin-bottom:2px"><span>黑莓 x2</span><span>$7.98</span></div></div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;padding-top:6px;border-top:1px solid #1e1e3a">
+    <span style="font-size:12px;color:#5a7a9a">小計 <b style="color:#a0b8d8">$15.32</b></span>
+    <span style="font-size:12px;color:#5a7a9a">HST <b style="color:#a0b8d8">$0.00</b></span>
+    <span style="font-size:12px;color:#5a7a9a">付款 <b style="color:#a0b8d8">Mastercard ****4134</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-16 –</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$5.50</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">🛒 Chuang's Company LTD.</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 Richmond Hill, ON</div>
+  <div style="border-top:1px solid #1e1e3a;padding-top:8px;margin-top:4px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#c0c0d8;margin-bottom:2px"><span>營業芋頭包子 x10</span><span>$5.50</span></div></div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;padding-top:6px;border-top:1px solid #1e1e3a">
+    <span style="font-size:12px;color:#5a7a9a">小計 <b style="color:#a0b8d8">$5.50</b></span>
+    <span style="font-size:12px;color:#5a7a9a">HST <b style="color:#a0b8d8">$0.00</b></span>
+    <span style="font-size:12px;color:#5a7a9a">付款 <b style="color:#a0b8d8">–</b></span>
+  </div>
+</div>
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">2026-04-13 13:08</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">$14.11</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:3px">🛒 Costco Wholesale</div>
+  <div style="font-size:11px;color:#3a3a5a;margin-bottom:8px">📍 35 John Birchall Rd, Richmond Hill, ON L4S 0B2</div>
+  <div style="border-top:1px solid #1e1e3a;padding-top:8px;margin-top:4px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#c0c0d8;margin-bottom:2px"><span>12GAL 折疊儲物箱（車用）</span><span>$12.49</span></div></div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;padding-top:6px;border-top:1px solid #1e1e3a">
+    <span style="font-size:12px;color:#5a7a9a">小計 <b style="color:#a0b8d8">$12.49</b></span>
+    <span style="font-size:12px;color:#5a7a9a">HST <b style="color:#a0b8d8">$1.62</b></span>
+    <span style="font-size:12px;color:#5a7a9a">付款 <b style="color:#a0b8d8">Mastercard ****4134</b></span>
+  </div>
+</div>
+</div>
+
+<!-- 🍽 餐廳 -->
+<div id="dining" class="sec">
+  <div class="empty"><div class="ico">🍽</div><div>尚無餐廳記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>
+</div>
+
+<!-- 📦 其他 -->
+<div id="other" class="sec">
+  <div class="empty"><div class="ico">📦</div><div>尚無其他記錄</div><div style="font-size:12px;margin-top:8px;color:#2a2a4a">拍收據傳給 Claude 即可新增</div></div>
+</div>
+
+</body>
+</html>
