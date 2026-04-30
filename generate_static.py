@@ -33,6 +33,12 @@ GROCERY = [
      "subtotal":34.70,"hst":1.49,"total":36.19,"payment":"Visa ****0891"},
 ]
 
+OTHER = [
+    {"date":"2026-04-30","time":"–","category":"罰單","desc":"City of Toronto APS 超速罰單",
+     "note":"Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25",
+     "total":328.25,"payment":"線上繳費"},
+]
+
 DATA = {
     "sienna": [
         {"date":"2025-12-12","time":"23:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":59.479,"ppl":1.053,"total":62.63,"ptsEarn":598,"ptsBal":18290},
@@ -236,6 +242,43 @@ def make_grocery_card(r):
   </div>
 </div>"""
 
+def make_other_card(r):
+    return f"""
+<div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+    <span style="font-size:12px;color:#6a6a9a">{r['date']} {r['time']}</span>
+    <span style="font-size:19px;font-weight:700;color:#f7c948">${r['total']:.2f}</span>
+  </div>
+  <div style="font-size:15px;color:#e0e0f0;margin-bottom:4px">📦 {r['desc']}</div>
+  <div style="font-size:11px;color:#3a4a6a;margin-bottom:8px">{r['note']}</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;padding-top:6px;border-top:1px solid #1e1e3a">
+    <span style="font-size:12px;color:#5a7a9a">類別 <b style="color:#a0b8d8">{r['category']}</b></span>
+    <span style="font-size:12px;color:#5a7a9a">付款 <b style="color:#a0b8d8">{r['payment']}</b></span>
+  </div>
+</div>"""
+
+def make_other_section():
+    if not OTHER:
+        return empty_state("📦", "其他")
+    total_spent = sum(r["total"] for r in OTHER)
+    spend_svg   = make_spending_svg(OTHER)
+    cards_html  = "".join(make_other_card(r) for r in reversed(OTHER))
+    return f"""
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">總花費</div>
+    <div style="font-size:22px;font-weight:700;color:#f7c948">${total_spent:.2f}</div>
+    <div style="font-size:11px;color:#4a4a6a">CAD · {len(OTHER)} 筆</div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #252545;border-radius:12px;padding:14px">
+    <div style="font-size:11px;color:#5a5a8a;margin-bottom:4px">筆數</div>
+    <div style="font-size:22px;font-weight:700;color:#7eb8f7">{len(OTHER)}</div>
+    <div style="font-size:11px;color:#4a4a6a">筆記錄</div>
+  </div>
+</div>
+{chart_block("💸 每筆支出趨勢 ($)", spend_svg)}
+{cards_html}"""
+
 def make_grocery_section():
     if not GROCERY:
         return empty_state("🛒", "超市")
@@ -265,6 +308,7 @@ def build_html():
     sienna_html   = make_car_section("sienna", "Sienna")
     c300_html     = make_car_section("c300", "C300")
     grocery_html  = make_grocery_section()
+    other_html    = make_other_section()
 
     total_sienna = len(DATA["sienna"])
     total_c300   = len(DATA["c300"])
@@ -359,7 +403,7 @@ body:has(#gas-c300:target) .nav a[href="#gas"]     {{ color:#7eb8f7; border-bott
 
 <!-- 📦 其他 -->
 <div id="other" class="sec">
-  {empty_state("📦", "其他")}
+  {other_html}
 </div>
 
 </body>
