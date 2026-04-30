@@ -119,14 +119,14 @@ def make_spending_svg(records, date_key="date", total_key="total"):
 
 # ============ 圖表外框 ============
 def chart_block(title, svg):
-    return f"""<div style="margin-bottom:20px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:10px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">{title}</div>
+    return f"""<div style="margin-bottom:24px">
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">{title}</div>
   <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden">{svg}</div>
 </div>"""
 
 # ============ 空狀態 ============
 def empty_state(icon, label):
-    return f'<div class="empty"><div class="ico">{icon}</div><div>{label}尚無記錄</div><div style="font-size:12px;margin-top:8px;color:rgba(255,255,255,0.2)">拍收據傳給 Claude 即可新增</div></div>'
+    return f'<div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:rgba(255,255,255,0.25)">{label}</div><div style="font-size:12px;margin-top:10px;color:rgba(255,255,255,0.15)">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>'
 
 # ============ 統計數字卡片（共用）============
 def stat_card(label, value, unit, color="#fff"):
@@ -191,7 +191,7 @@ def make_record_card(r):
 def make_car_section(car_key, car_label):
     records = DATA[car_key]
     if not records:
-        return empty_state("", car_label)
+        return empty_state("", f"{car_label} 加油")
 
     total_spent  = sum(r["total"]  for r in records)
     total_litres = sum(r["litres"] for r in records)
@@ -225,10 +225,10 @@ def make_car_section(car_key, car_label):
 </div>
 <!-- 圖表 -->
 {chart_block("油價走勢  ¢/L", price_svg)}
-{chart_block("油耗效率  L/100km", eff_svg)}
-{chart_block("每次花費  $", spend_svg)}
+{chart_block("油耗效率  L / 100 km", eff_svg)}
+{chart_block("每次花費  CAD", spend_svg)}
 <!-- 記錄列表 -->
-<div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
+<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
 {cards_html}"""
 
 # ============ 超市卡片 ============
@@ -289,8 +289,8 @@ def make_other_section():
   {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {len(OTHER)} 筆", "#ff9f0a")}
   {stat_card("筆數", str(len(OTHER)), "筆記錄", "#fff")}
 </div>
-{chart_block("每筆支出趨勢  $", spend_svg)}
-<div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
+{chart_block("每筆支出趨勢  CAD", spend_svg)}
+<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
 {cards_html}"""
 
 # ============ 超市區塊 ============
@@ -306,8 +306,8 @@ def make_grocery_section():
   {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {total_tx} 次", "#ff9f0a")}
   {stat_card("筆數", str(total_tx), "筆記錄", "#fff")}
 </div>
-{chart_block("每筆支出趨勢  $", spend_svg)}
-<div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
+{chart_block("每筆支出趨勢  CAD", spend_svg)}
+<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
 {cards_html}"""
 
 # ============ 完整 HTML ============
@@ -400,22 +400,22 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-c
 <body>
 
 <div class="hdr">
-  <h1>包山包海包生活</h1>
+  <h1>生活支出</h1>
   <p>更新於 {now}</p>
 </div>
 
 <div class="nav">
-  <a href="#gas">⛽ 加油</a>
-  <a href="#grocery">🛒 超市</a>
-  <a href="#dining">🍽 餐廳</a>
-  <a href="#other">📋 其他</a>
+  <a href="#gas">加油</a>
+  <a href="#grocery">超市</a>
+  <a href="#dining">餐廳</a>
+  <a href="#other">其他</a>
 </div>
 
 <!-- 加油 — Sienna -->
 <div id="gas" class="sec">
   <div class="car-tabs">
-    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;opacity:0.6">白色 · 87 REG · {total_sienna} 筆</small></a>
-    <a href="#gas-c300">C300<br><small style="font-size:10px;opacity:0.6">黑色 · 91 Premium · {total_c300} 筆</small></a>
+    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">白色  87 REG  {total_sienna} 筆</small></a>
+    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">黑色  91 Premium  {total_c300} 筆</small></a>
   </div>
   {sienna_html}
 </div>
@@ -423,8 +423,8 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-c
 <!-- 加油 — C300 -->
 <div id="gas-c300" class="sec">
   <div class="car-tabs">
-    <a href="#gas">Sienna<br><small style="font-size:10px;opacity:0.6">白色 · 87 REG · {total_sienna} 筆</small></a>
-    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;opacity:0.6">黑色 · 91 Premium · {total_c300} 筆</small></a>
+    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">白色  87 REG  {total_sienna} 筆</small></a>
+    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">黑色  91 Premium  {total_c300} 筆</small></a>
   </div>
   {c300_html}
 </div>
@@ -436,7 +436,7 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-c
 
 <!-- 餐廳 -->
 <div id="dining" class="sec">
-  {empty_state("🍽", "餐廳")}
+  {empty_state("", "餐廳")}
 </div>
 
 <!-- 其他 -->
