@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # 生成純靜態 HTML — 零 JavaScript，直接在 iOS QuickLook 顯示
-# 每次新增資料後重跑此腳本，HTML 直接寫入 iCloud Claude Cowork 資料夾
 
 import os
 from datetime import datetime
@@ -59,11 +58,23 @@ DATA = {
     ]
 }
 
+# ============ 顏色常數（淺色系 Apple/MUJI 風）============
+C_BG       = "#f5f5f7"   # 頁面背景
+C_SURFACE  = "#ffffff"   # 卡片白
+C_BORDER   = "rgba(0,0,0,0.08)"
+C_TEXT1    = "#1d1d1f"   # 主文字
+C_TEXT2    = "rgba(0,0,0,0.5)"   # 次要文字
+C_TEXT3    = "rgba(0,0,0,0.3)"   # 輔助文字
+C_BLUE     = "#0071e3"
+C_GREEN    = "#1a8c3e"
+C_ORANGE   = "#c45000"
+C_NAV_BG   = "rgba(245,245,247,0.9)"
+
 # ============ SVG 共用：畫折線圖 ============
 def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110):
     n = len(vals)
     if n == 0:
-        return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="rgba(255,255,255,0.15)" text-anchor="middle" font-size="9">無資料</text></svg>'
+        return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
     width = max(340, n * 48 + 52)
     L, R, T, B = 36, 10, 14, 24
     cw = width - L - R
@@ -74,66 +85,61 @@ def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110):
     def px(i): return L + (i / (n-1) if n > 1 else 0.5) * cw
     def py(v): return T + ch * (1 - (v - lo) / (hi - lo))
     parts = []
-    # 三條橫格線
     for v in [lo + pad, (lo + hi) / 2, hi - pad]:
         y = py(v)
-        parts.append(f'<line x1="{L}" y1="{y:.1f}" x2="{width-R}" y2="{y:.1f}" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>')
-        parts.append(f'<text x="{L-3}" y="{y+3:.1f}" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">{fmt_val(v)}</text>')
-    # 填色面積
+        parts.append(f'<line x1="{L}" y1="{y:.1f}" x2="{width-R}" y2="{y:.1f}" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/>')
+        parts.append(f'<text x="{L-3}" y="{y+3:.1f}" fill="{C_TEXT3}" font-size="7.5" text-anchor="end">{fmt_val(v)}</text>')
     if n > 1:
         poly = " ".join(f"{px(i):.1f},{py(vals[i]):.1f}" for i in range(n))
         area = f"{px(0):.1f},{T+ch} {poly} {px(n-1):.1f},{T+ch}"
         parts.append(f'<polygon points="{area}" fill="{color_fill}"/>')
         parts.append(f'<polyline points="{poly}" fill="none" stroke="{color_line}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>')
-    # 資料點 + 標籤
     for i in range(n):
         x, y = px(i), py(vals[i])
         parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{color_line}"/>')
-        parts.append(f'<text x="{x:.1f}" y="{y-6:.1f}" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">{fmt_val(vals[i])}</text>')
-        parts.append(f'<text x="{x:.1f}" y="{height-3}" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
+        parts.append(f'<text x="{x:.1f}" y="{y-6:.1f}" fill="{C_TEXT1}" font-size="7.5" text-anchor="middle" font-weight="500">{fmt_val(vals[i])}</text>')
+        parts.append(f'<text x="{x:.1f}" y="{height-3}" fill="{C_TEXT3}" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
     return f'<svg width="100%" viewBox="0 0 {width} {height}" style="overflow:visible">{"".join(parts)}</svg>'
 
-# ============ SVG 折線圖（油價走勢）============
 def make_price_svg(records):
-    if not records: return _line_svg([], [], "#0a84ff", "rgba(10,132,255,0.12)", lambda v: f"{v:.1f}")
+    if not records: return _line_svg([], [], C_BLUE, f"rgba(0,113,227,0.08)", lambda v: f"{v:.1f}")
     labels = [r["date"][5:] for r in records]
     vals   = [r["ppl"] * 100 for r in records]
-    return _line_svg(labels, vals, "#0a84ff", "rgba(10,132,255,0.12)", lambda v: f"{v:.1f}")
+    return _line_svg(labels, vals, C_BLUE, "rgba(0,113,227,0.08)", lambda v: f"{v:.1f}")
 
-# ============ SVG 折線圖（油耗效率 L/100km）============
 def make_eff_svg(records):
     eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if "km" in r]
     if not eff:
-        return f'<svg width="100%" viewBox="0 0 340 110"><text x="50%" y="55" fill="rgba(255,255,255,0.15)" text-anchor="middle" font-size="9">填寫里程後顯示</text></svg>'
+        return f'<svg width="100%" viewBox="0 0 340 110"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">填寫里程後顯示</text></svg>'
     labels = [d[0] for d in eff]
     vals   = [d[1] for d in eff]
-    return _line_svg(labels, vals, "#30d158", "rgba(48,209,88,0.12)", lambda v: f"{v:.2f}")
+    return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}")
 
-# ============ SVG 折線圖（支出趨勢）============
 def make_spending_svg(records, date_key="date", total_key="total"):
-    if not records: return _line_svg([], [], "#ff9f0a", "rgba(255,159,10,0.12)", lambda v: f"${v:.0f}")
+    if not records: return _line_svg([], [], C_ORANGE, "rgba(196,80,0,0.08)", lambda v: f"${v:.0f}")
     sorted_r = sorted(records, key=lambda r: r[date_key])
     labels = [r[date_key][5:] for r in sorted_r]
     vals   = [r[total_key]    for r in sorted_r]
-    return _line_svg(labels, vals, "#ff9f0a", "rgba(255,159,10,0.12)", lambda v: f"${v:.0f}")
+    return _line_svg(labels, vals, C_ORANGE, "rgba(196,80,0,0.08)", lambda v: f"${v:.0f}")
 
 # ============ 圖表外框 ============
 def chart_block(title, svg):
     return f"""<div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">{title}</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden">{svg}</div>
+  <div style="font-size:10px;color:{C_TEXT3};margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">{title}</div>
+  <div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:14px 12px;overflow:hidden">{svg}</div>
 </div>"""
 
 # ============ 空狀態 ============
-def empty_state(icon, label):
-    return f'<div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:rgba(255,255,255,0.25)">{label}</div><div style="font-size:12px;margin-top:10px;color:rgba(255,255,255,0.15)">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>'
+def empty_state(label):
+    return f'<div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:{C_TEXT2}">{label}</div><div style="font-size:12px;margin-top:10px;color:{C_TEXT3}">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>'
 
-# ============ 統計數字卡片（共用）============
-def stat_card(label, value, unit, color="#fff"):
-    return f"""<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">{label}</div>
-  <div style="font-size:26px;font-weight:600;color:{color};letter-spacing:-0.5px;line-height:1">{value}</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">{unit}</div>
+# ============ 統計數字卡片 ============
+def stat_card(label, value, unit, color=None):
+    col = color or C_TEXT1
+    return f"""<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">{label}</div>
+  <div style="font-size:26px;font-weight:600;color:{col};letter-spacing:-0.5px;line-height:1">{value}</div>
+  <div style="font-size:11px;color:{C_TEXT3};margin-top:6px">{unit}</div>
 </div>"""
 
 # ============ 單筆加油記錄卡片 ============
@@ -141,48 +147,47 @@ def make_record_card(r):
     ppl_c = r["ppl"] * 100
     km_html = ""
     if "km" in r:
-        kmpl     = r["km"] / r["litres"]
         l100     = r["litres"] / r["km"] * 100
         cost_km  = r["total"] / r["km"]
         km_html = f"""
-  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0;flex-wrap:wrap">
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid {C_BORDER};display:flex;gap:0;flex-wrap:wrap">
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">里程</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">{r['km']:.1f} <span style="font-size:11px;color:rgba(255,255,255,0.4)">km</span></div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">里程</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['km']:.1f} <span style="font-size:11px;color:{C_TEXT3}">km</span></div>
     </div>
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油耗</div>
-      <div style="font-size:15px;font-weight:500;color:#30d158">{l100:.2f} <span style="font-size:11px;color:rgba(255,255,255,0.4)">L/100km</span></div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油耗</div>
+      <div style="font-size:15px;font-weight:500;color:{C_GREEN}">{l100:.2f} <span style="font-size:11px;color:{C_TEXT3}">L/100km</span></div>
     </div>
     <div style="flex:1;min-width:80px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">每公里</div>
-      <div style="font-size:15px;font-weight:500;color:#ff9f0a">${cost_km:.4f}</div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">每公里</div>
+      <div style="font-size:15px;font-weight:500;color:{C_ORANGE}">${cost_km:.4f}</div>
     </div>
   </div>"""
     return f"""
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">{r['station']}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">{r['addr']}</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['station']}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px">{r['addr']}</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">{r['date']} · {r['time']}</div>
+      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid {C_BORDER}">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">{r['litres']:.3f} <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['litres']:.3f} <span style="font-size:11px;color:{C_TEXT3}">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">{ppl_c:.1f} <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:{C_BLUE}">{ppl_c:.1f} <span style="font-size:11px;color:{C_TEXT3}">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+{r['ptsEarn']:,}</div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">+{r['ptsEarn']:,}</div>
     </div>
   </div>{km_html}
 </div>"""
@@ -191,7 +196,7 @@ def make_record_card(r):
 def make_car_section(car_key, car_label):
     records = DATA[car_key]
     if not records:
-        return empty_state("", f"{car_label} 加油")
+        return empty_state(f"{car_label} 加油")
 
     total_spent  = sum(r["total"]  for r in records)
     total_litres = sum(r["litres"] for r in records)
@@ -199,115 +204,106 @@ def make_car_section(car_key, car_label):
     last         = records[-1]
     total_earned = sum(r["ptsEarn"] for r in records)
 
-    price_svg = make_price_svg(records)
-    eff_svg   = make_eff_svg(records)
-    spend_svg = make_spending_svg(records)
     cards_html = "".join(make_record_card(r) for r in reversed(records))
 
     return f"""
-<!-- PC Optimum -->
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
   <div>
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
-    <div style="font-size:32px;font-weight:600;color:#30d158;letter-spacing:-0.5px">{last['ptsBal']:,}</div>
+    <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
+    <div style="font-size:32px;font-weight:600;color:{C_GREEN};letter-spacing:-0.5px">{last['ptsBal']:,}</div>
   </div>
   <div style="text-align:right">
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
-    <div style="font-size:22px;font-weight:600;color:#0a84ff">+{total_earned:,}</div>
+    <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
+    <div style="font-size:22px;font-weight:600;color:{C_BLUE}">+{total_earned:,}</div>
   </div>
 </div>
-<!-- 統計 -->
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  {stat_card("總花費", f"${total_spent:.0f}", f"CAD · {len(records)} 次", "#ff9f0a")}
-  {stat_card("總加油量", f"{total_litres:.0f}", "公升", "#fff")}
-  {stat_card("平均油價", f"{avg_ppl*100:.1f}", "¢/L", "#0a84ff")}
-  {stat_card("最新油價", f"{last['ppl']*100:.1f}", "¢/L", "#30d158")}
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  {stat_card("總花費", f"${total_spent:.0f}", f"CAD · {len(records)} 次", C_ORANGE)}
+  {stat_card("總加油量", f"{total_litres:.0f}", "公升")}
+  {stat_card("平均油價", f"{avg_ppl*100:.1f}", "¢/L", C_BLUE)}
+  {stat_card("最新油價", f"{last['ppl']*100:.1f}", "¢/L", C_GREEN)}
 </div>
-<!-- 圖表 -->
-{chart_block("油價走勢  ¢/L", price_svg)}
-{chart_block("油耗效率  L / 100 km", eff_svg)}
-{chart_block("每次花費  CAD", spend_svg)}
-<!-- 記錄列表 -->
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
+{chart_block("油價走勢  ¢/L", make_price_svg(records))}
+{chart_block("油耗效率  L / 100 km", make_eff_svg(records))}
+{chart_block("每次花費  CAD", make_spending_svg(records))}
+<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
 {cards_html}"""
 
 # ============ 超市卡片 ============
 def make_grocery_card(r):
     items_html = "".join(
-        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">${it["price"]:.2f}</span></div>'
+        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
         for it in r["items"]
     )
     return f"""
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">{r['store']}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">{r['addr']}</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['store']}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px">{r['addr']}</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">{r['date']} · {r['time']}</div>
+      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px">{items_html}</div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">${r['subtotal']:.2f}</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">${r['hst']:.2f}</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">{r['payment']}</span></div>
+  <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid {C_BORDER}">
+    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:{C_TEXT2}">${r['subtotal']:.2f}</span></div>
+    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:{C_TEXT2}">${r['hst']:.2f}</span></div>
+    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:{C_TEXT2}">{r['payment']}</span></div>
   </div>
 </div>"""
 
 # ============ 其他卡片 ============
 def make_other_card(r):
     return f"""
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">{r['desc']}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">{r['note']}</div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['desc']}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px;line-height:1.5">{r['note']}</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">{r['date']} · {r['time']}</div>
+      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
     </div>
   </div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">類別 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">{r['category']}</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">{r['payment']}</span></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid {C_BORDER}">
+    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">類別 </span><span style="font-size:12px;color:{C_TEXT2}">{r['category']}</span></div>
+    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:{C_TEXT2}">{r['payment']}</span></div>
   </div>
 </div>"""
 
 # ============ 其他區塊 ============
 def make_other_section():
     if not OTHER:
-        return empty_state("", "其他")
+        return empty_state("其他支出")
     total_spent = sum(r["total"] for r in OTHER)
-    spend_svg   = make_spending_svg(OTHER)
     cards_html  = "".join(make_other_card(r) for r in reversed(OTHER))
     return f"""
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {len(OTHER)} 筆", "#ff9f0a")}
-  {stat_card("筆數", str(len(OTHER)), "筆記錄", "#fff")}
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {len(OTHER)} 筆", C_ORANGE)}
+  {stat_card("筆數", str(len(OTHER)), "筆記錄")}
 </div>
-{chart_block("每筆支出趨勢  CAD", spend_svg)}
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
+{chart_block("每筆支出趨勢  CAD", make_spending_svg(OTHER))}
+<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
 {cards_html}"""
 
 # ============ 超市區塊 ============
 def make_grocery_section():
     if not GROCERY:
-        return empty_state("", "超市")
+        return empty_state("超市購物")
     total_spent = sum(r["total"] for r in GROCERY)
     total_tx    = len(GROCERY)
-    spend_svg   = make_spending_svg(GROCERY)
     cards_html  = "".join(make_grocery_card(r) for r in reversed(GROCERY))
     return f"""
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {total_tx} 次", "#ff9f0a")}
-  {stat_card("筆數", str(total_tx), "筆記錄", "#fff")}
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {total_tx} 次", C_ORANGE)}
+  {stat_card("筆數", str(total_tx), "筆記錄")}
 </div>
-{chart_block("每筆支出趨勢  CAD", spend_svg)}
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
+{chart_block("每筆支出趨勢  CAD", make_spending_svg(GROCERY))}
+<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
 {cards_html}"""
 
 # ============ 完整 HTML ============
@@ -317,9 +313,8 @@ def build_html():
     c300_html     = make_car_section("c300", "C300")
     grocery_html  = make_grocery_section()
     other_html    = make_other_section()
-
-    total_sienna = len(DATA["sienna"])
-    total_c300   = len(DATA["c300"])
+    total_sienna  = len(DATA["sienna"])
+    total_c300    = len(DATA["c300"])
 
     return f"""<!DOCTYPE html>
 <html lang="zh-TW">
@@ -327,31 +322,30 @@ def build_html():
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="包山包海包生活">
-<title>包山包海包生活</title>
+<meta name="apple-mobile-web-app-title" content="生活支出">
+<title>生活支出</title>
 <style>
 * {{ box-sizing:border-box; margin:0; padding:0; }}
-html {{ background:#000; }}
+html, body {{ background:{C_BG}; }}
 body {{
-  background:#000;
-  color:#fff;
+  color:{C_TEXT1};
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
   -webkit-font-smoothing:antialiased;
 }}
 .hdr {{
-  background:rgba(0,0,0,0.88);
+  background:{C_NAV_BG};
   padding:16px 20px 12px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  border-bottom:1px solid rgba(0,0,0,0.1);
   position:sticky; top:0; z-index:10;
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
 }}
-.hdr h1 {{ font-size:18px; color:#fff; font-weight:700; letter-spacing:-0.2px; }}
-.hdr p  {{ font-size:11px; color:rgba(255,255,255,0.3); margin-top:3px; letter-spacing:0.02em; }}
+.hdr h1 {{ font-size:18px; color:{C_TEXT1}; font-weight:700; letter-spacing:-0.2px; }}
+.hdr p  {{ font-size:11px; color:{C_TEXT3}; margin-top:3px; letter-spacing:0.02em; }}
 .nav {{
   display:flex;
-  background:rgba(0,0,0,0.88);
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  background:{C_NAV_BG};
+  border-bottom:1px solid rgba(0,0,0,0.1);
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
   backdrop-filter:saturate(180%) blur(20px);
@@ -359,7 +353,7 @@ body {{
 }}
 .nav a {{
   flex:1; min-width:80px; padding:12px 8px 11px;
-  color:rgba(255,255,255,0.4);
+  color:{C_TEXT3};
   font-size:13px; text-align:center;
   border-bottom:2px solid transparent;
   white-space:nowrap; text-decoration:none; display:block;
@@ -368,16 +362,15 @@ body {{
 .car-tabs {{ display:flex; gap:10px; margin:16px 0; }}
 .car-tabs a {{
   flex:1; padding:12px 10px;
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(0,0,0,0.1);
   border-radius:10px;
-  background:#1c1c1e;
-  color:rgba(255,255,255,0.35);
+  background:{C_SURFACE};
+  color:{C_TEXT3};
   font-size:13px; text-align:center; text-decoration:none; display:block;
 }}
-.car-tabs a.on {{ border-color:#0a84ff; color:#0a84ff; background:rgba(10,132,255,0.08); }}
+.car-tabs a.on {{ border-color:{C_BLUE}; color:{C_BLUE}; background:rgba(0,113,227,0.05); }}
 .sec {{ padding:20px 20px 50px; }}
-.empty {{ text-align:center; padding:60px 20px; color:rgba(255,255,255,0.2); }}
-.empty .ico {{ font-size:36px; margin-bottom:14px; opacity:0.4; }}
+.empty {{ text-align:center; padding:60px 20px; }}
 /* 分頁切換邏輯 */
 .sec {{ display:none; }}
 #gas {{ display:block; }}
@@ -386,15 +379,15 @@ body:has(#grocery:target)  #gas,
 body:has(#dining:target)   #gas,
 body:has(#other:target)    #gas {{ display:none; }}
 :target {{ display:block !important; }}
-/* 導航底線：預設加油亮 */
-.nav a[href="#gas"] {{ color:#fff; border-bottom-color:#0a84ff; }}
+/* 導航底線 */
+.nav a[href="#gas"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 body:has(#grocery:target) .nav a[href="#gas"],
 body:has(#dining:target)  .nav a[href="#gas"],
-body:has(#other:target)   .nav a[href="#gas"] {{ color:rgba(255,255,255,0.4); border-bottom-color:transparent; }}
-body:has(#grocery:target) .nav a[href="#grocery"] {{ color:#fff; border-bottom-color:#0a84ff; }}
-body:has(#dining:target)  .nav a[href="#dining"]  {{ color:#fff; border-bottom-color:#0a84ff; }}
-body:has(#other:target)   .nav a[href="#other"]   {{ color:#fff; border-bottom-color:#0a84ff; }}
-body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-color:#0a84ff; }}
+body:has(#other:target)   .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-color:transparent; }}
+body:has(#grocery:target) .nav a[href="#grocery"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#dining:target)  .nav a[href="#dining"]  {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 </style>
 </head>
 <body>
@@ -411,35 +404,30 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-c
   <a href="#other">其他</a>
 </div>
 
-<!-- 加油 — Sienna -->
 <div id="gas" class="sec">
   <div class="car-tabs">
-    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">白色  87 REG  {total_sienna} 筆</small></a>
-    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">黑色  91 Premium  {total_c300} 筆</small></a>
+    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">白色  87 REG  {total_sienna} 筆</small></a>
+    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">黑色  91 Premium  {total_c300} 筆</small></a>
   </div>
   {sienna_html}
 </div>
 
-<!-- 加油 — C300 -->
 <div id="gas-c300" class="sec">
   <div class="car-tabs">
-    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">白色  87 REG  {total_sienna} 筆</small></a>
-    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">黑色  91 Premium  {total_c300} 筆</small></a>
+    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">白色  87 REG  {total_sienna} 筆</small></a>
+    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">黑色  91 Premium  {total_c300} 筆</small></a>
   </div>
   {c300_html}
 </div>
 
-<!-- 超市 -->
 <div id="grocery" class="sec">
   {grocery_html}
 </div>
 
-<!-- 餐廳 -->
 <div id="dining" class="sec">
-  {empty_state("", "餐廳")}
+  {empty_state("餐廳")}
 </div>
 
-<!-- 其他 -->
 <div id="other" class="sec">
   {other_html}
 </div>
@@ -449,13 +437,10 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:#fff; border-bottom-c
 
 # ============ 輸出 ============
 html = build_html()
-
 COWORK = os.path.dirname(os.path.abspath(__file__))
 out_path = os.path.join(COWORK, "index.html")
 with open(out_path, "w", encoding="utf-8") as f:
     f.write(html)
-
 print(f"✅ HTML 已寫入：{out_path}")
 print(f"   大小：{len(html):,} bytes")
-print(f"   Sienna 記錄：{len(DATA['sienna'])} 筆")
-print(f"   C300 記錄：{len(DATA['c300'])} 筆")
+print(f"   Sienna：{len(DATA['sienna'])} 筆  C300：{len(DATA['c300'])} 筆")

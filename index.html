@@ -4,31 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="包山包海包生活">
-<title>包山包海包生活</title>
+<meta name="apple-mobile-web-app-title" content="生活支出">
+<title>生活支出</title>
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
-html { background:#000; }
+html, body { background:#f5f5f7; }
 body {
-  background:#000;
-  color:#fff;
+  color:#1d1d1f;
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 .hdr {
-  background:rgba(0,0,0,0.88);
+  background:rgba(245,245,247,0.9);
   padding:16px 20px 12px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  border-bottom:1px solid rgba(0,0,0,0.1);
   position:sticky; top:0; z-index:10;
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
 }
-.hdr h1 { font-size:18px; color:#fff; font-weight:700; letter-spacing:-0.2px; }
-.hdr p  { font-size:11px; color:rgba(255,255,255,0.3); margin-top:3px; letter-spacing:0.02em; }
+.hdr h1 { font-size:18px; color:#1d1d1f; font-weight:700; letter-spacing:-0.2px; }
+.hdr p  { font-size:11px; color:rgba(0,0,0,0.3); margin-top:3px; letter-spacing:0.02em; }
 .nav {
   display:flex;
-  background:rgba(0,0,0,0.88);
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  background:rgba(245,245,247,0.9);
+  border-bottom:1px solid rgba(0,0,0,0.1);
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
   backdrop-filter:saturate(180%) blur(20px);
@@ -36,7 +35,7 @@ body {
 }
 .nav a {
   flex:1; min-width:80px; padding:12px 8px 11px;
-  color:rgba(255,255,255,0.4);
+  color:rgba(0,0,0,0.3);
   font-size:13px; text-align:center;
   border-bottom:2px solid transparent;
   white-space:nowrap; text-decoration:none; display:block;
@@ -45,16 +44,15 @@ body {
 .car-tabs { display:flex; gap:10px; margin:16px 0; }
 .car-tabs a {
   flex:1; padding:12px 10px;
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(0,0,0,0.1);
   border-radius:10px;
-  background:#1c1c1e;
-  color:rgba(255,255,255,0.35);
+  background:#ffffff;
+  color:rgba(0,0,0,0.3);
   font-size:13px; text-align:center; text-decoration:none; display:block;
 }
-.car-tabs a.on { border-color:#0a84ff; color:#0a84ff; background:rgba(10,132,255,0.08); }
+.car-tabs a.on { border-color:#0071e3; color:#0071e3; background:rgba(0,113,227,0.05); }
 .sec { padding:20px 20px 50px; }
-.empty { text-align:center; padding:60px 20px; color:rgba(255,255,255,0.2); }
-.empty .ico { font-size:36px; margin-bottom:14px; opacity:0.4; }
+.empty { text-align:center; padding:60px 20px; }
 /* 分頁切換邏輯 */
 .sec { display:none; }
 #gas { display:block; }
@@ -63,22 +61,22 @@ body:has(#grocery:target)  #gas,
 body:has(#dining:target)   #gas,
 body:has(#other:target)    #gas { display:none; }
 :target { display:block !important; }
-/* 導航底線：預設加油亮 */
-.nav a[href="#gas"] { color:#fff; border-bottom-color:#0a84ff; }
+/* 導航底線 */
+.nav a[href="#gas"] { color:#1d1d1f; border-bottom-color:#0071e3; }
 body:has(#grocery:target) .nav a[href="#gas"],
 body:has(#dining:target)  .nav a[href="#gas"],
-body:has(#other:target)   .nav a[href="#gas"] { color:rgba(255,255,255,0.4); border-bottom-color:transparent; }
-body:has(#grocery:target) .nav a[href="#grocery"] { color:#fff; border-bottom-color:#0a84ff; }
-body:has(#dining:target)  .nav a[href="#dining"]  { color:#fff; border-bottom-color:#0a84ff; }
-body:has(#other:target)   .nav a[href="#other"]   { color:#fff; border-bottom-color:#0a84ff; }
-body:has(#gas-c300:target) .nav a[href="#gas"]    { color:#fff; border-bottom-color:#0a84ff; }
+body:has(#other:target)   .nav a[href="#gas"] { color:rgba(0,0,0,0.3); border-bottom-color:transparent; }
+body:has(#grocery:target) .nav a[href="#grocery"] { color:#1d1d1f; border-bottom-color:#0071e3; }
+body:has(#dining:target)  .nav a[href="#dining"]  { color:#1d1d1f; border-bottom-color:#0071e3; }
+body:has(#other:target)   .nav a[href="#other"]   { color:#1d1d1f; border-bottom-color:#0071e3; }
+body:has(#gas-c300:target) .nav a[href="#gas"]    { color:#1d1d1f; border-bottom-color:#0071e3; }
 </style>
 </head>
 <body>
 
 <div class="hdr">
   <h1>生活支出</h1>
-  <p>更新於 2026-04-29 21:41</p>
+  <p>更新於 2026-04-29 22:27</p>
 </div>
 
 <div class="nav">
@@ -88,711 +86,698 @@ body:has(#gas-c300:target) .nav a[href="#gas"]    { color:#fff; border-bottom-co
   <a href="#other">其他</a>
 </div>
 
-<!-- 加油 — Sienna -->
 <div id="gas" class="sec">
   <div class="car-tabs">
-    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">白色  87 REG  12 筆</small></a>
-    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">黑色  91 Premium  1 筆</small></a>
+    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">白色  87 REG  12 筆</small></a>
+    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">黑色  91 Premium  1 筆</small></a>
   </div>
   
-<!-- PC Optimum -->
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
   <div>
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
-    <div style="font-size:32px;font-weight:600;color:#30d158;letter-spacing:-0.5px">21,986</div>
+    <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
+    <div style="font-size:32px;font-weight:600;color:#1a8c3e;letter-spacing:-0.5px">21,986</div>
   </div>
   <div style="text-align:right">
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
-    <div style="font-size:22px;font-weight:600;color:#0a84ff">+12,088</div>
+    <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
+    <div style="font-size:22px;font-weight:600;color:#0071e3">+12,088</div>
   </div>
 </div>
-<!-- 統計 -->
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總花費</div>
-  <div style="font-size:26px;font-weight:600;color:#ff9f0a;letter-spacing:-0.5px;line-height:1">$860</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">CAD · 12 次</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總花費</div>
+  <div style="font-size:26px;font-weight:600;color:#c45000;letter-spacing:-0.5px;line-height:1">$860</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 12 次</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總加油量</div>
-  <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-0.5px;line-height:1">613</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">公升</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總加油量</div>
+  <div style="font-size:26px;font-weight:600;color:#1d1d1f;letter-spacing:-0.5px;line-height:1">613</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">公升</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">平均油價</div>
-  <div style="font-size:26px;font-weight:600;color:#0a84ff;letter-spacing:-0.5px;line-height:1">141.4</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">平均油價</div>
+  <div style="font-size:26px;font-weight:600;color:#0071e3;letter-spacing:-0.5px;line-height:1">141.4</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">¢/L</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">最新油價</div>
-  <div style="font-size:26px;font-weight:600;color:#30d158;letter-spacing:-0.5px;line-height:1">161.6</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">最新油價</div>
+  <div style="font-size:26px;font-weight:600;color:#1a8c3e;letter-spacing:-0.5px;line-height:1">161.6</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">¢/L</div>
 </div>
-</div>
-<!-- 圖表 -->
-<div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油價走勢  ¢/L</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 628 110" style="overflow:visible"><line x1="36" y1="79.0" x2="618" y2="79.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">105.3</text><line x1="36" y1="50.0" x2="618" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">138.9</text><line x1="36" y1="21.0" x2="618" y2="21.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">172.6</text><polygon points="36.0,86 36.0,79.0 88.9,78.5 141.8,76.8 194.7,72.5 247.6,49.2 300.5,37.1 353.5,29.3 406.4,26.1 459.3,21.0 512.2,31.9 565.1,42.5 618.0,30.5 618.0,86" fill="rgba(10,132,255,0.12)"/><polyline points="36.0,79.0 88.9,78.5 141.8,76.8 194.7,72.5 247.6,49.2 300.5,37.1 353.5,29.3 406.4,26.1 459.3,21.0 512.2,31.9 565.1,42.5 618.0,30.5" fill="none" stroke="#0a84ff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="79.0" r="2.5" fill="#0a84ff"/><text x="36.0" y="73.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">105.3</text><text x="36.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">12-12</text><circle cx="88.9" cy="78.5" r="2.5" fill="#0a84ff"/><text x="88.9" y="72.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">105.9</text><text x="88.9" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">01-10</text><circle cx="141.8" cy="76.8" r="2.5" fill="#0a84ff"/><text x="141.8" y="70.8" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">107.9</text><text x="141.8" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">01-28</text><circle cx="194.7" cy="72.5" r="2.5" fill="#0a84ff"/><text x="194.7" y="66.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">112.9</text><text x="194.7" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">02-18</text><circle cx="247.6" cy="49.2" r="2.5" fill="#0a84ff"/><text x="247.6" y="43.2" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">139.9</text><text x="247.6" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-07</text><circle cx="300.5" cy="37.1" r="2.5" fill="#0a84ff"/><text x="300.5" y="31.1" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">153.9</text><text x="300.5" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-10</text><circle cx="353.5" cy="29.3" r="2.5" fill="#0a84ff"/><text x="353.5" y="23.3" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">162.9</text><text x="353.5" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-23</text><circle cx="406.4" cy="26.1" r="2.5" fill="#0a84ff"/><text x="406.4" y="20.1" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">166.6</text><text x="406.4" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-02</text><circle cx="459.3" cy="21.0" r="2.5" fill="#0a84ff"/><text x="459.3" y="15.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">172.6</text><text x="459.3" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-06</text><circle cx="512.2" cy="31.9" r="2.5" fill="#0a84ff"/><text x="512.2" y="25.9" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">159.9</text><text x="512.2" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="565.1" cy="42.5" r="2.5" fill="#0a84ff"/><text x="565.1" y="36.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">147.6</text><text x="565.1" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-20</text><circle cx="618.0" cy="30.5" r="2.5" fill="#0a84ff"/><text x="618.0" y="24.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">161.6</text><text x="618.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油耗效率  L / 100 km</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="79.0" x2="330" y2="79.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">7.10</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">7.44</text><line x1="36" y1="21.0" x2="330" y2="21.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">7.78</text><polygon points="36.0,86 36.0,21.0 330.0,79.0 330.0,86" fill="rgba(48,209,88,0.12)"/><polyline points="36.0,21.0 330.0,79.0" fill="none" stroke="#30d158" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="21.0" r="2.5" fill="#30d158"/><text x="36.0" y="15.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">7.78</text><text x="36.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="330.0" cy="79.0" r="2.5" fill="#30d158"/><text x="330.0" y="73.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">7.10</text><text x="330.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油價走勢  ¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 628 110" style="overflow:visible"><line x1="36" y1="79.0" x2="618" y2="79.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">105.3</text><line x1="36" y1="50.0" x2="618" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">138.9</text><line x1="36" y1="21.0" x2="618" y2="21.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">172.6</text><polygon points="36.0,86 36.0,79.0 88.9,78.5 141.8,76.8 194.7,72.5 247.6,49.2 300.5,37.1 353.5,29.3 406.4,26.1 459.3,21.0 512.2,31.9 565.1,42.5 618.0,30.5 618.0,86" fill="rgba(0,113,227,0.08)"/><polyline points="36.0,79.0 88.9,78.5 141.8,76.8 194.7,72.5 247.6,49.2 300.5,37.1 353.5,29.3 406.4,26.1 459.3,21.0 512.2,31.9 565.1,42.5 618.0,30.5" fill="none" stroke="#0071e3" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="79.0" r="2.5" fill="#0071e3"/><text x="36.0" y="73.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">105.3</text><text x="36.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">12-12</text><circle cx="88.9" cy="78.5" r="2.5" fill="#0071e3"/><text x="88.9" y="72.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">105.9</text><text x="88.9" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01-10</text><circle cx="141.8" cy="76.8" r="2.5" fill="#0071e3"/><text x="141.8" y="70.8" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">107.9</text><text x="141.8" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01-28</text><circle cx="194.7" cy="72.5" r="2.5" fill="#0071e3"/><text x="194.7" y="66.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">112.9</text><text x="194.7" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">02-18</text><circle cx="247.6" cy="49.2" r="2.5" fill="#0071e3"/><text x="247.6" y="43.2" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">139.9</text><text x="247.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-07</text><circle cx="300.5" cy="37.1" r="2.5" fill="#0071e3"/><text x="300.5" y="31.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">153.9</text><text x="300.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-10</text><circle cx="353.5" cy="29.3" r="2.5" fill="#0071e3"/><text x="353.5" y="23.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">162.9</text><text x="353.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-23</text><circle cx="406.4" cy="26.1" r="2.5" fill="#0071e3"/><text x="406.4" y="20.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">166.6</text><text x="406.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-02</text><circle cx="459.3" cy="21.0" r="2.5" fill="#0071e3"/><text x="459.3" y="15.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">172.6</text><text x="459.3" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-06</text><circle cx="512.2" cy="31.9" r="2.5" fill="#0071e3"/><text x="512.2" y="25.9" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">159.9</text><text x="512.2" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="565.1" cy="42.5" r="2.5" fill="#0071e3"/><text x="565.1" y="36.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">147.6</text><text x="565.1" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-20</text><circle cx="618.0" cy="30.5" r="2.5" fill="#0071e3"/><text x="618.0" y="24.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">161.6</text><text x="618.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每次花費  CAD</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 628 110" style="overflow:visible"><line x1="36" y1="79.0" x2="618" y2="79.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$48</text><line x1="36" y1="50.0" x2="618" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$74</text><line x1="36" y1="21.0" x2="618" y2="21.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$101</text><polygon points="36.0,86 36.0,63.1 88.9,79.0 141.8,64.9 194.7,58.7 247.6,64.2 300.5,24.8 353.5,40.0 406.4,21.0 459.3,54.5 512.2,48.9 565.1,56.7 618.0,61.5 618.0,86" fill="rgba(255,159,10,0.12)"/><polyline points="36.0,63.1 88.9,79.0 141.8,64.9 194.7,58.7 247.6,64.2 300.5,24.8 353.5,40.0 406.4,21.0 459.3,54.5 512.2,48.9 565.1,56.7 618.0,61.5" fill="none" stroke="#ff9f0a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="63.1" r="2.5" fill="#ff9f0a"/><text x="36.0" y="57.1" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$63</text><text x="36.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">12-12</text><circle cx="88.9" cy="79.0" r="2.5" fill="#ff9f0a"/><text x="88.9" y="73.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$48</text><text x="88.9" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">01-10</text><circle cx="141.8" cy="64.9" r="2.5" fill="#ff9f0a"/><text x="141.8" y="58.9" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$61</text><text x="141.8" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">01-28</text><circle cx="194.7" cy="58.7" r="2.5" fill="#ff9f0a"/><text x="194.7" y="52.7" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$67</text><text x="194.7" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">02-18</text><circle cx="247.6" cy="64.2" r="2.5" fill="#ff9f0a"/><text x="247.6" y="58.2" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$62</text><text x="247.6" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-07</text><circle cx="300.5" cy="24.8" r="2.5" fill="#ff9f0a"/><text x="300.5" y="18.8" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$97</text><text x="300.5" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-10</text><circle cx="353.5" cy="40.0" r="2.5" fill="#ff9f0a"/><text x="353.5" y="34.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$83</text><text x="353.5" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">03-23</text><circle cx="406.4" cy="21.0" r="2.5" fill="#ff9f0a"/><text x="406.4" y="15.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$101</text><text x="406.4" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-02</text><circle cx="459.3" cy="54.5" r="2.5" fill="#ff9f0a"/><text x="459.3" y="48.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$70</text><text x="459.3" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-06</text><circle cx="512.2" cy="48.9" r="2.5" fill="#ff9f0a"/><text x="512.2" y="42.9" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$75</text><text x="512.2" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="565.1" cy="56.7" r="2.5" fill="#ff9f0a"/><text x="565.1" y="50.7" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$68</text><text x="565.1" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-20</text><circle cx="618.0" cy="61.5" r="2.5" fill="#ff9f0a"/><text x="618.0" y="55.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$64</text><text x="618.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油耗效率  L / 100 km</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="79.0" x2="330" y2="79.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">7.10</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">7.44</text><line x1="36" y1="21.0" x2="330" y2="21.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">7.78</text><polygon points="36.0,86 36.0,21.0 330.0,79.0 330.0,86" fill="rgba(26,140,62,0.08)"/><polyline points="36.0,21.0 330.0,79.0" fill="none" stroke="#1a8c3e" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="21.0" r="2.5" fill="#1a8c3e"/><text x="36.0" y="15.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">7.78</text><text x="36.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="330.0" cy="79.0" r="2.5" fill="#1a8c3e"/><text x="330.0" y="73.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">7.10</text><text x="330.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
 </div>
-<!-- 記錄列表 -->
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
+<div style="margin-bottom:24px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每次花費  CAD</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 628 110" style="overflow:visible"><line x1="36" y1="79.0" x2="618" y2="79.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$48</text><line x1="36" y1="50.0" x2="618" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$74</text><line x1="36" y1="21.0" x2="618" y2="21.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$101</text><polygon points="36.0,86 36.0,63.1 88.9,79.0 141.8,64.9 194.7,58.7 247.6,64.2 300.5,24.8 353.5,40.0 406.4,21.0 459.3,54.5 512.2,48.9 565.1,56.7 618.0,61.5 618.0,86" fill="rgba(196,80,0,0.08)"/><polyline points="36.0,63.1 88.9,79.0 141.8,64.9 194.7,58.7 247.6,64.2 300.5,24.8 353.5,40.0 406.4,21.0 459.3,54.5 512.2,48.9 565.1,56.7 618.0,61.5" fill="none" stroke="#c45000" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="63.1" r="2.5" fill="#c45000"/><text x="36.0" y="57.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$63</text><text x="36.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">12-12</text><circle cx="88.9" cy="79.0" r="2.5" fill="#c45000"/><text x="88.9" y="73.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$48</text><text x="88.9" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01-10</text><circle cx="141.8" cy="64.9" r="2.5" fill="#c45000"/><text x="141.8" y="58.9" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$61</text><text x="141.8" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01-28</text><circle cx="194.7" cy="58.7" r="2.5" fill="#c45000"/><text x="194.7" y="52.7" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$67</text><text x="194.7" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">02-18</text><circle cx="247.6" cy="64.2" r="2.5" fill="#c45000"/><text x="247.6" y="58.2" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$62</text><text x="247.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-07</text><circle cx="300.5" cy="24.8" r="2.5" fill="#c45000"/><text x="300.5" y="18.8" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$97</text><text x="300.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-10</text><circle cx="353.5" cy="40.0" r="2.5" fill="#c45000"/><text x="353.5" y="34.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$83</text><text x="353.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03-23</text><circle cx="406.4" cy="21.0" r="2.5" fill="#c45000"/><text x="406.4" y="15.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$101</text><text x="406.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-02</text><circle cx="459.3" cy="54.5" r="2.5" fill="#c45000"/><text x="459.3" y="48.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$70</text><text x="459.3" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-06</text><circle cx="512.2" cy="48.9" r="2.5" fill="#c45000"/><text x="512.2" y="42.9" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$75</text><text x="512.2" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="565.1" cy="56.7" r="2.5" fill="#c45000"/><text x="565.1" y="50.7" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$68</text><text x="565.1" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-20</text><circle cx="618.0" cy="61.5" r="2.5" fill="#c45000"/><text x="618.0" y="55.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$64</text><text x="618.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-27</text></svg></div>
+</div>
+<div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
 
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON L4E 0V5</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON L4E 0V5</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$64.09</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-27 · 23:20</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$64.09</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-27 · 23:20</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">39.658 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">39.658 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">161.6 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">161.6 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+4,390</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+4,390</div>
     </div>
   </div>
-  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0;flex-wrap:wrap">
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);display:flex;gap:0;flex-wrap:wrap">
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">里程</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">558.5 <span style="font-size:11px;color:rgba(255,255,255,0.4)">km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">里程</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">558.5 <span style="font-size:11px;color:rgba(0,0,0,0.3)">km</span></div>
     </div>
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油耗</div>
-      <div style="font-size:15px;font-weight:500;color:#30d158">7.10 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L/100km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油耗</div>
+      <div style="font-size:15px;font-weight:500;color:#1a8c3e">7.10 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L/100km</span></div>
     </div>
     <div style="flex:1;min-width:80px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">每公里</div>
-      <div style="font-size:15px;font-weight:500;color:#ff9f0a">$0.1148</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">每公里</div>
+      <div style="font-size:15px;font-weight:500;color:#c45000">$0.1148</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$68.42</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-20 · 23:18</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$68.42</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-20 · 23:18</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">46.354 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">46.354 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">147.6 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">147.6 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+460</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+460</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$75.47</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-13 · 23:38</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$75.47</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-13 · 23:38</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">47.200 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">47.200 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">159.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">159.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+470</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+470</div>
     </div>
   </div>
-  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0;flex-wrap:wrap">
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);display:flex;gap:0;flex-wrap:wrap">
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">里程</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">606.4 <span style="font-size:11px;color:rgba(255,255,255,0.4)">km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">里程</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">606.4 <span style="font-size:11px;color:rgba(0,0,0,0.3)">km</span></div>
     </div>
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油耗</div>
-      <div style="font-size:15px;font-weight:500;color:#30d158">7.78 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L/100km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油耗</div>
+      <div style="font-size:15px;font-weight:500;color:#1a8c3e">7.78 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L/100km</span></div>
     </div>
     <div style="flex:1;min-width:80px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">每公里</div>
-      <div style="font-size:15px;font-weight:500;color:#ff9f0a">$0.1245</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">每公里</div>
+      <div style="font-size:15px;font-weight:500;color:#c45000">$0.1245</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$70.34</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-06 · 23:16</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$70.34</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-06 · 23:16</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">40.754 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">40.754 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">172.6 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">172.6 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+400</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+400</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$100.59</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-02 · 23:19</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$100.59</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-02 · 23:19</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">60.377 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">60.377 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">166.6 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">166.6 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+600</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+600</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$83.47</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-03-23 · 23:27</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$83.47</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-03-23 · 23:27</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">51.240 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">51.240 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">162.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">162.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+510</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+510</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$97.14</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-03-10 · 23:26</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$97.14</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-03-10 · 23:26</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">63.117 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">63.117 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">153.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">153.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+630</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+630</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$61.60</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-03-07 · 23:05</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$61.60</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-03-07 · 23:05</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">44.031 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">44.031 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">139.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">139.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+440</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+440</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$66.57</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-02-18 · 23:23</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$66.57</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-02-18 · 23:23</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">58.962 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">58.962 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">112.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">112.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+580</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+580</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$61.03</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-01-28 · 23:15</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$61.03</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-01-28 · 23:15</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">56.564 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">56.564 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">107.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">107.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+2,560</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+2,560</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$48.28</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-01-10 · 23:07</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$48.28</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-01-10 · 23:07</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">45.580 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">45.580 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">105.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">105.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+450</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+450</div>
     </div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$62.63</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2025-12-12 · 23:12</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$62.63</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2025-12-12 · 23:12</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">59.479 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">59.479 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">105.3 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">105.3 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+598</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+598</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- 加油 — C300 -->
 <div id="gas-c300" class="sec">
   <div class="car-tabs">
-    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.35">白色  87 REG  12 筆</small></a>
-    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.55">黑色  91 Premium  1 筆</small></a>
+    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">白色  87 REG  12 筆</small></a>
+    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">黑色  91 Premium  1 筆</small></a>
   </div>
   
-<!-- PC Optimum -->
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
   <div>
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
-    <div style="font-size:32px;font-weight:600;color:#30d158;letter-spacing:-0.5px">16,666</div>
+    <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
+    <div style="font-size:32px;font-weight:600;color:#1a8c3e;letter-spacing:-0.5px">16,666</div>
   </div>
   <div style="text-align:right">
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
-    <div style="font-size:22px;font-weight:600;color:#0a84ff">+530</div>
+    <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
+    <div style="font-size:22px;font-weight:600;color:#0071e3">+530</div>
   </div>
 </div>
-<!-- 統計 -->
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總花費</div>
-  <div style="font-size:26px;font-weight:600;color:#ff9f0a;letter-spacing:-0.5px;line-height:1">$103</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">CAD · 1 次</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總花費</div>
+  <div style="font-size:26px;font-weight:600;color:#c45000;letter-spacing:-0.5px;line-height:1">$103</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 1 次</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總加油量</div>
-  <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-0.5px;line-height:1">54</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">公升</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總加油量</div>
+  <div style="font-size:26px;font-weight:600;color:#1d1d1f;letter-spacing:-0.5px;line-height:1">54</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">公升</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">平均油價</div>
-  <div style="font-size:26px;font-weight:600;color:#0a84ff;letter-spacing:-0.5px;line-height:1">190.9</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">平均油價</div>
+  <div style="font-size:26px;font-weight:600;color:#0071e3;letter-spacing:-0.5px;line-height:1">190.9</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">¢/L</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">最新油價</div>
-  <div style="font-size:26px;font-weight:600;color:#30d158;letter-spacing:-0.5px;line-height:1">190.9</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">最新油價</div>
+  <div style="font-size:26px;font-weight:600;color:#1a8c3e;letter-spacing:-0.5px;line-height:1">190.9</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">¢/L</div>
 </div>
-</div>
-<!-- 圖表 -->
-<div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油價走勢  ¢/L</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">190.9</text><circle cx="183.0" cy="50.0" r="2.5" fill="#0a84ff"/><text x="183.0" y="44.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">190.9</text><text x="183.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油耗效率  L / 100 km</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">10.16</text><circle cx="183.0" cy="50.0" r="2.5" fill="#30d158"/><text x="183.0" y="44.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">10.16</text><text x="183.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油價走勢  ¢/L</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">190.9</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">190.9</text><circle cx="183.0" cy="50.0" r="2.5" fill="#0071e3"/><text x="183.0" y="44.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">190.9</text><text x="183.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每次花費  CAD</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$103</text><circle cx="183.0" cy="50.0" r="2.5" fill="#ff9f0a"/><text x="183.0" y="44.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$103</text><text x="183.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">油耗效率  L / 100 km</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">10.16</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">10.16</text><circle cx="183.0" cy="50.0" r="2.5" fill="#1a8c3e"/><text x="183.0" y="44.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">10.16</text><text x="183.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
 </div>
-<!-- 記錄列表 -->
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
+<div style="margin-bottom:24px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每次花費  CAD</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$103</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$103</text><circle cx="183.0" cy="50.0" r="2.5" fill="#c45000"/><text x="183.0" y="44.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$103</text><text x="183.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text></svg></div>
+</div>
+<div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
 
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Esso Circle K</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Esso Circle K</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">12338 Yonge St, Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$102.85</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-13 · 23:10</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$102.85</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-13 · 23:10</div>
     </div>
   </div>
-  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">53.878 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">53.878 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:#0a84ff">190.9 <span style="font-size:11px;color:rgba(255,255,255,0.4)">¢/L</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
+      <div style="font-size:15px;font-weight:500;color:#0071e3">190.9 <span style="font-size:11px;color:rgba(0,0,0,0.3)">¢/L</span></div>
     </div>
     <div style="flex:1">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">+530</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">+530</div>
     </div>
   </div>
-  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:0;flex-wrap:wrap">
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.08);display:flex;gap:0;flex-wrap:wrap">
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">里程</div>
-      <div style="font-size:15px;font-weight:500;color:#fff">530.3 <span style="font-size:11px;color:rgba(255,255,255,0.4)">km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">里程</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">530.3 <span style="font-size:11px;color:rgba(0,0,0,0.3)">km</span></div>
     </div>
     <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">油耗</div>
-      <div style="font-size:15px;font-weight:500;color:#30d158">10.16 <span style="font-size:11px;color:rgba(255,255,255,0.4)">L/100km</span></div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油耗</div>
+      <div style="font-size:15px;font-weight:500;color:#1a8c3e">10.16 <span style="font-size:11px;color:rgba(0,0,0,0.3)">L/100km</span></div>
     </div>
     <div style="flex:1;min-width:80px">
-      <div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">每公里</div>
-      <div style="font-size:15px;font-weight:500;color:#ff9f0a">$0.1939</div>
+      <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">每公里</div>
+      <div style="font-size:15px;font-weight:500;color:#c45000">$0.1939</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- 超市 -->
 <div id="grocery" class="sec">
   
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總花費</div>
-  <div style="font-size:26px;font-weight:600;color:#ff9f0a;letter-spacing:-0.5px;line-height:1">$309.08</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">CAD · 8 次</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總花費</div>
+  <div style="font-size:26px;font-weight:600;color:#c45000;letter-spacing:-0.5px;line-height:1">$309.08</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 8 次</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">筆數</div>
-  <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-0.5px;line-height:1">8</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">筆記錄</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">筆數</div>
+  <div style="font-size:26px;font-weight:600;color:#1d1d1f;letter-spacing:-0.5px;line-height:1">8</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">筆記錄</div>
 </div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每筆支出趨勢  CAD</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 436 110" style="overflow:visible"><line x1="36" y1="79.0" x2="426" y2="79.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$3</text><line x1="36" y1="50.0" x2="426" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$58</text><line x1="36" y1="21.0" x2="426" y2="21.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$114</text><polygon points="36.0,86 36.0,73.0 91.7,77.5 147.4,72.4 203.1,79.0 258.9,21.0 314.6,62.0 370.3,35.5 426.0,61.5 426.0,86" fill="rgba(255,159,10,0.12)"/><polyline points="36.0,73.0 91.7,77.5 147.4,72.4 203.1,79.0 258.9,21.0 314.6,62.0 370.3,35.5 426.0,61.5" fill="none" stroke="#ff9f0a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="73.0" r="2.5" fill="#ff9f0a"/><text x="36.0" y="67.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$14</text><text x="36.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="91.7" cy="77.5" r="2.5" fill="#ff9f0a"/><text x="91.7" y="71.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$6</text><text x="91.7" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-16</text><circle cx="147.4" cy="72.4" r="2.5" fill="#ff9f0a"/><text x="147.4" y="66.4" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$15</text><text x="147.4" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-17</text><circle cx="203.1" cy="79.0" r="2.5" fill="#ff9f0a"/><text x="203.1" y="73.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$3</text><text x="203.1" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-24</text><circle cx="258.9" cy="21.0" r="2.5" fill="#ff9f0a"/><text x="258.9" y="15.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$114</text><text x="258.9" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="314.6" cy="62.0" r="2.5" fill="#ff9f0a"/><text x="314.6" y="56.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$35</text><text x="314.6" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="370.3" cy="35.5" r="2.5" fill="#ff9f0a"/><text x="370.3" y="29.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$86</text><text x="370.3" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="426.0" cy="61.5" r="2.5" fill="#ff9f0a"/><text x="426.0" y="55.5" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$36</text><text x="426.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-25</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每筆支出趨勢  CAD</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 436 110" style="overflow:visible"><line x1="36" y1="79.0" x2="426" y2="79.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$3</text><line x1="36" y1="50.0" x2="426" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$58</text><line x1="36" y1="21.0" x2="426" y2="21.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$114</text><polygon points="36.0,86 36.0,73.0 91.7,77.5 147.4,72.4 203.1,79.0 258.9,21.0 314.6,62.0 370.3,35.5 426.0,61.5 426.0,86" fill="rgba(196,80,0,0.08)"/><polyline points="36.0,73.0 91.7,77.5 147.4,72.4 203.1,79.0 258.9,21.0 314.6,62.0 370.3,35.5 426.0,61.5" fill="none" stroke="#c45000" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="73.0" r="2.5" fill="#c45000"/><text x="36.0" y="67.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$14</text><text x="36.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-13</text><circle cx="91.7" cy="77.5" r="2.5" fill="#c45000"/><text x="91.7" y="71.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$6</text><text x="91.7" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-16</text><circle cx="147.4" cy="72.4" r="2.5" fill="#c45000"/><text x="147.4" y="66.4" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$15</text><text x="147.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-17</text><circle cx="203.1" cy="79.0" r="2.5" fill="#c45000"/><text x="203.1" y="73.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$3</text><text x="203.1" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-24</text><circle cx="258.9" cy="21.0" r="2.5" fill="#c45000"/><text x="258.9" y="15.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$114</text><text x="258.9" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="314.6" cy="62.0" r="2.5" fill="#c45000"/><text x="314.6" y="56.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$35</text><text x="314.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="370.3" cy="35.5" r="2.5" fill="#c45000"/><text x="370.3" y="29.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$86</text><text x="370.3" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-25</text><circle cx="426.0" cy="61.5" r="2.5" fill="#c45000"/><text x="426.0" y="55.5" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$36</text><text x="426.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-25</text></svg></div>
 </div>
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
+<div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
 
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Walmart</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Walmart</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$36.19</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-25 · 21:29</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$36.19</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-25 · 21:29</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">RESG 1.38kg</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$11.47</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">PNT BTR 750g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.97</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Dole Pineapple</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.47</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">CL Cltuna SJ x4</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.52</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Tabasco Red</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.27</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$34.70</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$1.49</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Visa ****0891</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">RESG 1.38kg</span><span style="flex-shrink:0">$11.47</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">PNT BTR 750g</span><span style="flex-shrink:0">$5.97</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Dole Pineapple</span><span style="flex-shrink:0">$2.47</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">CL Cltuna SJ x4</span><span style="flex-shrink:0">$7.52</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Tabasco Red</span><span style="flex-shrink:0">$7.27</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$34.70</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$1.49</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Visa ****0891</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">T&T Supermarket</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">9255 Woodbine Avenue, Markham, ON L6C 1Y9</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">T&T Supermarket</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">9255 Woodbine Avenue, Markham, ON L6C 1Y9</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$86.07</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-25 · 11:51</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$86.07</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-25 · 11:51</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Kewpie 沙拉醬</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.97</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">大腸切片</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$6.85</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">十粒粽（冷）</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$42.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">T&T 保溫袋</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.50</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">頂級叉燒肉片 x2</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$12.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">水晶梨</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.78</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">盒裝精品貝貝小南瓜</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$4.98</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">日昇西施豆腐</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">T&T 中式豬肉腸</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">保溫袋折扣</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$-2.50</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$85.18</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.89</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Visa ****0891</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Kewpie 沙拉醬</span><span style="flex-shrink:0">$5.97</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">大腸切片</span><span style="flex-shrink:0">$6.85</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">十粒粽（冷）</span><span style="flex-shrink:0">$42.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">T&T 保溫袋</span><span style="flex-shrink:0">$2.50</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">頂級叉燒肉片 x2</span><span style="flex-shrink:0">$12.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">水晶梨</span><span style="flex-shrink:0">$2.78</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">盒裝精品貝貝小南瓜</span><span style="flex-shrink:0">$4.98</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">日昇西施豆腐</span><span style="flex-shrink:0">$2.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">T&T 中式豬肉腸</span><span style="flex-shrink:0">$7.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">保溫袋折扣</span><span style="flex-shrink:0">$-2.50</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$85.18</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.89</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Visa ****0891</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Kuo Hua 國華</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">270 Ferrier Street, Markham, ON L3R 2Z5</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Kuo Hua 國華</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">270 Ferrier Street, Markham, ON L3R 2Z5</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$35.34</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-25 · 10:36</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$35.34</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-25 · 10:36</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">KC 港橋拱包 650g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">AGV 蜜底瓜片 140g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">AGV 豆乾筋 170g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">AGV 鮮脆瓜 180g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">蒜味香腸</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$8.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">國華無刺虱目魚肚 180g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$9.90</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">麒麟 新竹米粉 340g</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.99</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$35.34</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.00</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Cash</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">KC 港橋拱包 650g</span><span style="flex-shrink:0">$5.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">AGV 蜜底瓜片 140g</span><span style="flex-shrink:0">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">AGV 豆乾筋 170g</span><span style="flex-shrink:0">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">AGV 鮮脆瓜 180g</span><span style="flex-shrink:0">$2.49</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">蒜味香腸</span><span style="flex-shrink:0">$8.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">國華無刺虱目魚肚 180g</span><span style="flex-shrink:0">$9.90</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">麒麟 新竹米粉 340g</span><span style="flex-shrink:0">$2.99</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$35.34</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.00</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Cash</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Freshway Foodmart</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">3275 Highway 7, Markham, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Freshway Foodmart</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">3275 Highway 7, Markham, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$113.95</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-25 · 11:07</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$113.95</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-25 · 11:07</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">韓國魚餅</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">走地雞蛋 18粒</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">中廚 燒餅系列</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$9.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">新鮮金錢腱</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$17.35</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Onion 2LB</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$1.79</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Onion 2LB</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$1.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">CM 皮蛋/紅心鹹蛋</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">豐業 上海五香豆乾</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$3.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">白蘿蔔</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.28</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">新鮮金錢腱</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$16.95</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">芥蘭菇</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">有頭菠菜</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$3.02</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">番薯葉</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.79</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">草莓 x2</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$11.76</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Lucky 7's 牛油果</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$3.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">Sweet Potato</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$12.23</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">蜜豆</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$4.04</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$113.95</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.00</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Visa ****0891</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">韓國魚餅</span><span style="flex-shrink:0">$5.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">走地雞蛋 18粒</span><span style="flex-shrink:0">$7.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">中廚 燒餅系列</span><span style="flex-shrink:0">$9.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">新鮮金錢腱</span><span style="flex-shrink:0">$17.35</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Onion 2LB</span><span style="flex-shrink:0">$1.79</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Onion 2LB</span><span style="flex-shrink:0">$1.21</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">CM 皮蛋/紅心鹹蛋</span><span style="flex-shrink:0">$2.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">豐業 上海五香豆乾</span><span style="flex-shrink:0">$3.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">白蘿蔔</span><span style="flex-shrink:0">$2.28</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">新鮮金錢腱</span><span style="flex-shrink:0">$16.95</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">芥蘭菇</span><span style="flex-shrink:0">$2.99</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">有頭菠菜</span><span style="flex-shrink:0">$3.02</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">番薯葉</span><span style="flex-shrink:0">$5.79</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">草莓 x2</span><span style="flex-shrink:0">$11.76</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Lucky 7's 牛油果</span><span style="flex-shrink:0">$3.59</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">Sweet Potato</span><span style="flex-shrink:0">$12.23</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">蜜豆</span><span style="flex-shrink:0">$4.04</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$113.95</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.00</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Visa ****0891</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">FreshPro Foodmart</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">10488 Yonge St, Richmond Hill, ON L4C 3C2</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">FreshPro Foodmart</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">10488 Yonge St, Richmond Hill, ON L4C 3C2</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$2.60</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-24 · 12:35</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$2.60</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-24 · 12:35</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">甘藍菜 (Green Kale)</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$2.59</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$2.59</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.00</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Cash</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">甘藍菜 (Green Kale)</span><span style="flex-shrink:0">$2.59</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$2.59</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.00</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Cash</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">FreshPro Foodmart</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">FreshPro Foodmart</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$15.32</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-17 · 12:38</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$15.32</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-17 · 12:38</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">番石榴</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.34</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">黑莓 x2</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$7.98</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$15.32</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.00</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Mastercard ****4134</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">番石榴</span><span style="flex-shrink:0">$7.34</span></div><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">黑莓 x2</span><span style="flex-shrink:0">$7.98</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$15.32</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.00</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Mastercard ****4134</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Chuang's Company LTD.</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">Richmond Hill, ON</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Chuang's Company LTD.</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">Richmond Hill, ON</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$5.50</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-16 · –</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$5.50</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-16 · –</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">營業芋頭包子 x10</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$5.50</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$5.50</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$0.00</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">–</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">營業芋頭包子 x10</span><span style="flex-shrink:0">$5.50</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$5.50</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$0.00</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">–</span></div>
   </div>
 </div>
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">Costco Wholesale</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">35 John Birchall Rd, Richmond Hill, ON L4S 0B2</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">Costco Wholesale</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px">35 John Birchall Rd, Richmond Hill, ON L4S 0B2</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$14.11</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-13 · 13:08</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$14.11</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-13 · 13:08</div>
     </div>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:4px;line-height:1.4"><span style="padding-right:12px">12GAL 折疊儲物箱（車用）</span><span style="flex-shrink:0;color:rgba(255,255,255,0.5)">$12.49</span></div></div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">小計 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$12.49</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">HST </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">$1.62</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">Mastercard ****4134</span></div>
+  <div style="border-top:1px solid rgba(0,0,0,0.08);padding-top:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,0.5);margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">12GAL 折疊儲物箱（車用）</span><span style="flex-shrink:0">$12.49</span></div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$12.49</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">$1.62</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">Mastercard ****4134</span></div>
   </div>
 </div>
 </div>
 
-<!-- 餐廳 -->
 <div id="dining" class="sec">
-  <div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:rgba(255,255,255,0.25)">餐廳</div><div style="font-size:12px;margin-top:10px;color:rgba(255,255,255,0.15)">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>
+  <div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:rgba(0,0,0,0.5)">餐廳</div><div style="font-size:12px;margin-top:10px;color:rgba(0,0,0,0.3)">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>
 </div>
 
-<!-- 其他 -->
 <div id="other" class="sec">
   
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px">
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">總花費</div>
-  <div style="font-size:26px;font-weight:600;color:#ff9f0a;letter-spacing:-0.5px;line-height:1">$328.25</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">CAD · 1 筆</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">總花費</div>
+  <div style="font-size:26px;font-weight:600;color:#c45000;letter-spacing:-0.5px;line-height:1">$328.25</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 1 筆</div>
 </div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 14px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">筆數</div>
-  <div style="font-size:26px;font-weight:600;color:#fff;letter-spacing:-0.5px;line-height:1">1</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px">筆記錄</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">筆數</div>
+  <div style="font-size:26px;font-weight:600;color:#1d1d1f;letter-spacing:-0.5px;line-height:1">1</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">筆記錄</div>
 </div>
 </div>
 <div style="margin-bottom:24px">
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每筆支出趨勢  CAD</div>
-  <div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$328</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$328</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="end">$328</text><circle cx="183.0" cy="50.0" r="2.5" fill="#ff9f0a"/><text x="183.0" y="44.0" fill="rgba(255,255,255,0.7)" font-size="7.5" text-anchor="middle">$328</text><text x="183.0" y="107" fill="rgba(255,255,255,0.25)" font-size="7.5" text-anchor="middle">04-30</text></svg></div>
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">每筆支出趨勢  CAD</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 340 110" style="overflow:visible"><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$328</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$328</text><line x1="36" y1="50.0" x2="330" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$328</text><circle cx="183.0" cy="50.0" r="2.5" fill="#c45000"/><text x="183.0" y="44.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$328</text><text x="183.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04-30</text></svg></div>
 </div>
-<div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
+<div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
 
-<div style="background:#1c1c1e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:16px;margin-bottom:10px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
     <div>
-      <div style="font-size:15px;font-weight:500;color:#fff">City of Toronto APS 超速罰單</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px">Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25</div>
+      <div style="font-size:15px;font-weight:500;color:#1d1d1f">City of Toronto APS 超速罰單</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:3px;line-height:1.5">Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25</div>
     </div>
     <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:#ff9f0a;letter-spacing:-0.3px">$328.25</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">2026-04-30 · –</div>
+      <div style="font-size:22px;font-weight:600;color:#c45000;letter-spacing:-0.3px">$328.25</div>
+      <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:2px">2026-04-30 · –</div>
     </div>
   </div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">類別 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">罰單</span></div>
-    <div><span style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em">付款 </span><span style="font-size:12px;color:rgba(255,255,255,0.6)">線上繳費</span></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08)">
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">類別 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">罰單</span></div>
+    <div><span style="font-size:10px;color:rgba(0,0,0,0.3);text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:rgba(0,0,0,0.5)">線上繳費</span></div>
   </div>
 </div>
 </div>
