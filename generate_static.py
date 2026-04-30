@@ -331,6 +331,7 @@ def build_html():
 <title>包山包海包生活</title>
 <style>
 * {{ box-sizing:border-box; margin:0; padding:0; }}
+html {{ background:#000; }}
 body {{
   background:#000;
   color:#fff;
