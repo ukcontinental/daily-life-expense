@@ -6,6 +6,9 @@ from datetime import datetime
 
 # ============ 全部資料 ============
 GROCERY = [
+    {"date":"2025-11-14","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
+     "items":[{"name":"「莊記」板麻 XO 魷魚醬 250g","price":13.00}],
+     "subtotal":13.00,"hst":0.00,"total":13.00,"payment":"Debit"},
     {"date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
      "items":[{"name":"12GAL 折疊儲物箱（車用）","price":12.49}],
      "subtotal":12.49,"hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
@@ -275,35 +278,20 @@ def make_other_card(r):
   </div>
 </div>"""
 
-# ============ 其他區塊 ============
-def make_other_section():
-    if not OTHER:
-        return empty_state("其他支出")
-    total_spent = sum(r["total"] for r in OTHER)
-    cards_html  = "".join(make_other_card(r) for r in reversed(OTHER))
+# ============ 通用清單區塊（超市/其他/未來分頁共用）============
+def make_list_section(records, empty_label, card_fn, count_unit, list_label):
+    if not records:
+        return empty_state(empty_label)
+    total_spent = sum(r["total"] for r in records)
+    n = len(records)
+    cards_html = "".join(card_fn(r) for r in reversed(records))
     return f"""
 <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
-  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {len(OTHER)} 筆", C_ORANGE)}
-  {stat_card("筆數", str(len(OTHER)), "筆記錄")}
+  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {n} {count_unit}", C_ORANGE)}
+  {stat_card("筆數", str(n), "筆記錄")}
 </div>
-{chart_block("每筆支出趨勢  CAD", make_spending_svg(OTHER))}
-<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">支出記錄</div>
-{cards_html}"""
-
-# ============ 超市區塊 ============
-def make_grocery_section():
-    if not GROCERY:
-        return empty_state("超市購物")
-    total_spent = sum(r["total"] for r in GROCERY)
-    total_tx    = len(GROCERY)
-    cards_html  = "".join(make_grocery_card(r) for r in reversed(GROCERY))
-    return f"""
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
-  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {total_tx} 次", C_ORANGE)}
-  {stat_card("筆數", str(total_tx), "筆記錄")}
-</div>
-{chart_block("每筆支出趨勢  CAD", make_spending_svg(GROCERY))}
-<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">購物記錄</div>
+{chart_block("每筆支出趨勢  CAD", make_spending_svg(records))}
+<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">{list_label}</div>
 {cards_html}"""
 
 # ============ 完整 HTML ============
@@ -311,8 +299,8 @@ def build_html():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     sienna_html   = make_car_section("sienna", "Sienna")
     c300_html     = make_car_section("c300", "C300")
-    grocery_html  = make_grocery_section()
-    other_html    = make_other_section()
+    grocery_html  = make_list_section(GROCERY, "超市購物", make_grocery_card, "次", "購物記錄")
+    other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
     total_sienna  = len(DATA["sienna"])
     total_c300    = len(DATA["c300"])
 
