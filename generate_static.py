@@ -105,7 +105,6 @@ def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110):
     return f'<svg width="100%" viewBox="0 0 {width} {height}" style="overflow:visible">{"".join(parts)}</svg>'
 
 def make_price_svg(records):
-    if not records: return _line_svg([], [], C_BLUE, f"rgba(0,113,227,0.08)", lambda v: f"{v:.1f}")
     labels = [r["date"][5:] for r in records]
     vals   = [r["ppl"] * 100 for r in records]
     return _line_svg(labels, vals, C_BLUE, "rgba(0,113,227,0.08)", lambda v: f"{v:.1f}")
@@ -119,7 +118,6 @@ def make_eff_svg(records):
     return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}")
 
 def make_spending_svg(records, date_key="date", total_key="total"):
-    if not records: return _line_svg([], [], C_ORANGE, "rgba(196,80,0,0.08)", lambda v: f"${v:.0f}")
     sorted_r = sorted(records, key=lambda r: r[date_key])
     labels = [r[date_key][5:] for r in sorted_r]
     vals   = [r[total_key]    for r in sorted_r]
