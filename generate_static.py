@@ -9,6 +9,21 @@ GROCERY = [
     {"date":"2025-11-14","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
      "items":[{"name":"「莊記」板麻 XO 魷魚醬 250g","price":13.00}],
      "subtotal":13.00,"hst":0.00,"total":13.00,"payment":"Debit"},
+    {"date":"2026-05-01","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
+     "items":[
+       {"name":"台灣香腸味黏糯米飯糰 Sausage Sticky Rice Snack","price":1.00},
+       {"name":"茉莉魚子香黏糯米水果飯 Midfin Roe Rice Snack","price":1.00},
+       {"name":"茉莉芒果味黏糯米水果飯 Mango Rice Snack","price":1.00},
+       {"name":"大師傅皮蛋味零食 Century Egg Flavor Snack x2","price":6.00},
+       {"name":"芒果白木瓜仙貝 Mango Papaya Rice Cake Chips","price":3.00},
+       {"name":"白胡椒天婦羅蝦條 White Pepper Tempura Chips","price":3.80},
+       {"name":"清淡拌油素蘿蔔細麵 DaDan Thin Noodles","price":0.00},
+       {"name":"清淡拌油花椒麵 Peppercorn Noodle","price":0.00},
+     ],
+     "subtotal":15.80,"hst":1.99,"total":17.79,"payment":"Debit"},
+    {"date":"2026-05-01","time":"12:14","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
+     "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg x2（ON SALE）","price":9.98}],
+     "subtotal":9.98,"hst":0.00,"total":9.98,"payment":"Visa ****4106"},
     {"date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
      "items":[{"name":"12GAL 折疊儲物箱（車用）","price":12.49}],
      "subtotal":12.49,"hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
@@ -33,6 +48,12 @@ GROCERY = [
     {"date":"2026-04-25","time":"21:29","store":"Walmart","addr":"1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3",
      "items":[{"name":"RESG 1.38kg","price":11.47},{"name":"PNT BTR 750g","price":5.97},{"name":"Dole Pineapple","price":2.47},{"name":"CL Cltuna SJ x4","price":7.52},{"name":"Tabasco Red","price":7.27}],
      "subtotal":34.70,"hst":1.49,"total":36.19,"payment":"Visa ****0891"},
+    {"date":"2026-05-01","time":"12:14","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
+     "items":[{"name":"走地雞奧美加黃雞蛋 大粒 (ON SALE)","price":4.99},{"name":"走地雞奧美加黃雞蛋 大粒 (ON SALE)","price":4.99}],
+     "subtotal":9.98,"hst":0.00,"total":9.98,"payment":"Visa ****4106"},
+    {"date":"2026-05-01","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
+     "items":[{"name":"乖乖大腸包小腸風味米乖乖 60g","price":1.00},{"name":"乖乖烏魚子風味米乖乖 52g","price":1.00},{"name":"乖乖夏雪芒果風味米乖乖 52g","price":1.00},{"name":"Doritos 皮蛋口味玉米片 102g x2","price":6.00},{"name":"永恆世成 全素白胡椒風味米血脆片 45g","price":3.00},{"name":"永恆世成 白胡椒風味甜不辣脆片 45g","price":3.00},{"name":"深夜食堂 麻油蒜香麵線 108g x4pc","price":6.00},{"name":"深夜食堂 油蔥椒麻乾拌麵 116g x4pc","price":6.00}],
+     "subtotal":27.00,"hst":1.95,"total":28.95,"payment":"Debit"},
 ]
 
 OTHER = [
@@ -143,6 +164,21 @@ def stat_card(label, value, unit, color=None):
   <div style="font-size:11px;color:{C_TEXT3};margin-top:6px">{unit}</div>
 </div>"""
 
+# ============ 卡片頭（標題/副標 + 右側總額/日期）共用 ============
+def card_header(title, subtitle, total, date, time, subtitle_extra=""):
+    return f"""
+<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+    <div>
+      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{title}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px{subtitle_extra}">{subtitle}</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0;margin-left:12px">
+      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${total:.2f}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{date} · {time}</div>
+    </div>
+  </div>"""
+
 # ============ 單筆加油記錄卡片 ============
 def make_record_card(r):
     ppl_c = r["ppl"] * 100
@@ -165,18 +201,7 @@ def make_record_card(r):
       <div style="font-size:15px;font-weight:500;color:{C_ORANGE}">${cost_km:.4f}</div>
     </div>
   </div>"""
-    return f"""
-<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-    <div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['station']}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px">{r['addr']}</div>
-    </div>
-    <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
-    </div>
-  </div>
+    return f"""{card_header(r['station'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid {C_BORDER}">
     <div style="flex:1">
       <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
@@ -236,18 +261,7 @@ def make_grocery_card(r):
         f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
         for it in r["items"]
     )
-    return f"""
-<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-    <div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['store']}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px">{r['addr']}</div>
-    </div>
-    <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
-    </div>
-  </div>
+    return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
   <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid {C_BORDER}">
     <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:{C_TEXT2}">${r['subtotal']:.2f}</span></div>
@@ -258,18 +272,7 @@ def make_grocery_card(r):
 
 # ============ 其他卡片 ============
 def make_other_card(r):
-    return f"""
-<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:16px;margin-bottom:10px">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-    <div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['desc']}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:3px;line-height:1.5">{r['note']}</div>
-    </div>
-    <div style="text-align:right;flex-shrink:0;margin-left:12px">
-      <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r['total']:.2f}</div>
-      <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r['date']} · {r['time']}</div>
-    </div>
-  </div>
+    return f"""{card_header(r['desc'], r['note'], r['total'], r['date'], r['time'], ';line-height:1.5')}
   <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid {C_BORDER}">
     <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">類別 </span><span style="font-size:12px;color:{C_TEXT2}">{r['category']}</span></div>
     <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:{C_TEXT2}">{r['payment']}</span></div>
