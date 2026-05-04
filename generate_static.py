@@ -179,6 +179,14 @@ def card_header(title, subtitle, total, date, time, subtitle_extra=""):
     </div>
   </div>"""
 
+# ============ 共用：底部 label-value meta 列 ============
+def meta_row(pairs, padding_top="10px"):
+    items = "\n    ".join(
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">{label} </span><span style="font-size:12px;color:{C_TEXT2}">{value}</span></div>'
+        for label, value in pairs
+    )
+    return f'<div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:{padding_top};border-top:1px solid {C_BORDER}">\n    {items}\n  </div>'
+
 # ============ 單筆加油記錄卡片 ============
 def make_record_card(r):
     ppl_c = r["ppl"] * 100
@@ -263,20 +271,13 @@ def make_grocery_card(r):
     )
     return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid {C_BORDER}">
-    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">小計 </span><span style="font-size:12px;color:{C_TEXT2}">${r['subtotal']:.2f}</span></div>
-    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">HST </span><span style="font-size:12px;color:{C_TEXT2}">${r['hst']:.2f}</span></div>
-    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:{C_TEXT2}">{r['payment']}</span></div>
-  </div>
+  {meta_row([("小計", f"${r['subtotal']:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
 </div>"""
 
 # ============ 其他卡片 ============
 def make_other_card(r):
     return f"""{card_header(r['desc'], r['note'], r['total'], r['date'], r['time'], ';line-height:1.5')}
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding-top:10px;border-top:1px solid {C_BORDER}">
-    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">類別 </span><span style="font-size:12px;color:{C_TEXT2}">{r['category']}</span></div>
-    <div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;letter-spacing:0.08em">付款 </span><span style="font-size:12px;color:{C_TEXT2}">{r['payment']}</span></div>
-  </div>
+  {meta_row([("類別", r['category']), ("付款", r['payment'])])}
 </div>"""
 
 # ============ 通用清單區塊（超市/其他/未來分頁共用）============
