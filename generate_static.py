@@ -76,9 +76,11 @@ DATA = {
         {"date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
         {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596,"payment":"Visa ****4106"},
         {"date":"2026-04-27","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":39.658,"ppl":1.616,"total":64.09,"ptsEarn":4390,"ptsBal":21986,"km":558.5},
+        {"date":"2026-05-04","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":44.327,"ppl":1.696,"total":75.18,"ptsEarn":440,"ptsBal":22426,"km":598.4},
     ],
     "c300": [
         {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
+        {"date":"2026-05-04","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":58.245,"ppl":2.009,"total":117.01,"ptsEarn":580,"ptsBal":22566},
     ]
 }
 
@@ -377,7 +379,6 @@ body:has(#other:target)   .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-
 body:has(#grocery:target) .nav a[href="#grocery"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 body:has(#dining:target)  .nav a[href="#dining"]  {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
-body:has(#gas-c300:target) .nav a[href="#gas"]    {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 </style>
 </head>
 <body>
