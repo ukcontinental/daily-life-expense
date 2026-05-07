@@ -97,10 +97,10 @@ C_ORANGE   = "#c45000"
 C_NAV_BG   = "rgba(245,245,247,0.9)"
 
 # ============ SVG 共用：畫折線圖 ============
-def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110):
+def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110, empty_msg="無資料"):
     n = len(vals)
     if n == 0:
-        return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
+        return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
     width = max(340, n * 48 + 52)
     L, R, T, B = 36, 10, 14, 24
     cw = width - L - R
@@ -134,11 +134,9 @@ def make_price_svg(records):
 
 def make_eff_svg(records):
     eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if "km" in r]
-    if not eff:
-        return f'<svg width="100%" viewBox="0 0 340 110"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">填寫里程後顯示</text></svg>'
     labels = [d[0] for d in eff]
     vals   = [d[1] for d in eff]
-    return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}")
+    return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
 
 def make_spending_svg(records, date_key="date", total_key="total"):
     sorted_r = sorted(records, key=lambda r: r[date_key])
@@ -165,6 +163,15 @@ def stat_card(label, value, unit, color=None):
   <div style="font-size:26px;font-weight:600;color:{col};letter-spacing:-0.5px;line-height:1">{value}</div>
   <div style="font-size:11px;color:{C_TEXT3};margin-top:6px">{unit}</div>
 </div>"""
+
+# ============ 共用：flex 內小型 stat cell（label-on-top + value + 可選 unit）============
+def stat_cell(label, value, unit="", color=None, extra_style=""):
+    col = color or C_TEXT1
+    unit_html = f' <span style="font-size:11px;color:{C_TEXT3}">{unit}</span>' if unit else ''
+    return f"""<div style="flex:1{extra_style}">
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">{label}</div>
+      <div style="font-size:15px;font-weight:500;color:{col}">{value}{unit_html}</div>
+    </div>"""
 
 # ============ 卡片頭（標題/副標 + 右側總額/日期）共用 ============
 def card_header(title, subtitle, total, date, time, subtitle_extra=""):
@@ -198,33 +205,15 @@ def make_record_card(r):
         cost_km  = r["total"] / r["km"]
         km_html = f"""
   <div style="margin-top:12px;padding-top:12px;border-top:1px solid {C_BORDER};display:flex;gap:0;flex-wrap:wrap">
-    <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">里程</div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['km']:.1f} <span style="font-size:11px;color:{C_TEXT3}">km</span></div>
-    </div>
-    <div style="flex:1;min-width:80px;padding-right:10px">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油耗</div>
-      <div style="font-size:15px;font-weight:500;color:{C_GREEN}">{l100:.2f} <span style="font-size:11px;color:{C_TEXT3}">L/100km</span></div>
-    </div>
-    <div style="flex:1;min-width:80px">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">每公里</div>
-      <div style="font-size:15px;font-weight:500;color:{C_ORANGE}">${cost_km:.4f}</div>
-    </div>
+    {stat_cell("里程", f"{r['km']:.1f}", "km", extra_style=";min-width:80px;padding-right:10px")}
+    {stat_cell("油耗", f"{l100:.2f}", "L/100km", C_GREEN, ";min-width:80px;padding-right:10px")}
+    {stat_cell("每公里", f"${cost_km:.4f}", "", C_ORANGE, ";min-width:80px")}
   </div>"""
     return f"""{card_header(r['station'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid {C_BORDER}">
-    <div style="flex:1">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">油量</div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r['litres']:.3f} <span style="font-size:11px;color:{C_TEXT3}">L</span></div>
-    </div>
-    <div style="flex:1">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">單價</div>
-      <div style="font-size:15px;font-weight:500;color:{C_BLUE}">{ppl_c:.1f} <span style="font-size:11px;color:{C_TEXT3}">¢/L</span></div>
-    </div>
-    <div style="flex:1">
-      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">PC 點</div>
-      <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">+{r['ptsEarn']:,}</div>
-    </div>
+    {stat_cell("油量", f"{r['litres']:.3f}", "L")}
+    {stat_cell("單價", f"{ppl_c:.1f}", "¢/L", C_BLUE)}
+    {stat_cell("PC 點", f"+{r['ptsEarn']:,}")}
   </div>{km_html}
 </div>"""
 
