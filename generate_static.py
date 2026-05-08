@@ -48,18 +48,21 @@ GROCERY = [
     {"date":"2026-04-25","time":"21:29","store":"Walmart","addr":"1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3",
      "items":[{"name":"RESG 1.38kg","price":11.47},{"name":"PNT BTR 750g","price":5.97},{"name":"Dole Pineapple","price":2.47},{"name":"CL Cltuna SJ x4","price":7.52},{"name":"Tabasco Red","price":7.27}],
      "subtotal":34.70,"hst":1.49,"total":36.19,"payment":"Visa ****0891"},
-    {"date":"2026-05-01","time":"12:14","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
-     "items":[{"name":"走地雞奧美加黃雞蛋 大粒 (ON SALE)","price":4.99},{"name":"走地雞奧美加黃雞蛋 大粒 (ON SALE)","price":4.99}],
-     "subtotal":9.98,"hst":0.00,"total":9.98,"payment":"Visa ****4106"},
-    {"date":"2026-05-01","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
-     "items":[{"name":"乖乖大腸包小腸風味米乖乖 60g","price":1.00},{"name":"乖乖烏魚子風味米乖乖 52g","price":1.00},{"name":"乖乖夏雪芒果風味米乖乖 52g","price":1.00},{"name":"Doritos 皮蛋口味玉米片 102g x2","price":6.00},{"name":"永恆世成 全素白胡椒風味米血脆片 45g","price":3.00},{"name":"永恆世成 白胡椒風味甜不辣脆片 45g","price":3.00},{"name":"深夜食堂 麻油蒜香麵線 108g x4pc","price":6.00},{"name":"深夜食堂 油蔥椒麻乾拌麵 116g x4pc","price":6.00}],
-     "subtotal":27.00,"hst":1.95,"total":28.95,"payment":"Debit"},
+    {"date":"2026-05-07","time":"12:00","store":"FreshPro Foodmart","addr":"10488 Yonge Street, Richmond Hill, ON L4C 3C2",
+     "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg 大粒（ON SALE）x3","price":14.97}],
+     "subtotal":14.97,"hst":0.00,"total":14.97,"payment":"Visa ****4106"},
 ]
 
 OTHER = [
     {"date":"2026-04-30","time":"–","category":"罰單","desc":"City of Toronto APS 超速罰單",
      "note":"Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25",
      "total":328.25,"payment":"線上繳費"},
+]
+
+DINING = [
+    {"date":"2026-05-06","time":"12:02","store":"Bon Cake","addr":"3255 Hwy 7 Unit 236, Markham, ON L3R 3P3",
+     "items":[{"name":"芋泥麻薯戚風蛋糕 Taro Mochi Chiffon Cake 8\" (6-8 Serving)","price":69.00}],
+     "subtotal":69.00,"hst":0.00,"total":69.00,"payment":"Clover-9157"},
 ]
 
 DATA = {
@@ -138,10 +141,10 @@ def make_eff_svg(records):
     vals   = [d[1] for d in eff]
     return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
 
-def make_spending_svg(records, date_key="date", total_key="total"):
-    sorted_r = sorted(records, key=lambda r: r[date_key])
-    labels = [r[date_key][5:] for r in sorted_r]
-    vals   = [r[total_key]    for r in sorted_r]
+def make_spending_svg(records):
+    sorted_r = sorted(records, key=lambda r: r["date"])
+    labels = [r["date"][5:] for r in sorted_r]
+    vals   = [r["total"]    for r in sorted_r]
     return _line_svg(labels, vals, C_ORANGE, "rgba(196,80,0,0.08)", lambda v: f"${v:.0f}")
 
 # ============ 圖表外框 ============
