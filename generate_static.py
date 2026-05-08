@@ -268,6 +268,17 @@ def make_grocery_card(r):
   {meta_row([("小計", f"${r['subtotal']:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
 </div>"""
 
+# ============ 餐廳卡片 ============
+def make_dining_card(r):
+    items_html = "".join(
+        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
+        for it in r["items"]
+    )
+    return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
+  <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
+  {meta_row([("小計", f"${r['subtotal']:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
+</div>"""
+
 # ============ 其他卡片 ============
 def make_other_card(r):
     return f"""{card_header(r['desc'], r['note'], r['total'], r['date'], r['time'], ';line-height:1.5')}
@@ -296,6 +307,7 @@ def build_html():
     sienna_html   = make_car_section("sienna", "Sienna")
     c300_html     = make_car_section("c300", "C300")
     grocery_html  = make_list_section(GROCERY, "超市購物", make_grocery_card, "次", "購物記錄")
+    dining_html   = make_list_section(DINING,  "餐廳外食", make_dining_card,  "次", "消費記錄")
     other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
     total_sienna  = len(DATA["sienna"])
     total_c300    = len(DATA["c300"])
@@ -408,7 +420,7 @@ body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bot
 </div>
 
 <div id="dining" class="sec">
-  {empty_state("餐廳")}
+  {dining_html}
 </div>
 
 <div id="other" class="sec">
