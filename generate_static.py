@@ -257,19 +257,8 @@ def make_car_section(car_key, car_label):
 <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
 {cards_html}"""
 
-# ============ 超市卡片 ============
-def make_grocery_card(r):
-    items_html = "".join(
-        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
-        for it in r["items"]
-    )
-    return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
-  <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
-  {meta_row([("小計", f"${r['subtotal']:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
-</div>"""
-
-# ============ 餐廳卡片 ============
-def make_dining_card(r):
+# ============ 商品列表卡片（超市 / 餐廳 共用）============
+def make_itemized_card(r):
     items_html = "".join(
         f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
         for it in r["items"]
@@ -306,8 +295,8 @@ def build_html():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     sienna_html   = make_car_section("sienna", "Sienna")
     c300_html     = make_car_section("c300", "C300")
-    grocery_html  = make_list_section(GROCERY, "超市購物", make_grocery_card, "次", "購物記錄")
-    dining_html   = make_list_section(DINING,  "餐廳外食", make_dining_card,  "次", "消費記錄")
+    grocery_html  = make_list_section(GROCERY, "超市購物", make_itemized_card, "次", "購物記錄")
+    dining_html   = make_list_section(DINING,  "餐廳外食", make_itemized_card, "次", "消費記錄")
     other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
     total_sienna  = len(DATA["sienna"])
     total_c300    = len(DATA["c300"])
