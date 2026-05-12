@@ -51,6 +51,9 @@ GROCERY = [
     {"date":"2026-05-07","time":"12:00","store":"FreshPro Foodmart","addr":"10488 Yonge Street, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg 大粒（ON SALE）x3","price":14.97}],
      "subtotal":14.97,"hst":0.00,"total":14.97,"payment":"Visa ****4106"},
+    {"date":"2026-05-10","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
+     "items":[{"name":"芫荽 Coriander x2","price":3.00}],
+     "subtotal":3.00,"hst":0.00,"total":3.00,"payment":"Cash"},
 ]
 
 OTHER = [
@@ -80,10 +83,12 @@ DATA = {
         {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596},
         {"date":"2026-04-27","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":39.658,"ppl":1.616,"total":64.09,"ptsEarn":4390,"ptsBal":21986,"km":558.5},
         {"date":"2026-05-04","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":44.327,"ppl":1.696,"total":75.18,"ptsEarn":440,"ptsBal":22426,"km":598.4},
+        {"date":"2026-05-11","time":"12:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":36.362,"ppl":1.856,"total":67.46,"ptsEarn":360,"ptsBal":22786,"km":494.8},
     ],
     "c300": [
         {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
         {"date":"2026-05-04","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":58.245,"ppl":2.009,"total":117.01,"ptsEarn":580,"ptsBal":22566,"km":603.0},
+        {"date":"2026-05-11","time":"23:14","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":56.839,"ppl":2.009,"total":114.19,"ptsEarn":560,"ptsBal":23126},
     ]
 }
 
