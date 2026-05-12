@@ -77,13 +77,13 @@ DATA = {
         {"date":"2026-04-02","time":"23:19","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":60.377,"ppl":1.666,"total":100.59,"ptsEarn":600,"ptsBal":8235},
         {"date":"2026-04-06","time":"23:16","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":40.754,"ppl":1.726,"total":70.34,"ptsEarn":400,"ptsBal":8635},
         {"date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
-        {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596,"payment":"Visa ****4106"},
+        {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596},
         {"date":"2026-04-27","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":39.658,"ppl":1.616,"total":64.09,"ptsEarn":4390,"ptsBal":21986,"km":558.5},
         {"date":"2026-05-04","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":44.327,"ppl":1.696,"total":75.18,"ptsEarn":440,"ptsBal":22426,"km":598.4},
     ],
     "c300": [
         {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
-        {"date":"2026-05-04","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":58.245,"ppl":2.009,"total":117.01,"ptsEarn":580,"ptsBal":22566},
+        {"date":"2026-05-04","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":58.245,"ppl":2.009,"total":117.01,"ptsEarn":580,"ptsBal":22566,"km":603.0},
     ]
 }
 
@@ -157,6 +157,10 @@ def chart_block(title, svg):
 # ============ 空狀態 ============
 def empty_state(label):
     return f'<div class="empty"><div style="font-size:13px;letter-spacing:0.04em;color:{C_TEXT2}">{label}</div><div style="font-size:12px;margin-top:10px;color:{C_TEXT3}">尚無記錄 · 拍收據傳給 Claude 即可新增</div></div>'
+
+# ============ 小型大寫節區標籤 ============
+def section_label(text):
+    return f'<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">{text}</div>'
 
 # ============ 統計數字卡片 ============
 def stat_card(label, value, unit, color=None):
@@ -254,7 +258,7 @@ def make_car_section(car_key, car_label):
 {chart_block("油價走勢  ¢/L", make_price_svg(records))}
 {chart_block("油耗效率  L / 100 km", make_eff_svg(records))}
 {chart_block("每次花費  CAD", make_spending_svg(records))}
-<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">加油記錄</div>
+{section_label("加油記錄")}
 {cards_html}"""
 
 # ============ 商品列表卡片（超市 / 餐廳 共用）============
@@ -287,7 +291,7 @@ def make_list_section(records, empty_label, card_fn, count_unit, list_label):
   {stat_card("筆數", str(n), "筆記錄")}
 </div>
 {chart_block("每筆支出趨勢  CAD", make_spending_svg(records))}
-<div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">{list_label}</div>
+{section_label(list_label)}
 {cards_html}"""
 
 # ============ 完整 HTML ============
