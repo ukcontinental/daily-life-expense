@@ -54,6 +54,9 @@ GROCERY = [
     {"date":"2026-05-10","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
      "items":[{"name":"芫荽 Coriander x2","price":3.00}],
      "subtotal":3.00,"hst":0.00,"total":3.00,"payment":"Cash"},
+    {"date":"2026-05-13","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
+     "items":[{"name":"甘藍菜 Green Kale","price":1.99}],
+     "subtotal":1.99,"hst":0.00,"total":1.99,"payment":"Cash"},
 ]
 
 OTHER = [
@@ -242,15 +245,16 @@ def make_car_section(car_key, car_label):
     total_earned = sum(r["ptsEarn"] for r in records)
 
     cards_html = "".join(make_record_card(r) for r in reversed(records))
+    pc_lbl = f"font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px"
 
     return f"""
 <div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
   <div>
-    <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">PC Optimum 餘額</div>
+    <div style="{pc_lbl}">PC Optimum 餘額</div>
     <div style="font-size:32px;font-weight:600;color:{C_GREEN};letter-spacing:-0.5px">{last['ptsBal']:,}</div>
   </div>
   <div style="text-align:right">
-    <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">累計賺取</div>
+    <div style="{pc_lbl}">累計賺取</div>
     <div style="font-size:22px;font-weight:600;color:{C_BLUE}">+{total_earned:,}</div>
   </div>
 </div>
