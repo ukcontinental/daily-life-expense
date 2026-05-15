@@ -108,14 +108,14 @@ C_ORANGE   = "#c45000"
 C_NAV_BG   = "rgba(245,245,247,0.9)"
 
 # ============ SVG 共用：畫折線圖 ============
-def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110, empty_msg="無資料"):
+def _line_svg(labels, vals, color_line, color_fill, fmt_val, empty_msg="無資料"):
     n = len(vals)
     if n == 0:
-        return f'<svg width="100%" viewBox="0 0 400 {height}"><text x="50%" y="{height//2}" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
+        return f'<svg width="100%" viewBox="0 0 400 110"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
     width = max(340, n * 48 + 52)
     L, R, T, B = 36, 10, 14, 24
     cw = width - L - R
-    ch = height - T - B
+    ch = 110 - T - B
     lo = min(vals); hi = max(vals)
     pad = (hi - lo) * 0.12 if hi != lo else max(hi * 0.05, 1)
     lo -= pad; hi += pad
@@ -135,8 +135,8 @@ def _line_svg(labels, vals, color_line, color_fill, fmt_val, height=110, empty_m
         x, y = px(i), py(vals[i])
         parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{color_line}"/>')
         parts.append(f'<text x="{x:.1f}" y="{y-6:.1f}" fill="{C_TEXT1}" font-size="7.5" text-anchor="middle" font-weight="500">{fmt_val(vals[i])}</text>')
-        parts.append(f'<text x="{x:.1f}" y="{height-3}" fill="{C_TEXT3}" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
-    return f'<svg width="100%" viewBox="0 0 {width} {height}" style="overflow:visible">{"".join(parts)}</svg>'
+        parts.append(f'<text x="{x:.1f}" y="107" fill="{C_TEXT3}" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
+    return f'<svg width="100%" viewBox="0 0 {width} 110" style="overflow:visible">{"".join(parts)}</svg>'
 
 def make_price_svg(records):
     labels = [r["date"][5:] for r in records]
