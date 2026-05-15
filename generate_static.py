@@ -382,8 +382,8 @@ body:has(#other:target)    #gas {{ display:none; }}
 body:has(#grocery:target) .nav a[href="#gas"],
 body:has(#dining:target)  .nav a[href="#gas"],
 body:has(#other:target)   .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-color:transparent; }}
-body:has(#grocery:target) .nav a[href="#grocery"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
-body:has(#dining:target)  .nav a[href="#dining"]  {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#grocery:target) .nav a[href="#grocery"],
+body:has(#dining:target)  .nav a[href="#dining"],
 body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 </style>
 </head>
