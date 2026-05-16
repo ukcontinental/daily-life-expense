@@ -8,7 +8,7 @@ from datetime import datetime
 GROCERY = [
     {"date":"2025-11-14","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
      "items":[{"name":"「莊記」板麻 XO 魷魚醬 250g","price":13.00}],
-     "subtotal":13.00,"hst":0.00,"total":13.00,"payment":"Debit"},
+     "hst":0.00,"total":13.00,"payment":"Debit"},
     {"date":"2026-05-01","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
      "items":[
        {"name":"台灣香腸味黏糯米飯糰 Sausage Sticky Rice Snack","price":1.00},
@@ -20,43 +20,43 @@ GROCERY = [
        {"name":"清淡拌油素蘿蔔細麵 DaDan Thin Noodles","price":0.00},
        {"name":"清淡拌油花椒麵 Peppercorn Noodle","price":0.00},
      ],
-     "subtotal":15.80,"hst":1.99,"total":17.79,"payment":"Debit"},
+     "hst":1.99,"total":17.79,"payment":"Debit"},
     {"date":"2026-05-01","time":"12:14","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg x2（ON SALE）","price":9.98}],
-     "subtotal":9.98,"hst":0.00,"total":9.98,"payment":"Visa ****4106"},
+     "hst":0.00,"total":9.98,"payment":"Visa ****4106"},
     {"date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
      "items":[{"name":"12GAL 折疊儲物箱（車用）","price":12.49}],
-     "subtotal":12.49,"hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
+     "hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
     {"date":"2026-04-16","time":"–","store":"Chuang's Company LTD.","addr":"Richmond Hill, ON",
      "items":[{"name":"營業芋頭包子 x10","price":5.50}],
-     "subtotal":5.50,"hst":0.00,"total":5.50,"payment":"–"},
+     "hst":0.00,"total":5.50,"payment":"–"},
     {"date":"2026-04-17","time":"12:38","store":"FreshPro Foodmart","addr":"Richmond Hill, ON",
      "items":[{"name":"番石榴","price":7.34},{"name":"黑莓 x2","price":7.98}],
-     "subtotal":15.32,"hst":0.00,"total":15.32,"payment":"Mastercard ****4134"},
+     "hst":0.00,"total":15.32,"payment":"Mastercard ****4134"},
     {"date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"甘藍菜 (Green Kale)","price":2.59}],
-     "subtotal":2.59,"hst":0.00,"total":2.60,"payment":"Cash"},
+     "hst":0.00,"total":2.60,"payment":"Cash"},
     {"date":"2026-04-25","time":"11:07","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
      "items":[{"name":"韓國魚餅","price":5.99},{"name":"走地雞蛋 18粒","price":7.99},{"name":"中廚 燒餅系列","price":9.99},{"name":"新鮮金錢腱","price":17.35},{"name":"Onion 2LB","price":1.79},{"name":"Onion 2LB","price":1.21},{"name":"CM 皮蛋/紅心鹹蛋","price":2.99},{"name":"豐業 上海五香豆乾","price":3.99},{"name":"白蘿蔔","price":2.28},{"name":"新鮮金錢腱","price":16.95},{"name":"芥蘭菇","price":2.99},{"name":"有頭菠菜","price":3.02},{"name":"番薯葉","price":5.79},{"name":"草莓 x2","price":11.76},{"name":"Lucky 7's 牛油果","price":3.59},{"name":"Sweet Potato","price":12.23},{"name":"蜜豆","price":4.04}],
-     "subtotal":113.95,"hst":0.00,"total":113.95,"payment":"Visa ****0891"},
+     "hst":0.00,"total":113.95,"payment":"Visa ****0891"},
     {"date":"2026-04-25","time":"10:36","store":"Kuo Hua 國華","addr":"270 Ferrier Street, Markham, ON L3R 2Z5",
      "items":[{"name":"KC 港橋拱包 650g","price":5.99},{"name":"AGV 蜜底瓜片 140g","price":2.49},{"name":"AGV 豆乾筋 170g","price":2.49},{"name":"AGV 鮮脆瓜 180g","price":2.49},{"name":"蒜味香腸","price":8.99},{"name":"國華無刺虱目魚肚 180g","price":9.90},{"name":"麒麟 新竹米粉 340g","price":2.99}],
-     "subtotal":35.34,"hst":0.00,"total":35.34,"payment":"Cash"},
+     "hst":0.00,"total":35.34,"payment":"Cash"},
     {"date":"2026-04-25","time":"11:51","store":"T&T Supermarket","addr":"9255 Woodbine Avenue, Markham, ON L6C 1Y9",
      "items":[{"name":"Kewpie 沙拉醬","price":5.97},{"name":"大腸切片","price":6.85},{"name":"十粒粽（冷）","price":42.21},{"name":"T&T 保溫袋","price":2.50},{"name":"頂級叉燒肉片 x2","price":12.21},{"name":"水晶梨","price":2.78},{"name":"盒裝精品貝貝小南瓜","price":4.98},{"name":"日昇西施豆腐","price":2.59},{"name":"T&T 中式豬肉腸","price":7.59},{"name":"保溫袋折扣","price":-2.50}],
-     "subtotal":85.18,"hst":0.89,"total":86.07,"payment":"Visa ****0891"},
+     "hst":0.89,"total":86.07,"payment":"Visa ****0891"},
     {"date":"2026-04-25","time":"21:29","store":"Walmart","addr":"1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3",
      "items":[{"name":"RESG 1.38kg","price":11.47},{"name":"PNT BTR 750g","price":5.97},{"name":"Dole Pineapple","price":2.47},{"name":"CL Cltuna SJ x4","price":7.52},{"name":"Tabasco Red","price":7.27}],
-     "subtotal":34.70,"hst":1.49,"total":36.19,"payment":"Visa ****0891"},
+     "hst":1.49,"total":36.19,"payment":"Visa ****0891"},
     {"date":"2026-05-07","time":"12:00","store":"FreshPro Foodmart","addr":"10488 Yonge Street, Richmond Hill, ON L4C 3C2",
      "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg 大粒（ON SALE）x3","price":14.97}],
-     "subtotal":14.97,"hst":0.00,"total":14.97,"payment":"Visa ****4106"},
+     "hst":0.00,"total":14.97,"payment":"Visa ****4106"},
     {"date":"2026-05-10","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
      "items":[{"name":"芫荽 Coriander x2","price":3.00}],
-     "subtotal":3.00,"hst":0.00,"total":3.00,"payment":"Cash"},
+     "hst":0.00,"total":3.00,"payment":"Cash"},
     {"date":"2026-05-13","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
      "items":[{"name":"甘藍菜 Green Kale","price":1.99}],
-     "subtotal":1.99,"hst":0.00,"total":1.99,"payment":"Cash"},
+     "hst":0.00,"total":1.99,"payment":"Cash"},
 ]
 
 OTHER = [
@@ -68,7 +68,7 @@ OTHER = [
 DINING = [
     {"date":"2026-05-06","time":"12:02","store":"Bon Cake","addr":"3255 Hwy 7 Unit 236, Markham, ON L3R 3P3",
      "items":[{"name":"芋泥麻薯戚風蛋糕 Taro Mochi Chiffon Cake 8\" (6-8 Serving)","price":69.00}],
-     "subtotal":69.00,"hst":0.00,"total":69.00,"payment":"Clover-9157"},
+     "hst":0.00,"total":69.00,"payment":"Clover-9157"},
 ]
 
 DATA = {
@@ -276,9 +276,10 @@ def make_itemized_card(r):
         f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
         for it in r["items"]
     )
+    subtotal = sum(it["price"] for it in r["items"])
     return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
-  {meta_row([("小計", f"${r['subtotal']:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
+  {meta_row([("小計", f"${subtotal:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
 </div>"""
 
 # ============ 其他卡片 ============
