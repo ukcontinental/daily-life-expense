@@ -69,6 +69,9 @@ DINING = [
     {"date":"2026-05-06","time":"12:02","store":"Bon Cake","addr":"3255 Hwy 7 Unit 236, Markham, ON L3R 3P3",
      "items":[{"name":"芋泥麻薯戚風蛋糕 Taro Mochi Chiffon Cake 8\" (6-8 Serving)","price":69.00}],
      "hst":0.00,"total":69.00,"payment":"Clover-9157"},
+    {"date":"2026-05-16","time":"18:02","store":"IKEA Restaurant","addr":"15 Provost Drive, North York, ON",
+     "items":[{"name":"Reg Strawberry treat（IKEA Bistro 草莓甜點 - 收據模糊，金額需人工確認）","price":2.25}],
+     "hst":0.49,"total":4.24,"payment":"Visa"},
 ]
 
 DATA = {
