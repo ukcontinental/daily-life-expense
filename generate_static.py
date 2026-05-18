@@ -182,6 +182,10 @@ def stat_card(label, value, unit, color=None):
   <div style="font-size:11px;color:{C_TEXT3};margin-top:6px">{unit}</div>
 </div>"""
 
+# ============ 2 欄 stat_card 網格（車輛區塊 / 清單區塊 共用）============
+def stat_grid(*cards):
+    return '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">\n  ' + "\n  ".join(cards) + '\n</div>'
+
 # ============ 共用：flex 內小型 stat cell（label-on-top + value + 可選 unit）============
 def stat_cell(label, value, unit="", color=None, extra_style=""):
     col = color or C_TEXT1
@@ -261,12 +265,12 @@ def make_car_section(car_key, car_label):
     <div style="font-size:22px;font-weight:600;color:{C_BLUE}">+{total_earned:,}</div>
   </div>
 </div>
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
-  {stat_card("總花費", f"${total_spent:.0f}", f"CAD · {len(records)} 次", C_ORANGE)}
-  {stat_card("總加油量", f"{total_litres:.0f}", "公升")}
-  {stat_card("平均油價", f"{avg_ppl*100:.1f}", "¢/L", C_BLUE)}
-  {stat_card("最新油價", f"{last['ppl']*100:.1f}", "¢/L", C_GREEN)}
-</div>
+{stat_grid(
+    stat_card("總花費", f"${total_spent:.0f}", f"CAD · {len(records)} 次", C_ORANGE),
+    stat_card("總加油量", f"{total_litres:.0f}", "公升"),
+    stat_card("平均油價", f"{avg_ppl*100:.1f}", "¢/L", C_BLUE),
+    stat_card("最新油價", f"{last['ppl']*100:.1f}", "¢/L", C_GREEN),
+)}
 {chart_block("油價走勢  ¢/L", make_price_svg(records))}
 {chart_block("油耗效率  L / 100 km", make_eff_svg(records))}
 {chart_block("每次花費  CAD", make_spending_svg(records))}
@@ -299,10 +303,10 @@ def make_list_section(records, empty_label, card_fn, count_unit, list_label):
     n = len(records)
     cards_html = "".join(card_fn(r) for r in reversed(records))
     return f"""
-<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
-  {stat_card("總花費", f"${total_spent:.2f}", f"CAD · {n} {count_unit}", C_ORANGE)}
-  {stat_card("筆數", str(n), "筆記錄")}
-</div>
+{stat_grid(
+    stat_card("總花費", f"${total_spent:.2f}", f"CAD · {n} {count_unit}", C_ORANGE),
+    stat_card("筆數", str(n), "筆記錄"),
+)}
 {chart_block("每筆支出趨勢  CAD", make_spending_svg(records))}
 {section_label(list_label)}
 {cards_html}"""
