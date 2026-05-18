@@ -111,7 +111,9 @@ C_ORANGE   = "#c45000"
 C_NAV_BG   = "rgba(245,245,247,0.9)"
 
 # ============ SVG 共用：畫折線圖 ============
-def _line_svg(labels, vals, color_line, color_fill, fmt_val, empty_msg="無資料"):
+def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
+    h = color_line.lstrip('#')
+    color_fill = f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},0.08)"
     n = len(vals)
     if n == 0:
         return f'<svg width="100%" viewBox="0 0 400 110"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
@@ -144,19 +146,19 @@ def _line_svg(labels, vals, color_line, color_fill, fmt_val, empty_msg="無資�
 def make_price_svg(records):
     labels = [r["date"][5:] for r in records]
     vals   = [r["ppl"] * 100 for r in records]
-    return _line_svg(labels, vals, C_BLUE, "rgba(0,113,227,0.08)", lambda v: f"{v:.1f}")
+    return _line_svg(labels, vals, C_BLUE, lambda v: f"{v:.1f}")
 
 def make_eff_svg(records):
     eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if "km" in r]
     labels = [d[0] for d in eff]
     vals   = [d[1] for d in eff]
-    return _line_svg(labels, vals, C_GREEN, "rgba(26,140,62,0.08)", lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
+    return _line_svg(labels, vals, C_GREEN, lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
 
 def make_spending_svg(records):
     sorted_r = sorted(records, key=lambda r: r["date"])
     labels = [r["date"][5:] for r in sorted_r]
     vals   = [r["total"]    for r in sorted_r]
-    return _line_svg(labels, vals, C_ORANGE, "rgba(196,80,0,0.08)", lambda v: f"${v:.0f}")
+    return _line_svg(labels, vals, C_ORANGE, lambda v: f"${v:.0f}")
 
 # ============ 圖表外框 ============
 def chart_block(title, svg):
