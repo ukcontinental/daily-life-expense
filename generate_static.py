@@ -313,6 +313,19 @@ def make_list_section(records, empty_label, card_fn, count_unit, list_label):
 {section_label(list_label)}
 {cards_html}"""
 
+# ============ 車輛分頁切換器（共用：兩個 gas section 都用同一份定義）============
+def car_tabs(active):
+    tabs = [
+        ("#gas",      "Sienna", "白色  87 REG",     len(DATA["sienna"])),
+        ("#gas-c300", "C300",   "黑色  91 Premium", len(DATA["c300"])),
+    ]
+    links = []
+    for href, name, label, count in tabs:
+        on = ' class="on"' if href == active else ''
+        op = "0.6" if href == active else "0.4"
+        links.append(f'<a href="{href}"{on}>{name}<br><small style="font-size:10px;letter-spacing:0.04em;opacity:{op}">{label}  {count} 筆</small></a>')
+    return '<div class="car-tabs">\n    ' + '\n    '.join(links) + '\n  </div>'
+
 # ============ 完整 HTML ============
 def build_html():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -321,8 +334,6 @@ def build_html():
     grocery_html  = make_list_section(GROCERY, "超市購物", make_itemized_card, "次", "購物記錄")
     dining_html   = make_list_section(DINING,  "餐廳外食", make_itemized_card, "次", "消費記錄")
     other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
-    total_sienna  = len(DATA["sienna"])
-    total_c300    = len(DATA["c300"])
 
     return f"""<!DOCTYPE html>
 <html lang="zh-TW">
@@ -412,18 +423,12 @@ body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bot
 </div>
 
 <div id="gas" class="sec">
-  <div class="car-tabs">
-    <a href="#gas" class="on">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">白色  87 REG  {total_sienna} 筆</small></a>
-    <a href="#gas-c300">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">黑色  91 Premium  {total_c300} 筆</small></a>
-  </div>
+  {car_tabs("#gas")}
   {sienna_html}
 </div>
 
 <div id="gas-c300" class="sec">
-  <div class="car-tabs">
-    <a href="#gas">Sienna<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.4">白色  87 REG  {total_sienna} 筆</small></a>
-    <a href="#gas-c300" class="on">C300<br><small style="font-size:10px;letter-spacing:0.04em;opacity:0.6">黑色  91 Premium  {total_c300} 筆</small></a>
-  </div>
+  {car_tabs("#gas-c300")}
   {c300_html}
 </div>
 
