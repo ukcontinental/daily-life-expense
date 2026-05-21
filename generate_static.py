@@ -63,6 +63,9 @@ OTHER = [
     {"date":"2026-04-30","time":"–","category":"罰單","desc":"City of Toronto APS 超速罰單",
      "note":"Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25",
      "total":328.25,"payment":"線上繳費"},
+    {"date":"2026-05-20","time":"12:17","category":"藥妝","desc":"Shoppers Drug Mart — POLYSPORIN EWD",
+     "note":"1515 Steeles Ave E, Toronto, ON | HST $1.77 | PC Optimum +130 pts，餘額 24,131",
+     "total":15.36,"payment":"Visa"},
 ]
 
 DINING = [
@@ -72,6 +75,9 @@ DINING = [
     {"date":"2026-05-16","time":"18:02","store":"IKEA Restaurant","addr":"15 Provost Drive, North York, ON",
      "items":[{"name":"Reg Strawberry treat（IKEA Bistro 草莓甜點 - 收據模糊，金額需人工確認）","price":2.25}],
      "hst":0.49,"total":4.24,"payment":"Visa"},
+    {"date":"2026-05-20","time":"10:58","store":"La Petite Colline & Shan Shan Cafe","addr":"Unit C5&6, 3355 Steeles Avenue East, Toronto, ON M2H 0A7",
+     "items":[{"name":"Strawberry Veil（原價 $9.50，20% off -$1.90）","price":7.60}],
+     "subtotal":7.60,"hst":0.99,"total":8.59,"payment":"–"},
 ]
 
 DATA = {
