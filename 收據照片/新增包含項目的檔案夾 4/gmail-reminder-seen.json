@@ -1,10 +1,7 @@
 {
-  "updated": "2026-05-15T09:07:00-04:00",
   "seen": [
-    {"id": "19e29c99da6b13f4", "date": "2026-05-15"},
-    {"id": "19e27fbf731b407c", "date": "2026-05-14"},
-    {"id": "19e27ba8b0d77c5e", "date": "2026-05-14"},
-    {"id": "19e274ff9db51d90", "date": "2026-05-14"},
-    {"id": "19e26d434044c28f", "date": "2026-05-14"}
+    {"id": "19e433abd9b97208", "date": "2026-05-20", "note": "Squarespace raw2t.com expired"},
+    {"id": "19e41ab2e998427b", "date": "2026-05-20", "note": "GitHub PAT added"},
+    {"id": "19e4194696f1b275", "date": "2026-05-20", "note": "Enbridge payment due"}
   ]
 }

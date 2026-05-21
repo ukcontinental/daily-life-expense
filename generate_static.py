@@ -112,15 +112,16 @@ C_NAV_BG   = "rgba(245,245,247,0.9)"
 
 # ============ SVG 共用：畫折線圖 ============
 def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
+    H = 110  # SVG 總高（viewBox 高度）
     h = color_line.lstrip('#')
     color_fill = f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},0.08)"
     n = len(vals)
     if n == 0:
-        return f'<svg width="100%" viewBox="0 0 400 110"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
+        return f'<svg width="100%" viewBox="0 0 400 {H}"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
     width = max(340, n * 48 + 52)
     L, R, T, B = 36, 10, 14, 24
     cw = width - L - R
-    ch = 110 - T - B
+    ch = H - T - B
     lo = min(vals); hi = max(vals)
     pad = (hi - lo) * 0.12 if hi != lo else max(hi * 0.05, 1)
     lo -= pad; hi += pad
@@ -140,8 +141,8 @@ def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
         x, y = px(i), py(vals[i])
         parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{color_line}"/>')
         parts.append(f'<text x="{x:.1f}" y="{y-6:.1f}" fill="{C_TEXT1}" font-size="7.5" text-anchor="middle" font-weight="500">{fmt_val(vals[i])}</text>')
-        parts.append(f'<text x="{x:.1f}" y="107" fill="{C_TEXT3}" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
-    return f'<svg width="100%" viewBox="0 0 {width} 110" style="overflow:visible">{"".join(parts)}</svg>'
+        parts.append(f'<text x="{x:.1f}" y="{H-3}" fill="{C_TEXT3}" font-size="7.5" text-anchor="middle">{labels[i]}</text>')
+    return f'<svg width="100%" viewBox="0 0 {width} {H}" style="overflow:visible">{"".join(parts)}</svg>'
 
 def make_price_svg(records):
     labels = [r["date"][5:] for r in records]
@@ -149,7 +150,7 @@ def make_price_svg(records):
     return _line_svg(labels, vals, C_BLUE, lambda v: f"{v:.1f}")
 
 def make_eff_svg(records):
-    eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if "km" in r]
+    eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if r.get("km")]
     labels = [d[0] for d in eff]
     vals   = [d[1] for d in eff]
     return _line_svg(labels, vals, C_GREEN, lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
@@ -224,7 +225,7 @@ def meta_row(pairs, padding_top="10px"):
 def make_record_card(r):
     ppl_c = r["ppl"] * 100
     km_html = ""
-    if "km" in r:
+    if r.get("km"):
         l100     = r["litres"] / r["km"] * 100
         cost_km  = r["total"] / r["km"]
         km_html = f"""
