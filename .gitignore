@@ -1,0 +1,7 @@
+
+# Sheet 同步中間產物 / 暫存
+_db_export.csv
+*.orig
+*.bak
+data.canon.json
+__pycache__/

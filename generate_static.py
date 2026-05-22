@@ -4,105 +4,17 @@
 import os
 from datetime import datetime
 
-# ============ 全部資料 ============
-GROCERY = [
-    {"date":"2025-11-14","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
-     "items":[{"name":"「莊記」板麻 XO 魷魚醬 250g","price":13.00}],
-     "hst":0.00,"total":13.00,"payment":"Debit"},
-    {"date":"2026-05-01","time":"–","store":"Chuang's Company LTD. 莊記","addr":"110 Denison St. Unit #8, Markham, ON L3R 1B6",
-     "items":[
-       {"name":"台灣香腸味黏糯米飯糰 Sausage Sticky Rice Snack","price":1.00},
-       {"name":"茉莉魚子香黏糯米水果飯 Midfin Roe Rice Snack","price":1.00},
-       {"name":"茉莉芒果味黏糯米水果飯 Mango Rice Snack","price":1.00},
-       {"name":"大師傅皮蛋味零食 Century Egg Flavor Snack x2","price":6.00},
-       {"name":"芒果白木瓜仙貝 Mango Papaya Rice Cake Chips","price":3.00},
-       {"name":"白胡椒天婦羅蝦條 White Pepper Tempura Chips","price":3.80},
-       {"name":"清淡拌油素蘿蔔細麵 DaDan Thin Noodles","price":0.00},
-       {"name":"清淡拌油花椒麵 Peppercorn Noodle","price":0.00},
-     ],
-     "hst":1.99,"total":17.79,"payment":"Debit"},
-    {"date":"2026-05-01","time":"12:14","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
-     "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg x2（ON SALE）","price":9.98}],
-     "hst":0.00,"total":9.98,"payment":"Visa ****4106"},
-    {"date":"2026-04-13","time":"13:08","store":"Costco Wholesale","addr":"35 John Birchall Rd, Richmond Hill, ON L4S 0B2",
-     "items":[{"name":"12GAL 折疊儲物箱（車用）","price":12.49}],
-     "hst":1.62,"total":14.11,"payment":"Mastercard ****4134"},
-    {"date":"2026-04-16","time":"–","store":"Chuang's Company LTD.","addr":"Richmond Hill, ON",
-     "items":[{"name":"營業芋頭包子 x10","price":5.50}],
-     "hst":0.00,"total":5.50,"payment":"–"},
-    {"date":"2026-04-17","time":"12:38","store":"FreshPro Foodmart","addr":"Richmond Hill, ON",
-     "items":[{"name":"番石榴","price":7.34},{"name":"黑莓 x2","price":7.98}],
-     "hst":0.00,"total":15.32,"payment":"Mastercard ****4134"},
-    {"date":"2026-04-24","time":"12:35","store":"FreshPro Foodmart","addr":"10488 Yonge St, Richmond Hill, ON L4C 3C2",
-     "items":[{"name":"甘藍菜 (Green Kale)","price":2.59}],
-     "hst":0.00,"total":2.60,"payment":"Cash"},
-    {"date":"2026-04-25","time":"11:07","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
-     "items":[{"name":"韓國魚餅","price":5.99},{"name":"走地雞蛋 18粒","price":7.99},{"name":"中廚 燒餅系列","price":9.99},{"name":"新鮮金錢腱","price":17.35},{"name":"Onion 2LB","price":1.79},{"name":"Onion 2LB","price":1.21},{"name":"CM 皮蛋/紅心鹹蛋","price":2.99},{"name":"豐業 上海五香豆乾","price":3.99},{"name":"白蘿蔔","price":2.28},{"name":"新鮮金錢腱","price":16.95},{"name":"芥蘭菇","price":2.99},{"name":"有頭菠菜","price":3.02},{"name":"番薯葉","price":5.79},{"name":"草莓 x2","price":11.76},{"name":"Lucky 7's 牛油果","price":3.59},{"name":"Sweet Potato","price":12.23},{"name":"蜜豆","price":4.04}],
-     "hst":0.00,"total":113.95,"payment":"Visa ****0891"},
-    {"date":"2026-04-25","time":"10:36","store":"Kuo Hua 國華","addr":"270 Ferrier Street, Markham, ON L3R 2Z5",
-     "items":[{"name":"KC 港橋拱包 650g","price":5.99},{"name":"AGV 蜜底瓜片 140g","price":2.49},{"name":"AGV 豆乾筋 170g","price":2.49},{"name":"AGV 鮮脆瓜 180g","price":2.49},{"name":"蒜味香腸","price":8.99},{"name":"國華無刺虱目魚肚 180g","price":9.90},{"name":"麒麟 新竹米粉 340g","price":2.99}],
-     "hst":0.00,"total":35.34,"payment":"Cash"},
-    {"date":"2026-04-25","time":"11:51","store":"T&T Supermarket","addr":"9255 Woodbine Avenue, Markham, ON L6C 1Y9",
-     "items":[{"name":"Kewpie 沙拉醬","price":5.97},{"name":"大腸切片","price":6.85},{"name":"十粒粽（冷）","price":42.21},{"name":"T&T 保溫袋","price":2.50},{"name":"頂級叉燒肉片 x2","price":12.21},{"name":"水晶梨","price":2.78},{"name":"盒裝精品貝貝小南瓜","price":4.98},{"name":"日昇西施豆腐","price":2.59},{"name":"T&T 中式豬肉腸","price":7.59},{"name":"保溫袋折扣","price":-2.50}],
-     "hst":0.89,"total":86.07,"payment":"Visa ****0891"},
-    {"date":"2026-04-25","time":"21:29","store":"Walmart","addr":"1070 Major Mackenzie Dr E, Richmond Hill, ON L4S 1P3",
-     "items":[{"name":"RESG 1.38kg","price":11.47},{"name":"PNT BTR 750g","price":5.97},{"name":"Dole Pineapple","price":2.47},{"name":"CL Cltuna SJ x4","price":7.52},{"name":"Tabasco Red","price":7.27}],
-     "hst":1.49,"total":36.19,"payment":"Visa ****0891"},
-    {"date":"2026-05-07","time":"12:00","store":"FreshPro Foodmart","addr":"10488 Yonge Street, Richmond Hill, ON L4C 3C2",
-     "items":[{"name":"走地雞奧美加黃雞蛋 Free Run Brown Omega-3 Egg 大粒（ON SALE）x3","price":14.97}],
-     "hst":0.00,"total":14.97,"payment":"Visa ****4106"},
-    {"date":"2026-05-10","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
-     "items":[{"name":"芫荽 Coriander x2","price":3.00}],
-     "hst":0.00,"total":3.00,"payment":"Cash"},
-    {"date":"2026-05-13","time":"11:57","store":"Freshway Foodmart","addr":"3275 Highway 7, Markham, ON",
-     "items":[{"name":"甘藍菜 Green Kale","price":1.99}],
-     "hst":0.00,"total":1.99,"payment":"Cash"},
-]
-
-OTHER = [
-    {"date":"2026-04-30","time":"–","category":"罰單","desc":"City of Toronto APS 超速罰單",
-     "note":"Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25",
-     "total":328.25,"payment":"線上繳費"},
-    {"date":"2026-05-20","time":"12:17","category":"藥妝","desc":"Shoppers Drug Mart — POLYSPORIN EWD",
-     "note":"1515 Steeles Ave E, Toronto, ON | HST $1.77 | PC Optimum +130 pts，餘額 24,131",
-     "total":15.36,"payment":"Visa"},
-]
-
-DINING = [
-    {"date":"2026-05-06","time":"12:02","store":"Bon Cake","addr":"3255 Hwy 7 Unit 236, Markham, ON L3R 3P3",
-     "items":[{"name":"芋泥麻薯戚風蛋糕 Taro Mochi Chiffon Cake 8\" (6-8 Serving)","price":69.00}],
-     "hst":0.00,"total":69.00,"payment":"Clover-9157"},
-    {"date":"2026-05-16","time":"18:02","store":"IKEA Restaurant","addr":"15 Provost Drive, North York, ON",
-     "items":[{"name":"Reg Strawberry treat（IKEA Bistro 草莓甜點 - 收據模糊，金額需人工確認）","price":2.25}],
-     "hst":0.49,"total":4.24,"payment":"Visa"},
-    {"date":"2026-05-20","time":"10:58","store":"La Petite Colline & Shan Shan Cafe","addr":"Unit C5&6, 3355 Steeles Avenue East, Toronto, ON M2H 0A7",
-     "items":[{"name":"Strawberry Veil（原價 $9.50，20% off -$1.90）","price":7.60}],
-     "subtotal":7.60,"hst":0.99,"total":8.59,"payment":"–"},
-]
-
-DATA = {
-    "sienna": [
-        {"date":"2025-12-12","time":"23:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":59.479,"ppl":1.053,"total":62.63,"ptsEarn":598,"ptsBal":18290},
-        {"date":"2026-01-10","time":"23:07","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":45.580,"ppl":1.059,"total":48.28,"ptsEarn":450,"ptsBal":1010},
-        {"date":"2026-01-28","time":"23:15","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":56.564,"ppl":1.079,"total":61.03,"ptsEarn":2560,"ptsBal":17900},
-        {"date":"2026-02-18","time":"23:23","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":58.962,"ppl":1.129,"total":66.57,"ptsEarn":580,"ptsBal":19520},
-        {"date":"2026-03-07","time":"23:05","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":44.031,"ppl":1.399,"total":61.60,"ptsEarn":440,"ptsBal":1290},
-        {"date":"2026-03-10","time":"23:26","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":63.117,"ppl":1.539,"total":97.14,"ptsEarn":630,"ptsBal":7020},
-        {"date":"2026-03-23","time":"23:27","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":51.240,"ppl":1.629,"total":83.47,"ptsEarn":510,"ptsBal":7530},
-        {"date":"2026-04-02","time":"23:19","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":60.377,"ppl":1.666,"total":100.59,"ptsEarn":600,"ptsBal":8235},
-        {"date":"2026-04-06","time":"23:16","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":40.754,"ppl":1.726,"total":70.34,"ptsEarn":400,"ptsBal":8635},
-        {"date":"2026-04-13","time":"23:38","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":47.200,"ppl":1.599,"total":75.47,"ptsEarn":470,"ptsBal":17136,"km":606.4},
-        {"date":"2026-04-20","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":46.354,"ppl":1.476,"total":68.42,"ptsEarn":460,"ptsBal":17596},
-        {"date":"2026-04-27","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":39.658,"ppl":1.616,"total":64.09,"ptsEarn":4390,"ptsBal":21986,"km":558.5},
-        {"date":"2026-05-04","time":"23:20","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":44.327,"ppl":1.696,"total":75.18,"ptsEarn":440,"ptsBal":22426,"km":598.4},
-        {"date":"2026-05-11","time":"12:12","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":36.342,"ppl":1.696,"total":61.64,"ptsEarn":360,"ptsBal":22786,"km":494.8},
-    ],
-    "c300": [
-        {"date":"2026-04-13","time":"23:10","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON","litres":53.878,"ppl":1.909,"total":102.85,"ptsEarn":530,"ptsBal":16666,"km":530.3},
-        {"date":"2026-05-04","time":"23:18","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":58.245,"ppl":2.009,"total":117.01,"ptsEarn":580,"ptsBal":22566,"km":603.0},
-        {"date":"2026-05-11","time":"23:14","station":"Esso Circle K","addr":"12338 Yonge St, Richmond Hill, ON L4E 0V5","litres":56.839,"ppl":2.009,"total":114.19,"ptsEarn":560,"ptsBal":23126},
-    ]
-}
+# ============ 全部資料（來源：data.json；主資料庫＝Google Sheet）============
+# 資料已從程式碼抽離，改由 data.json 提供。
+# data.json 由 Google Sheet 同步而來（見 sync_from_sheet.py）。
+import json
+_HERE = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(_HERE, "data.json"), encoding="utf-8") as _f:
+    _DB = json.load(_f)
+GROCERY = _DB["grocery"]
+DINING  = _DB["dining"]
+OTHER   = _DB["other"]
+DATA    = _DB["fuel"]
 
 # ============ 顏色常數（淺色系 Apple/MUJI 風）============
 C_BG       = "#f5f5f7"   # 頁面背景
