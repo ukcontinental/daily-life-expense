@@ -318,6 +318,40 @@ def _util_area_svg(months, vals, color):
             parts.append(f'<text x="{x:.1f}" y="{H-3}" fill="{C_TEXT3}" font-size="6.8" text-anchor="middle">{months[i][2:]}</text>')
     return f'<svg width="100%" viewBox="0 0 {W} {H}">{"".join(parts)}</svg>'
 
+# ============ Utility 可展開明細卡（點擊看每月）============
+def make_util_detail(u):
+    months = _UTIL["months"]
+    series = _UTIL["series"][u]
+    est = set(_UTIL.get("estimated", {}).get(u, []))
+    col = C_UTIL[u]
+    pairs = [(m, v) for m, v in zip(months, series) if v is not None]
+    total = sum(v for _, v in pairs)
+    first = pairs[0][0] if pairs else "—"
+    last = pairs[-1][0] if pairs else "—"
+    rows = []
+    for m, v in pairs:
+        badge = (f'<span style="font-size:9px;color:{C_TEXT3};border:1px solid {C_BORDER};'
+                 f'border-radius:4px;padding:1px 5px;margin-left:8px">估算</span>') if m in est else ''
+        note = (f' <span style="font-size:10px;color:{C_TEXT3}">補助抵扣</span>'
+                if (u == "電力" and v == 0) else '')
+        rows.append(
+            f'<div style="display:flex;justify-content:space-between;align-items:center;'
+            f'padding:9px 2px;border-top:1px solid {C_BORDER}">'
+            f'<span style="font-size:13px;color:{C_TEXT2}">{m}{badge}</span>'
+            f'<span style="font-size:13px;color:{C_TEXT1};font-weight:500">${v:.2f}{note}</span></div>')
+    rows_html = "".join(rows)
+    return f"""<details style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;margin-bottom:10px;overflow:hidden">
+  <summary style="cursor:pointer;padding:18px 16px;display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div style="font-size:10px;color:{C_TEXT3};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">{u}</div>
+      <div style="font-size:26px;font-weight:600;color:{col};letter-spacing:-0.5px;line-height:1">${total:,.0f}</div>
+      <div style="font-size:11px;color:{C_TEXT3};margin-top:6px">期間累計 · {first}–{last} · 點擊看每月</div>
+    </div>
+    <span class="util-caret" style="font-size:14px;color:{C_TEXT3};margin-left:12px">▾</span>
+  </summary>
+  <div style="padding:2px 16px 14px">{rows_html}</div>
+</details>"""
+
 # ============ Utility 分析區塊 ============
 def make_utility_section():
     if not _UTIL:
@@ -362,9 +396,7 @@ def make_utility_section():
     latest_cards = stat_grid(*[
         stat_card(u, f"${(series[u][-1] or 0):.2f}", _mom(u), C_UTIL[u]) for u in order
     ])
-    per_util = stat_grid(*[
-        stat_card(u, f"${util_tot[u]:,.0f}", "期間累計", C_UTIL[u]) for u in order
-    ])
+    per_util = "".join(make_util_detail(u) for u in order)
     note = _UTIL.get("note", "")
     note_html = (f'<div style="font-size:11px;color:{C_TEXT3};line-height:1.6;'
                  f'background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;'
@@ -376,7 +408,7 @@ def make_utility_section():
 {latest_cards}
 {chart_block("每月各項費用走勢  CAD", _util_multi_svg(months, {u: series[u] for u in order}, C_UTIL))}
 {chart_block("四項合計月總開支  CAD", _util_area_svg(combo_m, combo_v, C_ORANGE))}
-{section_label("各項期間累計")}
+{section_label("各項期間累計（點擊展開每月明細）")}
 {per_util}
 {note_html}"""
 
@@ -445,6 +477,11 @@ body {{
 .car-tabs a.on {{ border-color:{C_BLUE}; color:{C_BLUE}; background:rgba(0,113,227,0.05); }}
 .sec {{ padding:20px 20px 50px; }}
 .empty {{ text-align:center; padding:60px 20px; }}
+/* Utility 展開卡：移除預設三角、加自繪箭頭旋轉 */
+summary {{ list-style:none; }}
+summary::-webkit-details-marker {{ display:none; }}
+.util-caret {{ display:inline-block; transition:transform 0.2s ease; }}
+details[open] .util-caret {{ transform:rotate(180deg); }}
 /* 分頁切換邏輯 */
 .sec {{ display:none; }}
 #gas {{ display:block; }}
