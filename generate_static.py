@@ -16,6 +16,13 @@ DINING  = _DB["dining"]
 OTHER   = _DB["other"]
 DATA    = _DB["fuel"]
 
+# Utility 帳單分析資料（來源：utilities.json，由帳單 PDF 抽取）
+try:
+    with open(os.path.join(_HERE, "utilities.json"), encoding="utf-8") as _uf:
+        _UTIL = json.load(_uf)
+except Exception:
+    _UTIL = None
+
 # ============ 顏色常數（淺色系 Apple/MUJI 風）============
 C_BG       = "#f5f5f7"   # 頁面背景
 C_SURFACE  = "#ffffff"   # 卡片白
@@ -27,6 +34,9 @@ C_BLUE     = "#0071e3"
 C_GREEN    = "#1a8c3e"
 C_ORANGE   = "#c45000"
 C_NAV_BG   = "rgba(245,245,247,0.9)"
+C_PURPLE   = "#9333ea"
+# 四項 utility 配色
+C_UTIL = {"瓦斯": C_ORANGE, "水費": C_BLUE, "熱水器": C_PURPLE, "電力": C_GREEN}
 
 # ============ SVG 共用：畫折線圖 ============
 def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
@@ -245,6 +255,131 @@ def car_tabs(active):
         links.append(f'<a href="{href}"{on}>{name}<br><small style="font-size:10px;letter-spacing:0.04em;opacity:{op}">{label}  {count} 筆</small></a>')
     return '<div class="car-tabs">\n    ' + '\n    '.join(links) + '\n  </div>'
 
+# ============ Utility 多線走勢圖（4 項並列）============
+def _util_multi_svg(months, series, colors):
+    W, H = 372, 182
+    L, R, T, B = 34, 8, 14, 40
+    cw, ch = W - L - R, H - T - B
+    allv = [v for s in series.values() for v in s if v is not None]
+    if not allv:
+        return f'<svg width="100%" viewBox="0 0 {W} {H}"><text x="50%" y="55%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
+    lo, hi = 0.0, max(allv) * 1.12
+    n = len(months)
+    def px(i): return L + (i / (n - 1) if n > 1 else 0.5) * cw
+    def py(v): return T + ch * (1 - (v - lo) / (hi - lo))
+    parts = []
+    for k in range(5):
+        v = hi * k / 4; y = py(v)
+        parts.append(f'<line x1="{L}" y1="{y:.1f}" x2="{W-R}" y2="{y:.1f}" stroke="rgba(0,0,0,0.06)" stroke-width="0.7"/>')
+        parts.append(f'<text x="{L-3}" y="{y+3:.1f}" fill="{C_TEXT3}" font-size="7" text-anchor="end">${v:.0f}</text>')
+    for i in range(0, n, 3):
+        parts.append(f'<text x="{px(i):.1f}" y="{H-26:.1f}" fill="{C_TEXT3}" font-size="6.8" text-anchor="middle">{months[i][2:]}</text>')
+    for name, vals in series.items():
+        col = colors[name]
+        pts = [(px(i), py(v)) for i, v in enumerate(vals) if v is not None]
+        if len(pts) > 1:
+            poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+            parts.append(f'<polyline points="{poly}" fill="none" stroke="{col}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>')
+        for x, y in pts:
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="1.5" fill="{col}"/>')
+    seg = cw / len(colors)
+    for idx, (name, col) in enumerate(colors.items()):
+        x = L + idx * seg
+        parts.append(f'<rect x="{x:.1f}" y="{H-12:.1f}" width="9" height="3.2" rx="1.2" fill="{col}"/>')
+        parts.append(f'<text x="{x+12:.1f}" y="{H-9:.1f}" fill="{C_TEXT2}" font-size="7.5">{name}</text>')
+    return f'<svg width="100%" viewBox="0 0 {W} {H}">{"".join(parts)}</svg>'
+
+# ============ Utility 合計面積圖（單線 + 數值標記）============
+def _util_area_svg(months, vals, color):
+    W, H = 372, 150
+    L, R, T, B = 34, 8, 18, 26
+    cw, ch = W - L - R, H - T - B
+    if not vals:
+        return f'<svg width="100%" viewBox="0 0 {W} {H}"><text x="50%" y="55%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
+    lo, hi = min(vals) * 0.92, max(vals) * 1.08
+    n = len(vals)
+    h = color.lstrip('#')
+    fill = f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},0.10)"
+    def px(i): return L + (i / (n - 1) if n > 1 else 0.5) * cw
+    def py(v): return T + ch * (1 - (v - lo) / (hi - lo))
+    parts = []
+    for k in range(4):
+        v = lo + (hi - lo) * k / 3; y = py(v)
+        parts.append(f'<line x1="{L}" y1="{y:.1f}" x2="{W-R}" y2="{y:.1f}" stroke="rgba(0,0,0,0.06)" stroke-width="0.7"/>')
+        parts.append(f'<text x="{L-3}" y="{y+3:.1f}" fill="{C_TEXT3}" font-size="7" text-anchor="end">${v:.0f}</text>')
+    poly = " ".join(f"{px(i):.1f},{py(vals[i]):.1f}" for i in range(n))
+    parts.append(f'<polygon points="{px(0):.1f},{T+ch} {poly} {px(n-1):.1f},{T+ch}" fill="{fill}"/>')
+    parts.append(f'<polyline points="{poly}" fill="none" stroke="{color}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>')
+    for i in range(n):
+        x, y = px(i), py(vals[i])
+        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="1.8" fill="{color}"/>')
+        if i % 3 == 0 or i == n - 1:
+            parts.append(f'<text x="{x:.1f}" y="{y-5:.1f}" fill="{C_TEXT1}" font-size="6.8" text-anchor="middle" font-weight="500">{vals[i]:.0f}</text>')
+            parts.append(f'<text x="{x:.1f}" y="{H-3}" fill="{C_TEXT3}" font-size="6.8" text-anchor="middle">{months[i][2:]}</text>')
+    return f'<svg width="100%" viewBox="0 0 {W} {H}">{"".join(parts)}</svg>'
+
+# ============ Utility 分析區塊 ============
+def make_utility_section():
+    if not _UTIL:
+        return empty_state("水電瓦斯")
+    months = _UTIL["months"]
+    series = _UTIL["series"]
+    order = ["瓦斯", "水費", "熱水器", "電力"]
+
+    util_tot = {u: sum(v for v in series[u] if v is not None) for u in order}
+    grand = sum(util_tot.values())
+
+    combo_m, combo_v = [], []
+    for i, m in enumerate(months):
+        vs = [series[u][i] for u in order]
+        if all(v is not None for v in vs):
+            combo_m.append(m); combo_v.append(round(sum(vs), 2))
+    avg = sum(combo_v) / len(combo_v) if combo_v else 0
+    hi_v = max(combo_v); lo_v = min(combo_v)
+    hi_m = combo_m[combo_v.index(hi_v)]; lo_m = combo_m[combo_v.index(lo_v)]
+
+    # 最新月份各項費用（含與上月比較）
+    latest = months[-1]
+    def _mom(u):
+        cur, pr = series[u][-1], series[u][-2]
+        if cur is None:
+            return latest
+        if pr is None:
+            return f"{latest} · CAD"
+        d = cur - pr
+        if abs(d) < 0.005:
+            return f"{latest} · 持平"
+        arrow = "▲" if d > 0 else "▼"
+        return f"{latest} · {arrow} ${abs(d):.0f} vs 上月"
+    latest_total = sum(series[u][-1] for u in order if series[u][-1] is not None)
+
+    stats = stat_grid(
+        stat_card("期間總支出", f"${grand:,.0f}", f"CAD · {months[0]}–{months[-1]}", C_ORANGE),
+        stat_card("月均合計", f"${avg:.0f}", f"CAD · 全覆蓋 {len(combo_v)} 月", C_BLUE),
+        stat_card("最高月", f"${hi_v:.0f}", hi_m, C_PURPLE),
+        stat_card("最低月", f"${lo_v:.0f}", lo_m, C_GREEN),
+    )
+    latest_cards = stat_grid(*[
+        stat_card(u, f"${(series[u][-1] or 0):.2f}", _mom(u), C_UTIL[u]) for u in order
+    ])
+    per_util = stat_grid(*[
+        stat_card(u, f"${util_tot[u]:,.0f}", "期間累計", C_UTIL[u]) for u in order
+    ])
+    note = _UTIL.get("note", "")
+    note_html = (f'<div style="font-size:11px;color:{C_TEXT3};line-height:1.6;'
+                 f'background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;'
+                 f'padding:14px 16px;margin-bottom:8px">說明 · {note}</div>') if note else ""
+
+    return f"""
+{stats}
+{section_label(f"最新月份 · {latest}　合計 ${latest_total:.0f}")}
+{latest_cards}
+{chart_block("每月各項費用走勢  CAD", _util_multi_svg(months, {u: series[u] for u in order}, C_UTIL))}
+{chart_block("四項合計月總開支  CAD", _util_area_svg(combo_m, combo_v, C_ORANGE))}
+{section_label("各項期間累計")}
+{per_util}
+{note_html}"""
+
 # ============ 完整 HTML ============
 def build_html():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -253,6 +388,7 @@ def build_html():
     grocery_html  = make_list_section(GROCERY, "超市購物", make_itemized_card, "次", "購物記錄")
     dining_html   = make_list_section(DINING,  "餐廳外食", make_itemized_card, "次", "消費記錄")
     other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
+    utility_html  = make_utility_section()
 
     return f"""<!DOCTYPE html>
 <html lang="zh-TW">
@@ -315,16 +451,19 @@ body {{
 body:has(#gas-c300:target) #gas,
 body:has(#grocery:target)  #gas,
 body:has(#dining:target)   #gas,
-body:has(#other:target)    #gas {{ display:none; }}
+body:has(#other:target)    #gas,
+body:has(#utility:target)  #gas {{ display:none; }}
 :target {{ display:block !important; }}
 /* 導航底線 */
 .nav a[href="#gas"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 body:has(#grocery:target) .nav a[href="#gas"],
 body:has(#dining:target)  .nav a[href="#gas"],
-body:has(#other:target)   .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-color:transparent; }}
+body:has(#other:target)   .nav a[href="#gas"],
+body:has(#utility:target) .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-color:transparent; }}
 body:has(#grocery:target) .nav a[href="#grocery"],
 body:has(#dining:target)  .nav a[href="#dining"],
-body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#other:target)   .nav a[href="#other"],
+body:has(#utility:target) .nav a[href="#utility"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
 </style>
 </head>
 <body>
@@ -339,6 +478,7 @@ body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bot
   <a href="#grocery">超市</a>
   <a href="#dining">餐廳</a>
   <a href="#other">其他</a>
+  <a href="#utility">水電瓦斯</a>
 </div>
 
 <div id="gas" class="sec">
@@ -361,6 +501,10 @@ body:has(#other:target)   .nav a[href="#other"]   {{ color:{C_TEXT1}; border-bot
 
 <div id="other" class="sec">
   {other_html}
+</div>
+
+<div id="utility" class="sec">
+  {utility_html}
 </div>
 
 </body>
