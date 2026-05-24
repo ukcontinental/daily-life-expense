@@ -38,11 +38,15 @@ C_PURPLE   = "#9333ea"
 # 四項 utility 配色
 C_UTIL = {"瓦斯": C_ORANGE, "水費": C_BLUE, "熱水器": C_PURPLE, "電力": C_GREEN}
 
+# ============ SVG 共用：十六進位色碼 → rgba(含 alpha) ============
+def hex_rgba(hex_color, alpha):
+    h = hex_color.lstrip('#')
+    return f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},{alpha})"
+
 # ============ SVG 共用：畫折線圖 ============
 def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
     H = 110  # SVG 總高（viewBox 高度）
-    h = color_line.lstrip('#')
-    color_fill = f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},0.08)"
+    color_fill = hex_rgba(color_line, "0.08")
     n = len(vals)
     if n == 0:
         return f'<svg width="100%" viewBox="0 0 400 {H}"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
@@ -298,8 +302,7 @@ def _util_area_svg(months, vals, color):
         return f'<svg width="100%" viewBox="0 0 {W} {H}"><text x="50%" y="55%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
     lo, hi = min(vals) * 0.92, max(vals) * 1.08
     n = len(vals)
-    h = color.lstrip('#')
-    fill = f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},0.10)"
+    fill = hex_rgba(color, "0.10")
     def px(i): return L + (i / (n - 1) if n > 1 else 0.5) * cw
     def py(v): return T + ch * (1 - (v - lo) / (hi - lo))
     parts = []
@@ -360,8 +363,7 @@ def make_utility_section():
     series = _UTIL["series"]
     order = ["瓦斯", "水費", "熱水器", "電力"]
 
-    util_tot = {u: sum(v for v in series[u] if v is not None) for u in order}
-    grand = sum(util_tot.values())
+    grand = sum(v for u in order for v in series[u] if v is not None)
 
     combo_m, combo_v = [], []
     for i, m in enumerate(months):

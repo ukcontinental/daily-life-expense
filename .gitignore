@@ -5,3 +5,6 @@ _db_export.csv
 *.bak
 data.canon.json
 __pycache__/
+
+# macOS / 系統噪音（避免每次 git add -A 重複 commit）
+.DS_Store
