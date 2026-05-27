@@ -3,6 +3,7 @@
 
 import os
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # ============ 全部資料（來源：data.json；主資料庫＝Google Sheet）============
 # 資料已從程式碼抽離，改由 data.json 提供。
@@ -416,7 +417,7 @@ def make_utility_section():
 
 # ============ 完整 HTML ============
 def build_html():
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    now = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y-%m-%d %H:%M")
     sienna_html   = make_car_section("sienna", "Sienna")
     c300_html     = make_car_section("c300", "C300")
     grocery_html  = make_list_section(GROCERY, "超市購物", make_itemized_card, "次", "購物記錄")
