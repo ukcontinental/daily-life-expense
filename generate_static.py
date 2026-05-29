@@ -44,13 +44,17 @@ def hex_rgba(hex_color, alpha):
     h = hex_color.lstrip('#')
     return f"rgba({int(h[0:2],16)},{int(h[2:4],16)},{int(h[4:6],16)},{alpha})"
 
+# ============ SVG 共用：空狀態 placeholder（三個 SVG 函式共用）============
+def _empty_svg(width, height, msg="無資料"):
+    return f'<svg width="100%" viewBox="0 0 {width} {height}"><text x="50%" y="50%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{msg}</text></svg>'
+
 # ============ SVG 共用：畫折線圖 ============
 def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
     H = 110  # SVG 總高（viewBox 高度）
     color_fill = hex_rgba(color_line, "0.08")
     n = len(vals)
     if n == 0:
-        return f'<svg width="100%" viewBox="0 0 400 {H}"><text x="50%" y="55" fill="{C_TEXT3}" text-anchor="middle" font-size="9">{empty_msg}</text></svg>'
+        return _empty_svg(400, H, empty_msg)
     width = max(340, n * 48 + 52)
     L, R, T, B = 36, 10, 14, 24
     cw = width - L - R
@@ -267,7 +271,7 @@ def _util_multi_svg(months, series, colors):
     cw, ch = W - L - R, H - T - B
     allv = [v for s in series.values() for v in s if v is not None]
     if not allv:
-        return f'<svg width="100%" viewBox="0 0 {W} {H}"><text x="50%" y="55%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
+        return _empty_svg(W, H)
     lo, hi = 0.0, max(allv) * 1.12
     n = len(months)
     def px(i): return L + (i / (n - 1) if n > 1 else 0.5) * cw
@@ -300,7 +304,7 @@ def _util_area_svg(months, vals, color):
     L, R, T, B = 34, 8, 18, 26
     cw, ch = W - L - R, H - T - B
     if not vals:
-        return f'<svg width="100%" viewBox="0 0 {W} {H}"><text x="50%" y="55%" fill="{C_TEXT3}" text-anchor="middle" font-size="9">無資料</text></svg>'
+        return _empty_svg(W, H)
     lo, hi = min(vals) * 0.92, max(vals) * 1.08
     n = len(vals)
     fill = hex_rgba(color, "0.10")
@@ -371,9 +375,14 @@ def make_utility_section():
         vs = [series[u][i] for u in order]
         if all(v is not None for v in vs):
             combo_m.append(m); combo_v.append(round(sum(vs), 2))
-    avg = sum(combo_v) / len(combo_v) if combo_v else 0
-    hi_v = max(combo_v); lo_v = min(combo_v)
-    hi_m = combo_m[combo_v.index(hi_v)]; lo_m = combo_m[combo_v.index(lo_v)]
+    if combo_v:
+        avg = sum(combo_v) / len(combo_v)
+        hi_v, lo_v = max(combo_v), min(combo_v)
+        hi_m = combo_m[combo_v.index(hi_v)]
+        lo_m = combo_m[combo_v.index(lo_v)]
+    else:
+        avg = hi_v = lo_v = 0
+        hi_m = lo_m = "—"
 
     # 最新月份各項費用（含與上月比較）
     latest = months[-1]
