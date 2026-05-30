@@ -87,9 +87,9 @@ def make_price_svg(records):
     return _line_svg(labels, vals, C_BLUE, lambda v: f"{v:.1f}")
 
 def make_eff_svg(records):
-    eff = [(r["date"][5:], r["litres"]/r["km"]*100) for r in records if r.get("km")]
-    labels = [d[0] for d in eff]
-    vals   = [d[1] for d in eff]
+    filtered = [r for r in records if r.get("km")]
+    labels = [r["date"][5:]           for r in filtered]
+    vals   = [r["litres"]/r["km"]*100 for r in filtered]
     return _line_svg(labels, vals, C_GREEN, lambda v: f"{v:.2f}", empty_msg="填寫里程後顯示")
 
 def make_spending_svg(records):
