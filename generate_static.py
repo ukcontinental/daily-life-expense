@@ -365,7 +365,7 @@ def make_utility_section():
         return empty_state("水電瓦斯")
     months = _UTIL["months"]
     series = _UTIL["series"]
-    order = ["瓦斯", "水費", "熱水器", "電力"]
+    order = list(C_UTIL)
 
     grand = sum(v for u in order for v in series[u] if v is not None)
 
