@@ -334,8 +334,7 @@ def make_util_detail(u):
     col = C_UTIL[u]
     pairs = [(m, v) for m, v in zip(months, series) if v is not None]
     total = sum(v for _, v in pairs)
-    first = pairs[0][0] if pairs else "—"
-    last = pairs[-1][0] if pairs else "—"
+    first, last = (pairs[0][0], pairs[-1][0]) if pairs else ("—", "—")
     rows = []
     for m, v in pairs:
         badge = (f'<span style="font-size:9px;color:{C_TEXT3};border:1px solid {C_BORDER};'
