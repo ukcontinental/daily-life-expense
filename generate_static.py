@@ -160,7 +160,6 @@ def meta_row(pairs, padding_top="10px"):
 
 # ============ 單筆加油記錄卡片 ============
 def make_record_card(r):
-    ppl_c = r["ppl"] * 100
     km_html = ""
     if r.get("km"):
         l100     = r["litres"] / r["km"] * 100
@@ -174,7 +173,7 @@ def make_record_card(r):
     return f"""{card_header(r['station'], r['addr'], r['total'], r['date'], r['time'])}
   <div style="display:flex;gap:0;padding-top:10px;border-top:1px solid {C_BORDER}">
     {stat_cell("油量", f"{r['litres']:.3f}", "L")}
-    {stat_cell("單價", f"{ppl_c:.1f}", "¢/L", C_BLUE)}
+    {stat_cell("單價", f"{r['ppl'] * 100:.1f}", "¢/L", C_BLUE)}
     {stat_cell("PC 點", f"+{r['ptsEarn']:,}")}
   </div>{km_html}
 </div>"""
