@@ -32,7 +32,7 @@ def num(v, kind=float):
     if v == "":
         return None
     try:
-        return kind(float(v)) if kind is int else float(v)
+        return kind(float(v))
     except ValueError:
         return v
 
