@@ -537,6 +537,56 @@
       "payment": "–"
     },
     {
+      "date": "2026-04-14",
+      "time": "18:16",
+      "store": "Wahlburgers（Boston Logan 機場）",
+      "addr": "300 Terminal, East Boston, MA 02128 USA | 金額為美元 USD",
+      "items": [
+        {
+          "name": "ML OurBurger Side Sal",
+          "price": 15.95
+        },
+        {
+          "name": "ML OFD Tots",
+          "price": 19.95
+        },
+        {
+          "name": "F Coke",
+          "price": 3.35
+        },
+        {
+          "name": "Angry Orc CdrBtl",
+          "price": 10.0
+        },
+        {
+          "name": "Tip 小費",
+          "price": 10.54
+        }
+      ],
+      "hst": 3.45,
+      "total": 63.24,
+      "payment": "Visa ****0891（USD $63.24）"
+    },
+    {
+      "date": "2026-05-01",
+      "time": "–",
+      "store": "Saray Turkish Cuisine",
+      "addr": "Toronto, ON",
+      "items": [
+        {
+          "name": "Dine-In 餐點（pre-HST）",
+          "price": 125.0
+        },
+        {
+          "name": "Tips 20%",
+          "price": 28.25
+        }
+      ],
+      "hst": 16.25,
+      "total": 169.5,
+      "payment": "–"
+    },
+    {
       "date": "2026-05-06",
       "time": "12:02",
       "store": "Bon Cake",
@@ -550,6 +600,57 @@
       "hst": 0.0,
       "total": 69.0,
       "payment": "Clover-9157"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "19:41",
+      "store": "Chiang Mai York Mills（清邁泰式料理）",
+      "addr": "860 York Mills Road Unit 1, Toronto, ON M3B 1Y4 | Table 81 | 母親節晚餐",
+      "items": [
+        {
+          "name": "Mother's Day Mimosa Pineapple",
+          "price": 18.0
+        },
+        {
+          "name": "Mango Sticky Rice (drink)",
+          "price": 13.0
+        },
+        {
+          "name": "PASSION BREEZE",
+          "price": 19.0
+        },
+        {
+          "name": "Crispy Soft Shell",
+          "price": 28.0
+        },
+        {
+          "name": "Crying Tiger Steak Medium Rare（含 Som Tum）",
+          "price": 30.0
+        },
+        {
+          "name": "Thai Green Mango Salad x2",
+          "price": 43.0
+        },
+        {
+          "name": "Whole Lobster Pad Thai Medium",
+          "price": 21.0
+        },
+        {
+          "name": "雜項加點",
+          "price": 1.0
+        },
+        {
+          "name": "Green Curry Chicken Medium / Jasmine Rice",
+          "price": 21.0
+        },
+        {
+          "name": "Thai Basil Fried Rice Shrimp Mild",
+          "price": 4.0
+        }
+      ],
+      "hst": 25.74,
+      "total": 223.74,
+      "payment": "–"
     },
     {
       "date": "2026-05-16",
