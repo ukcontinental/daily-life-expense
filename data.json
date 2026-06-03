@@ -487,9 +487,55 @@
       "hst": 0.0,
       "total": 28.03,
       "payment": "Visa"
+    },
+    {
+      "date": "2026-06-01",
+      "time": "12:15",
+      "store": "Walmart",
+      "addr": "200 Silver Linden Dr, Richmond Hill, ON L4B 4V5",
+      "items": [
+        {
+          "name": "(4 items · 收據細節不清)",
+          "price": 12.98
+        }
+      ],
+      "hst": 1.69,
+      "total": 14.67,
+      "payment": "Visa"
     }
   ],
   "dining": [
+    {
+      "date": "2026-04-05",
+      "time": "19:50",
+      "store": "Matsutei Sukiyaki",
+      "addr": "430 Dundas St W, Toronto, ON 416-598-2888",
+      "items": [
+        {
+          "name": "Premium Sukiyaki (Fri-Sun/Holiday) × 10",
+          "price": 339.5
+        },
+        {
+          "name": "Two Flavour Broth (Kelp Mirin + Sukiyaki)",
+          "price": 18.99
+        },
+        {
+          "name": "Two Flavour Broth (Beef Bone + Tomato)",
+          "price": 18.99
+        },
+        {
+          "name": "Two Flavour Broth (Chicken + Sukiyaki)",
+          "price": 18.99
+        },
+        {
+          "name": "Service Charge 15%",
+          "price": 59.47
+        }
+      ],
+      "hst": 51.54,
+      "total": 507.48,
+      "payment": "–"
+    },
     {
       "date": "2026-05-06",
       "time": "12:02",
@@ -534,9 +580,33 @@
       "hst": 0.99,
       "total": 8.59,
       "payment": "–"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "13:43",
+      "store": "Alfies Sandwiches + Mkt",
+      "addr": "36 Baldwin St, Toronto, ON M5T 1L3",
+      "items": [
+        {
+          "name": "Monalisa Bacio Sandwich",
+          "price": 27.0
+        }
+      ],
+      "hst": 3.51,
+      "total": 30.51,
+      "payment": "Visa"
     }
   ],
   "other": [
+    {
+      "date": "2026-04-29",
+      "time": "20:57",
+      "category": "停車費",
+      "desc": "U of T Chestnut Garage — 短期停車",
+      "note": "89 Chestnut St, Toronto, ON M5G 1R1 | 停車 17:15–20:57 | HST $1.15 | Receipt #79370",
+      "total": 10.0,
+      "payment": "Visa"
+    },
     {
       "date": "2026-04-30",
       "time": "–",
@@ -547,6 +617,15 @@
       "payment": "線上繳費"
     },
     {
+      "date": "2026-05-10",
+      "time": "14:54",
+      "category": "停車費",
+      "desc": "Edwards Garden Parking (Canada Wide Parking)",
+      "note": "Lot 2 | Plate: LIHOU | Valid until 11:59 PM Sun May 10 | TRN: 4285C5C0A0074481E",
+      "total": 12.0,
+      "payment": "Visa"
+    },
+    {
       "date": "2026-05-20",
       "time": "12:17",
       "category": "藥妝",
@@ -554,6 +633,15 @@
       "note": "1515 Steeles Ave E, Toronto, ON | HST $1.77 | PC Optimum +130 pts，餘額 24,131",
       "total": 15.36,
       "payment": "Visa"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "10:35",
+      "category": "服務",
+      "desc": "Nazbanoo Photo Studio — 照相服務",
+      "note": "10255 Yonge St Unit 203, Richmond Hill, ON L4C 3 | Debit ****2430",
+      "total": 22.6,
+      "payment": "Debit"
     }
   ],
   "fuel": {
@@ -764,6 +852,28 @@
         "total": 114.19,
         "ptsEarn": 560,
         "ptsBal": 23126
+      },
+      {
+        "date": "2026-05-21",
+        "time": "23:10",
+        "station": "Esso Circle K",
+        "addr": "12338 Yonge St, Richmond Hill, ON L4E 0W5",
+        "litres": 60.673,
+        "ppl": 2.029,
+        "total": 123.11,
+        "ptsEarn": 600,
+        "ptsBal": 24721
+      },
+      {
+        "date": "2026-05-30",
+        "time": "23:19",
+        "station": "Esso Circle K",
+        "addr": "12338 Yonge St, Richmond Hill, ON L4E 0W5",
+        "litres": 59.971,
+        "ppl": 1.869,
+        "total": 112.09,
+        "ptsEarn": 590,
+        "ptsBal": 15901
       }
     ]
   }
