@@ -62,7 +62,7 @@ def _line_svg(labels, vals, color_line, fmt_val, empty_msg="無資料"):
     lo = min(vals); hi = max(vals)
     pad = (hi - lo) * 0.12 if hi != lo else max(hi * 0.05, 1)
     lo -= pad; hi += pad
-    def px(i): return L + (i / (n-1) if n > 1 else 0.5) * cw
+    def px(i): return L + (i / (n - 1) if n > 1 else 0.5) * cw
     def py(v): return T + ch * (1 - (v - lo) / (hi - lo))
     parts = []
     for v in [lo + pad, (lo + hi) / 2, hi - pad]:
