@@ -559,8 +559,7 @@ body:has(#utility:target) .nav a[href="#utility"] {{ color:{C_TEXT1}; border-bot
 
 # ============ 輸出 ============
 html = build_html()
-COWORK = os.path.dirname(os.path.abspath(__file__))
-out_path = os.path.join(COWORK, "index.html")
+out_path = os.path.join(_HERE, "index.html")
 with open(out_path, "w", encoding="utf-8") as f:
     f.write(html)
 print(f"✅ HTML 已寫入：{out_path}")
