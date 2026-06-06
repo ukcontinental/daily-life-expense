@@ -502,6 +502,44 @@
       "hst": 1.69,
       "total": 14.67,
       "payment": "Visa"
+    },
+    {
+      "date": "2026-06-04",
+      "time": "11:51",
+      "store": "No Frills (Rob's NF Markham)",
+      "addr": "8601 Warden Ave, Markham, ON",
+      "items": [
+        {
+          "name": "Jam Jerk Season MRJ",
+          "price": 4.79
+        }
+      ],
+      "hst": 0,
+      "total": 4.79,
+      "payment": "Visa"
+    },
+    {
+      "date": "2026-06-05",
+      "time": "18:57",
+      "store": "Jim's No Frills",
+      "addr": "10909 Yonge Street, Richmond Hill, ON",
+      "items": [
+        {
+          "name": "Onion Yellow",
+          "price": 1.99
+        },
+        {
+          "name": "Chicken Leg Back Attached",
+          "price": 4.83
+        },
+        {
+          "name": "Chicken Leg Back Attached",
+          "price": 5.04
+        }
+      ],
+      "hst": 0,
+      "total": 11.86,
+      "payment": "Visa"
     }
   ],
   "dining": [
