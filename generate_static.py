@@ -422,6 +422,91 @@ def make_utility_section():
 {per_util}
 {note_html}"""
 
+# ============ 月統計 ============
+def make_monthly_section():
+    from collections import defaultdict
+
+    monthly = defaultdict(lambda: {"gas":0.0,"grocery":0.0,"dining":0.0,"other":0.0,"utility":0.0})
+
+    for r in DATA["sienna"] + DATA["c300"]:
+        monthly[r["date"][:7]]["gas"] += r["total"]
+    for r in GROCERY:
+        monthly[r["date"][:7]]["grocery"] += r["total"]
+    for r in DINING:
+        monthly[r["date"][:7]]["dining"] += r["total"]
+    for r in OTHER:
+        monthly[r["date"][:7]]["other"] += r["total"]
+    if _UTIL:
+        for i, m in enumerate(_UTIL["months"]):
+            ym = m.replace(".", "-")
+            for u in C_UTIL:
+                v = _UTIL["series"][u][i]
+                if v is not None:
+                    monthly[ym]["utility"] += v
+
+    if not monthly:
+        return empty_state("月統計")
+
+    sorted_ym = sorted(monthly.keys(), reverse=True)
+    totals = {ym: sum(monthly[ym].values()) for ym in sorted_ym}
+    grand  = sum(totals.values())
+    avg    = grand / len(sorted_ym) if sorted_ym else 0
+    max_m  = max(sorted_ym, key=lambda m: totals[m])
+    min_m  = min(sorted_ym, key=lambda m: totals[m])
+
+    asc = sorted(monthly.keys())
+    chart_svg = _line_svg(
+        [m[5:] for m in asc],
+        [sum(monthly[m].values()) for m in asc],
+        C_ORANGE, lambda v: f"${v:.0f}"
+    )
+
+    CAT = [
+        ("gas",     "加油",     C_BLUE),
+        ("grocery", "超市",     C_GREEN),
+        ("dining",  "餐廳",     C_ORANGE),
+        ("other",   "其他",     C_PURPLE),
+        ("utility", "水電瓦斯", C_TEXT2),
+    ]
+
+    cards = []
+    for ym in sorted_ym:
+        cats  = monthly[ym]
+        total = totals[ym]
+        y, mo = ym.split("-")
+        label = f"{y}年 {int(mo)}月"
+        rows  = ""
+        for key, name, col in CAT:
+            v = cats[key]
+            if v < 0.005: continue
+            pct = v / total * 100
+            rows += f"""<div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:{C_TEXT2}">{name}</span>
+    <span style="font-size:12px;font-weight:500;color:{col}">${v:.0f} <span style="font-weight:400;color:{C_TEXT3}">{pct:.0f}%</span></span>
+  </div>
+  <div style="height:4px;background:{C_BG};border-radius:2px;overflow:hidden"><div style="height:4px;width:{pct:.1f}%;background:{col};border-radius:2px"></div></div>
+</div>"""
+        cards.append(f"""<div style="background:{C_SURFACE};border:1px solid {C_BORDER};border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:{C_TEXT1}">{label}</div>
+    <div style="font-size:22px;font-weight:700;color:{C_ORANGE};letter-spacing:-0.5px">${total:.0f}</div>
+  </div>
+  {rows}
+</div>""")
+
+    stats = stat_grid(
+        stat_card("期間總支出", f"${grand:,.0f}", f"CAD · {len(sorted_ym)} 個月", C_ORANGE),
+        stat_card("月均支出",  f"${avg:,.0f}",   "CAD · 月平均", C_BLUE),
+        stat_card("最高月",    f"${totals[max_m]:,.0f}", max_m, C_PURPLE),
+        stat_card("最低月",    f"${totals[min_m]:,.0f}", min_m, C_GREEN),
+    )
+
+    return f"""{stats}
+{chart_block("月度總支出  CAD", chart_svg)}
+{section_label("每月明細")}
+{"".join(cards)}"""
+
 # ============ 完整 HTML ============
 def build_html():
     now = datetime.now(ZoneInfo("America/Toronto")).strftime("%Y-%m-%d %H:%M")
@@ -431,6 +516,7 @@ def build_html():
     dining_html   = make_list_section(DINING,  "餐廳外食", make_itemized_card, "次", "消費記錄")
     other_html    = make_list_section(OTHER,   "其他支出", make_other_card,   "筆", "支出記錄")
     utility_html  = make_utility_section()
+    monthly_html  = make_monthly_section()
 
     return f"""<!DOCTYPE html>
 <html lang="zh-TW">
@@ -499,7 +585,8 @@ body:has(#gas-c300:target) #gas,
 body:has(#grocery:target)  #gas,
 body:has(#dining:target)   #gas,
 body:has(#other:target)    #gas,
-body:has(#utility:target)  #gas {{ display:none; }}
+body:has(#utility:target)  #gas,
+body:has(#monthly:target)  #gas {{ display:none; }}
 :target {{ display:block !important; }}
 /* 導航底線 */
 .nav a[href="#gas"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
@@ -510,7 +597,9 @@ body:has(#utility:target) .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-
 body:has(#grocery:target) .nav a[href="#grocery"],
 body:has(#dining:target)  .nav a[href="#dining"],
 body:has(#other:target)   .nav a[href="#other"],
-body:has(#utility:target) .nav a[href="#utility"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#utility:target) .nav a[href="#utility"],
+body:has(#monthly:target) .nav a[href="#monthly"] {{ color:{C_TEXT1}; border-bottom-color:{C_BLUE}; }}
+body:has(#monthly:target) .nav a[href="#gas"] {{ color:{C_TEXT3}; border-bottom-color:transparent; }}
 </style>
 </head>
 <body>
@@ -526,6 +615,7 @@ body:has(#utility:target) .nav a[href="#utility"] {{ color:{C_TEXT1}; border-bot
   <a href="#dining">餐廳</a>
   <a href="#other">其他</a>
   <a href="#utility">水電瓦斯</a>
+  <a href="#monthly">月統計</a>
 </div>
 
 <div id="gas" class="sec">
@@ -552,6 +642,10 @@ body:has(#utility:target) .nav a[href="#utility"] {{ color:{C_TEXT1}; border-bot
 
 <div id="utility" class="sec">
   {utility_html}
+</div>
+
+<div id="monthly" class="sec">
+  {monthly_html}
 </div>
 
 </body>

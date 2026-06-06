@@ -65,7 +65,8 @@ body:has(#gas-c300:target) #gas,
 body:has(#grocery:target)  #gas,
 body:has(#dining:target)   #gas,
 body:has(#other:target)    #gas,
-body:has(#utility:target)  #gas { display:none; }
+body:has(#utility:target)  #gas,
+body:has(#monthly:target)  #gas { display:none; }
 :target { display:block !important; }
 /* 導航底線 */
 .nav a[href="#gas"] { color:#1d1d1f; border-bottom-color:#0071e3; }
@@ -76,14 +77,16 @@ body:has(#utility:target) .nav a[href="#gas"] { color:rgba(0,0,0,0.3); border-bo
 body:has(#grocery:target) .nav a[href="#grocery"],
 body:has(#dining:target)  .nav a[href="#dining"],
 body:has(#other:target)   .nav a[href="#other"],
-body:has(#utility:target) .nav a[href="#utility"] { color:#1d1d1f; border-bottom-color:#0071e3; }
+body:has(#utility:target) .nav a[href="#utility"],
+body:has(#monthly:target) .nav a[href="#monthly"] { color:#1d1d1f; border-bottom-color:#0071e3; }
+body:has(#monthly:target) .nav a[href="#gas"] { color:rgba(0,0,0,0.3); border-bottom-color:transparent; }
 </style>
 </head>
 <body>
 
 <div class="hdr">
   <h1>生活支出</h1>
-  <p>更新於 2026-06-06 17:11</p>
+  <p>更新於 2026-06-06 17:40</p>
 </div>
 
 <div class="nav">
@@ -92,6 +95,7 @@ body:has(#utility:target) .nav a[href="#utility"] { color:#1d1d1f; border-bottom
   <a href="#dining">餐廳</a>
   <a href="#other">其他</a>
   <a href="#utility">水電瓦斯</a>
+  <a href="#monthly">月統計</a>
 </div>
 
 <div id="gas" class="sec">
@@ -1550,6 +1554,427 @@ body:has(#utility:target) .nav a[href="#utility"] { color:#1d1d1f; border-bottom
   <div style="padding:2px 16px 14px"><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.06</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$77.83</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.07</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$132.60</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.08</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$69.12</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.09</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$67.77</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.10</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$62.38</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.11</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$76.62</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2024.12</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$72.40</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.01</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$78.01</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.02</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$78.67</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.03</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$73.02</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.04</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$69.96</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.05</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$81.58</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.06</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$72.85</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.07</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$94.32</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.08</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$97.93</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.09</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$81.70</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.10</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$68.55</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.11</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2025.12</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2026.01</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2026.02</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2026.03</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2026.04</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-top:1px solid rgba(0,0,0,0.08)"><span style="font-size:13px;color:rgba(0,0,0,0.5)">2026.05</span><span style="font-size:13px;color:#1d1d1f;font-weight:500">$0.00 <span style="font-size:10px;color:rgba(0,0,0,0.3)">補助抵扣</span></span></div></div>
 </details>
 <div style="font-size:11px;color:rgba(0,0,0,0.3);line-height:1.6;background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 16px;margin-bottom:8px">說明 · 瓦斯 2024.10–2025.05 與 熱水器 2024.05–2025.04 為合併補帳單分攤估算(平均分配);電力 2025.11 起因 OESP 補助結餘實付 $0。水費最早資料為 2024.10,電力最早為 2024.06。</div>
+</div>
+
+<div id="monthly" class="sec">
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px">
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">期間總支出</div>
+  <div style="font-size:26px;font-weight:600;color:#c45000;letter-spacing:-0.5px;line-height:1">$9,733</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 26 個月</div>
+</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">月均支出</div>
+  <div style="font-size:26px;font-weight:600;color:#0071e3;letter-spacing:-0.5px;line-height:1">$374</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">CAD · 月平均</div>
+</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">最高月</div>
+  <div style="font-size:26px;font-weight:600;color:#9333ea;letter-spacing:-0.5px;line-height:1">$1,956</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">2026-04</div>
+</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px 16px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">最低月</div>
+  <div style="font-size:26px;font-weight:600;color:#1a8c3e;letter-spacing:-0.5px;line-height:1">$31</div>
+  <div style="font-size:11px;color:rgba(0,0,0,0.3);margin-top:6px">2026-06</div>
+</div>
+</div>
+<div style="margin-bottom:24px">
+  <div style="font-size:10px;color:rgba(0,0,0,0.3);margin-bottom:10px;letter-spacing:0.12em;text-transform:uppercase">月度總支出  CAD</div>
+  <div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:14px 12px;overflow:hidden"><svg width="100%" viewBox="0 0 1300 110" style="overflow:visible"><line x1="36" y1="79.0" x2="1290" y2="79.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="82.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$31</text><line x1="36" y1="50.0" x2="1290" y2="50.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="53.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$994</text><line x1="36" y1="21.0" x2="1290" y2="21.0" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/><text x="33" y="24.0" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="end">$1956</text><polygon points="36.0,86 36.0,78.1 86.2,75.1 136.3,73.1 186.5,75.1 236.6,75.1 286.8,71.3 337.0,71.2 387.1,71.4 437.3,71.6 487.4,71.0 537.6,71.4 587.8,71.3 637.9,71.0 688.1,71.3 738.2,71.3 788.4,72.0 838.6,71.9 888.7,72.7 938.9,73.9 989.0,71.2 1039.2,69.3 1089.4,70.2 1139.5,65.3 1189.7,21.0 1239.8,30.0 1290.0,79.0 1290.0,86" fill="rgba(196,80,0,0.08)"/><polyline points="36.0,78.1 86.2,75.1 136.3,73.1 186.5,75.1 236.6,75.1 286.8,71.3 337.0,71.2 387.1,71.4 437.3,71.6 487.4,71.0 537.6,71.4 587.8,71.3 637.9,71.0 688.1,71.3 738.2,71.3 788.4,72.0 838.6,71.9 888.7,72.7 938.9,73.9 989.0,71.2 1039.2,69.3 1089.4,70.2 1139.5,65.3 1189.7,21.0 1239.8,30.0 1290.0,79.0" fill="none" stroke="#c45000" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="36.0" cy="78.1" r="2.5" fill="#c45000"/><text x="36.0" y="72.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$64</text><text x="36.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">05</text><circle cx="86.2" cy="75.1" r="2.5" fill="#c45000"/><text x="86.2" y="69.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$160</text><text x="86.2" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">06</text><circle cx="136.3" cy="73.1" r="2.5" fill="#c45000"/><text x="136.3" y="67.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$228</text><text x="136.3" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">07</text><circle cx="186.5" cy="75.1" r="2.5" fill="#c45000"/><text x="186.5" y="69.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$163</text><text x="186.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">08</text><circle cx="236.6" cy="75.1" r="2.5" fill="#c45000"/><text x="236.6" y="69.1" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$162</text><text x="236.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">09</text><circle cx="286.8" cy="71.3" r="2.5" fill="#c45000"/><text x="286.8" y="65.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$288</text><text x="286.8" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">10</text><circle cx="337.0" cy="71.2" r="2.5" fill="#c45000"/><text x="337.0" y="65.2" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$290</text><text x="337.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">11</text><circle cx="387.1" cy="71.4" r="2.5" fill="#c45000"/><text x="387.1" y="65.4" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$286</text><text x="387.1" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">12</text><circle cx="437.3" cy="71.6" r="2.5" fill="#c45000"/><text x="437.3" y="65.6" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$278</text><text x="437.3" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01</text><circle cx="487.4" cy="71.0" r="2.5" fill="#c45000"/><text x="487.4" y="65.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$296</text><text x="487.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">02</text><circle cx="537.6" cy="71.4" r="2.5" fill="#c45000"/><text x="537.6" y="65.4" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$284</text><text x="537.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03</text><circle cx="587.8" cy="71.3" r="2.5" fill="#c45000"/><text x="587.8" y="65.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$288</text><text x="587.8" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04</text><circle cx="637.9" cy="71.0" r="2.5" fill="#c45000"/><text x="637.9" y="65.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$298</text><text x="637.9" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">05</text><circle cx="688.1" cy="71.3" r="2.5" fill="#c45000"/><text x="688.1" y="65.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$288</text><text x="688.1" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">06</text><circle cx="738.2" cy="71.3" r="2.5" fill="#c45000"/><text x="738.2" y="65.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$288</text><text x="738.2" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">07</text><circle cx="788.4" cy="72.0" r="2.5" fill="#c45000"/><text x="788.4" y="66.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$264</text><text x="788.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">08</text><circle cx="838.6" cy="71.9" r="2.5" fill="#c45000"/><text x="838.6" y="65.9" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$269</text><text x="838.6" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">09</text><circle cx="888.7" cy="72.7" r="2.5" fill="#c45000"/><text x="888.7" y="66.7" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$240</text><text x="888.7" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">10</text><circle cx="938.9" cy="73.9" r="2.5" fill="#c45000"/><text x="938.9" y="67.9" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$202</text><text x="938.9" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">11</text><circle cx="989.0" cy="71.2" r="2.5" fill="#c45000"/><text x="989.0" y="65.2" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$290</text><text x="989.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">12</text><circle cx="1039.2" cy="69.3" r="2.5" fill="#c45000"/><text x="1039.2" y="63.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$353</text><text x="1039.2" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">01</text><circle cx="1089.4" cy="70.2" r="2.5" fill="#c45000"/><text x="1089.4" y="64.2" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$326</text><text x="1089.4" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">02</text><circle cx="1139.5" cy="65.3" r="2.5" fill="#c45000"/><text x="1139.5" y="59.3" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$486</text><text x="1139.5" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">03</text><circle cx="1189.7" cy="21.0" r="2.5" fill="#c45000"/><text x="1189.7" y="15.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$1956</text><text x="1189.7" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">04</text><circle cx="1239.8" cy="30.0" r="2.5" fill="#c45000"/><text x="1239.8" y="24.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$1656</text><text x="1239.8" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">05</text><circle cx="1290.0" cy="79.0" r="2.5" fill="#c45000"/><text x="1290.0" y="73.0" fill="#1d1d1f" font-size="7.5" text-anchor="middle" font-weight="500">$31</text><text x="1290.0" y="107" fill="rgba(0,0,0,0.3)" font-size="7.5" text-anchor="middle">06</text></svg></div>
+</div>
+<div style="font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px">每月明細</div>
+<div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 6月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$31</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">超市</span>
+    <span style="font-size:12px;font-weight:500;color:#1a8c3e">$31 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:#1a8c3e;border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 5月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$1656</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$702 <span style="font-weight:400;color:rgba(0,0,0,0.3)">42%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:42.4%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">超市</span>
+    <span style="font-size:12px;font-weight:500;color:#1a8c3e">$185 <span style="font-weight:400;color:rgba(0,0,0,0.3)">11%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:11.2%;background:#1a8c3e;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">餐廳</span>
+    <span style="font-size:12px;font-weight:500;color:#c45000">$506 <span style="font-weight:400;color:rgba(0,0,0,0.3)">31%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:30.5%;background:#c45000;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">其他</span>
+    <span style="font-size:12px;font-weight:500;color:#9333ea">$50 <span style="font-weight:400;color:rgba(0,0,0,0.3)">3%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:3.0%;background:#9333ea;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$213 <span style="font-weight:400;color:rgba(0,0,0,0.3)">13%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:12.9%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 4月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$1956</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$482 <span style="font-weight:400;color:rgba(0,0,0,0.3)">25%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:24.6%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">超市</span>
+    <span style="font-size:12px;font-weight:500;color:#1a8c3e">$309 <span style="font-weight:400;color:rgba(0,0,0,0.3)">16%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:15.8%;background:#1a8c3e;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">餐廳</span>
+    <span style="font-size:12px;font-weight:500;color:#c45000">$571 <span style="font-weight:400;color:rgba(0,0,0,0.3)">29%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:29.2%;background:#c45000;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">其他</span>
+    <span style="font-size:12px;font-weight:500;color:#9333ea">$338 <span style="font-weight:400;color:rgba(0,0,0,0.3)">17%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:17.3%;background:#9333ea;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$257 <span style="font-weight:400;color:rgba(0,0,0,0.3)">13%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:13.1%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 3月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$486</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$242 <span style="font-weight:400;color:rgba(0,0,0,0.3)">50%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:49.8%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$244 <span style="font-weight:400;color:rgba(0,0,0,0.3)">50%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:50.2%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 2月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$326</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$67 <span style="font-weight:400;color:rgba(0,0,0,0.3)">20%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:20.4%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$259 <span style="font-weight:400;color:rgba(0,0,0,0.3)">80%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:79.6%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2026年 1月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$353</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$109 <span style="font-weight:400;color:rgba(0,0,0,0.3)">31%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:31.0%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$244 <span style="font-weight:400;color:rgba(0,0,0,0.3)">69%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:69.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 12月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$290</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">加油</span>
+    <span style="font-size:12px;font-weight:500;color:#0071e3">$63 <span style="font-weight:400;color:rgba(0,0,0,0.3)">22%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:21.6%;background:#0071e3;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$227 <span style="font-weight:400;color:rgba(0,0,0,0.3)">78%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:78.4%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 11月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$202</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">超市</span>
+    <span style="font-size:12px;font-weight:500;color:#1a8c3e">$13 <span style="font-weight:400;color:rgba(0,0,0,0.3)">6%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:6.4%;background:#1a8c3e;border-radius:2px"></div></div>
+</div><div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$189 <span style="font-weight:400;color:rgba(0,0,0,0.3)">94%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:93.6%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 10月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$240</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$240 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 9月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$269</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$269 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 8月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$264</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$264 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 7月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$288</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$288 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 6月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$288</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$288 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 5月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$298</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$298 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 4月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$288</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$288 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 3月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$284</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$284 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 2月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$296</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$296 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2025年 1月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$278</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$278 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 12月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$286</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$286 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 11月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$290</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$290 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 10月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$288</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$288 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 9月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$162</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$162 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 8月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$163</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$163 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 7月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$228</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$228 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 6月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$160</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$160 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div><div style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+    <div style="font-size:16px;font-weight:600;color:#1d1d1f">2024年 5月</div>
+    <div style="font-size:22px;font-weight:700;color:#c45000;letter-spacing:-0.5px">$64</div>
+  </div>
+  <div style="margin-bottom:9px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span style="font-size:12px;color:rgba(0,0,0,0.5)">水電瓦斯</span>
+    <span style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.5)">$64 <span style="font-weight:400;color:rgba(0,0,0,0.3)">100%</span></span>
+  </div>
+  <div style="height:4px;background:#f5f5f7;border-radius:2px;overflow:hidden"><div style="height:4px;width:100.0%;background:rgba(0,0,0,0.5);border-radius:2px"></div></div>
+</div>
+</div>
 </div>
 
 </body>
