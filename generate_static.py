@@ -395,7 +395,7 @@ def make_utility_section():
             return f"{latest} · 持平"
         arrow = "▲" if d > 0 else "▼"
         return f"{latest} · {arrow} ${abs(d):.0f} vs 上月"
-    latest_total = sum(series[u][-1] for u in order if series[u][-1] is not None)
+    latest_total = sum(v for u in order for v in (series[u][-1],) if v is not None)
 
     stats = stat_grid(
         stat_card("期間總支出", f"${grand:,.0f}", f"CAD · {months[0]}–{months[-1]}", C_ORANGE),
