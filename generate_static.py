@@ -457,7 +457,7 @@ def make_monthly_section():
     asc = sorted(monthly.keys())
     chart_svg = _line_svg(
         [m[5:] for m in asc],
-        [sum(monthly[m].values()) for m in asc],
+        [totals[m] for m in asc],
         C_ORANGE, lambda v: f"${v:.0f}"
     )
 
