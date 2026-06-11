@@ -761,7 +761,11 @@
       "time": "20:57",
       "category": "停車費",
       "desc": "U of T Chestnut Garage — 短期停車",
-      "note": "89 Chestnut St, Toronto, ON M5G 1R1 | 停車 17:15–20:57 | HST $1.15 | Receipt #79370",
+      "note": "89 Chestnut St, Toronto, ON M5G 1R1 | 停車 17:15–20:57 | Receipt #79370",
+      "items": [
+        {"name": "停車費（17:15–20:57）", "price": 8.85},
+        {"name": "HST", "price": 1.15}
+      ],
       "total": 10.0,
       "payment": "Visa"
     },
@@ -770,7 +774,12 @@
       "time": "–",
       "category": "罰單",
       "desc": "City of Toronto APS 超速罰單",
-      "note": "Penalty Order #2026-901-51-27930082-001 | 罰款 $260 + Victim Justice Fund $60 + MTO Look Up $8.25",
+      "note": "Penalty Order #2026-901-51-27930082-001",
+      "items": [
+        {"name": "超速罰款", "price": 260.0},
+        {"name": "Victim Justice Fund", "price": 60.0},
+        {"name": "MTO Look Up 費", "price": 8.25}
+      ],
       "total": 328.25,
       "payment": "線上繳費"
     },
@@ -779,7 +788,10 @@
       "time": "14:54",
       "category": "停車費",
       "desc": "Edwards Garden Parking (Canada Wide Parking)",
-      "note": "Lot 2 | Plate: LIHOU | Valid until 11:59 PM Sun May 10 | TRN: 4285C5C0A0074481E",
+      "note": "Lot 2 | Plate: LIHOU | TRN: 4285C5C0A0074481E",
+      "items": [
+        {"name": "停車費（Lot 2，Valid until 11:59 PM）", "price": 12.0}
+      ],
       "total": 12.0,
       "payment": "Visa"
     },
@@ -788,7 +800,11 @@
       "time": "12:17",
       "category": "藥妝",
       "desc": "Shoppers Drug Mart — POLYSPORIN EWD",
-      "note": "1515 Steeles Ave E, Toronto, ON | HST $1.77 | PC Optimum +130 pts，餘額 24,131",
+      "note": "1515 Steeles Ave E, Toronto, ON | PC Optimum +130 pts，餘額 24,131",
+      "items": [
+        {"name": "POLYSPORIN EWD 抗生素藥膏", "price": 13.59},
+        {"name": "HST", "price": 1.77}
+      ],
       "total": 15.36,
       "payment": "Visa"
     },
@@ -798,6 +814,9 @@
       "category": "服務",
       "desc": "Nazbanoo Photo Studio — 照相服務",
       "note": "10255 Yonge St Unit 203, Richmond Hill, ON L4C 3 | Debit ****2430",
+      "items": [
+        {"name": "照相服務費", "price": 22.6}
+      ],
       "total": 22.6,
       "payment": "Debit"
     },
@@ -806,7 +825,11 @@
       "time": "12:21",
       "category": "購物",
       "desc": "Costco Wholesale Richmond Hill #592 — MINI 4K",
-      "note": "35 John Birchall Rd, Richmond Hill, ON L4S 0B2 | 含 HST 36.40 | Costco Mastercard",
+      "note": "35 John Birchall Rd, Richmond Hill, ON L4S 0B2 | Costco Mastercard ****3944",
+      "items": [
+        {"name": "DJI Mini 4K 無人機（#1439948）", "price": 279.97},
+        {"name": "HST (13%)", "price": 36.4}
+      ],
       "total": 316.37,
       "payment": "Costco Mastercard"
     }

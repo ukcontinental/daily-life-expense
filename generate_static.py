@@ -216,23 +216,107 @@ def make_car_section(car_key, car_label):
 {section_label("加油記錄")}
 {cards_html}"""
 
-# ============ 商品列表卡片（超市 / 餐廳 共用）============
-def make_itemized_card(r):
-    items_html = "".join(
-        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};margin-bottom:5px;line-height:1.4"><span style="padding-right:12px">{it["name"]}</span><span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
-        for it in r["items"]
+# ============ 共用：明細列表 HTML ============
+def _items_rows_html(items):
+    return "".join(
+        f'<div style="display:flex;justify-content:space-between;font-size:13px;color:{C_TEXT2};'
+        f'margin-bottom:5px;line-height:1.4">'
+        f'<span style="padding-right:12px">{it["name"]}</span>'
+        f'<span style="flex-shrink:0">${it["price"]:.2f}</span></div>'
+        for it in items
     )
-    subtotal = sum(it["price"] for it in r["items"])
-    return f"""{card_header(r['store'], r['addr'], r['total'], r['date'], r['time'])}
-  <div style="border-top:1px solid {C_BORDER};padding-top:10px;margin-bottom:10px">{items_html}</div>
-  {meta_row([("小計", f"${subtotal:.2f}"), ("HST", f"${r['hst']:.2f}"), ("付款", r['payment'])], "8px")}
-</div>"""
 
-# ============ 其他卡片 ============
+# ============ 商品列表卡片（超市 / 餐廳 共用）— 預設收合，點開看明細 ============
+def make_itemized_card(r):
+    items = r["items"]
+    n = len(items)
+    items_html = _items_rows_html(items)
+    subtotal = sum(it["price"] for it in items)
+    meta_items = (
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;'
+        f'letter-spacing:0.08em">小計 </span>'
+        f'<span style="font-size:12px;color:{C_TEXT2}">${subtotal:.2f}</span></div>'
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;'
+        f'letter-spacing:0.08em">HST </span>'
+        f'<span style="font-size:12px;color:{C_TEXT2}">${r["hst"]:.2f}</span></div>'
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;'
+        f'letter-spacing:0.08em">付款 </span>'
+        f'<span style="font-size:12px;color:{C_TEXT2}">{r["payment"]}</span></div>'
+    )
+    return (
+        f'<details style="background:{C_SURFACE};border:1px solid {C_BORDER};'
+        f'border-radius:12px;margin-bottom:10px;overflow:hidden">\n'
+        f'  <summary style="cursor:pointer;padding:16px">\n'
+        f'    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">\n'
+        f'      <div style="flex:1;padding-right:12px">\n'
+        f'        <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r["store"]}</div>\n'
+        f'        <div style="font-size:11px;color:{C_TEXT3};margin-top:3px">{r["addr"]}</div>\n'
+        f'      </div>\n'
+        f'      <div style="text-align:right;flex-shrink:0">\n'
+        f'        <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r["total"]:.2f}</div>\n'
+        f'        <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r["date"]} · {r["time"]}</div>\n'
+        f'      </div>\n'
+        f'    </div>\n'
+        f'    <div style="border-top:1px solid {C_BORDER};padding-top:10px;display:flex;'
+        f'justify-content:space-between;align-items:center">\n'
+        f'      <div style="display:flex;gap:16px;flex-wrap:wrap">{meta_items}</div>\n'
+        f'      <span class="util-caret" style="font-size:11px;color:{C_TEXT3};'
+        f'flex-shrink:0;margin-left:8px">▾ {n} 項</span>\n'
+        f'    </div>\n'
+        f'  </summary>\n'
+        f'  <div style="padding:4px 16px 14px;border-top:1px solid {C_BORDER}">{items_html}</div>\n'
+        f'</details>'
+    )
+
+# ============ 其他卡片 — 有 items 時預設收合，點開看明細 ============
 def make_other_card(r):
-    return f"""{card_header(r['desc'], r['note'], r['total'], r['date'], r['time'], ';line-height:1.5')}
-  {meta_row([("類別", r['category']), ("付款", r['payment'])])}
-</div>"""
+    items = r.get("items", [])
+    meta_items = (
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;'
+        f'letter-spacing:0.08em">類別 </span>'
+        f'<span style="font-size:12px;color:{C_TEXT2}">{r["category"]}</span></div>'
+        f'<div><span style="font-size:10px;color:{C_TEXT3};text-transform:uppercase;'
+        f'letter-spacing:0.08em">付款 </span>'
+        f'<span style="font-size:12px;color:{C_TEXT2}">{r["payment"]}</span></div>'
+    )
+    header_inner = (
+        f'<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">\n'
+        f'      <div style="flex:1;padding-right:12px">\n'
+        f'        <div style="font-size:15px;font-weight:500;color:{C_TEXT1}">{r["desc"]}</div>\n'
+        f'        <div style="font-size:11px;color:{C_TEXT3};margin-top:3px;line-height:1.5">{r["note"]}</div>\n'
+        f'      </div>\n'
+        f'      <div style="text-align:right;flex-shrink:0">\n'
+        f'        <div style="font-size:22px;font-weight:600;color:{C_ORANGE};letter-spacing:-0.3px">${r["total"]:.2f}</div>\n'
+        f'        <div style="font-size:11px;color:{C_TEXT3};margin-top:2px">{r["date"]} · {r["time"]}</div>\n'
+        f'      </div>\n'
+        f'    </div>'
+    )
+    if not items:
+        return (
+            f'<div style="background:{C_SURFACE};border:1px solid {C_BORDER};'
+            f'border-radius:12px;padding:16px;margin-bottom:10px">\n'
+            f'  {header_inner}\n'
+            f'  <div style="border-top:1px solid {C_BORDER};padding-top:10px;'
+            f'display:flex;gap:16px;flex-wrap:wrap">{meta_items}</div>\n'
+            f'</div>'
+        )
+    n = len(items)
+    items_html = _items_rows_html(items)
+    return (
+        f'<details style="background:{C_SURFACE};border:1px solid {C_BORDER};'
+        f'border-radius:12px;margin-bottom:10px;overflow:hidden">\n'
+        f'  <summary style="cursor:pointer;padding:16px">\n'
+        f'    {header_inner}\n'
+        f'    <div style="border-top:1px solid {C_BORDER};padding-top:10px;display:flex;'
+        f'justify-content:space-between;align-items:center">\n'
+        f'      <div style="display:flex;gap:16px;flex-wrap:wrap">{meta_items}</div>\n'
+        f'      <span class="util-caret" style="font-size:11px;color:{C_TEXT3};'
+        f'flex-shrink:0;margin-left:8px">▾ {n} 項</span>\n'
+        f'    </div>\n'
+        f'  </summary>\n'
+        f'  <div style="padding:4px 16px 14px;border-top:1px solid {C_BORDER}">{items_html}</div>\n'
+        f'</details>'
+    )
 
 # ============ 通用清單區塊（超市/其他/未來分頁共用）============
 def make_list_section(records, empty_label, card_fn, count_unit, list_label):
