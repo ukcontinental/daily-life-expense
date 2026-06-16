@@ -867,23 +867,23 @@
       "payment": "Costco Mastercard"
     },
     {
-      "date": "2026-05-19",
+      "date": "2026-06-15",
       "time": "12:53",
-      "category": "購物",
-      "desc": "Canadian Tire #697 — 五金/汽車用品",
-      "note": "11720 Yonge Street, Richmond Hill, ON L4E 0K4",
+      "category": "汽車保養",
+      "desc": "Canadian Tire #697 — MCF12157 Cabin Air Filter（Sienna 冷氣濾網）",
+      "note": "11720 Yonge Street, Richmond Hill, ON L4E 0K4 | GST# 787959279 | Visa ****4106",
       "items": [
         {
-          "name": "MET GST/J CARW (123-4199-2)",
+          "name": "MCF12157 Cabin Air Filter 冷氣濾網（Sienna 用）",
           "price": 29.99
         },
         {
-          "name": "HST",
+          "name": "HST 13%",
           "price": 3.9
         }
       ],
       "total": 33.89,
-      "payment": "Visa"
+      "payment": "Visa ****4106"
     },
     {
       "date": "2026-06-08",
@@ -1095,6 +1095,28 @@
         "ptsEarn": 590,
         "ptsBal": 25311,
         "km": 779.7
+      },
+      {
+        "date": "2026-06-06",
+        "time": "23:11",
+        "station": "Esso Circle K",
+        "addr": "12338 Yonge St, Richmond Hill, ON L4E 0V5",
+        "litres": 61.591,
+        "ppl": 1.519,
+        "total": 93.56,
+        "ptsEarn": 610,
+        "ptsBal": 6611
+      },
+      {
+        "date": "2026-06-15",
+        "time": "23:13",
+        "station": "Esso Circle K",
+        "addr": "12338 Yonge St, Richmond Hill, ON L4E 0W5",
+        "litres": 48.706,
+        "ppl": 1.459,
+        "total": 71.06,
+        "ptsEarn": 480,
+        "ptsBal": 7791
       }
     ],
     "c300": [
