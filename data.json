@@ -559,6 +559,37 @@
       "hst": 0.0,
       "total": 12.0,
       "payment": "Debit"
+    },
+    {
+      "date": "2026-06-17",
+      "time": "",
+      "store": "Chuang's Company LTD（莊記）",
+      "addr": "110 Denison St. Unit #8, Markham, ON L3R 1B6",
+      "items": [
+        {"name": "Rice Cake Chips ×2", "price": 6.00},
+        {"name": "Seaweed Tempura Chips ×2", "price": 6.00},
+        {"name": "Pepper Tempura Chips ×2", "price": 6.00},
+        {"name": "Chili Oil", "price": 2.20},
+        {"name": "Garlic Kelp Knot", "price": 1.50},
+        {"name": "Spicy Kelp Knot", "price": 1.50},
+        {"name": "HST", "price": 2.73}
+      ],
+      "hst": 2.73,
+      "total": 25.93,
+      "payment": "Debit"
+    },
+    {
+      "date": "2026-06-18",
+      "time": "12:43",
+      "store": "Kuo Hua Showroom 國華",
+      "addr": "270 Ferrier Street, Markham, ON L3R 2Z5",
+      "items": [
+        {"name": "TC Black Pepper Bean Curd 270g", "price": 5.99},
+        {"name": "TC Satay Bean Curd 270g", "price": 5.99}
+      ],
+      "hst": 0.00,
+      "total": 11.98,
+      "payment": "Debit"
     }
   ],
   "dining": [
@@ -922,6 +953,45 @@
       ],
       "total": 1.41,
       "payment": "Cash"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "12:13",
+      "category": "禮品",
+      "desc": "Indigo #958 — Mother's Day Card",
+      "note": "9350 Yonge St., Richmond Hill, ON L4C 5G2",
+      "items": [
+        {"name": "MOTHER TWO AVOCADOS HOLDING", "price": 4.99},
+        {"name": "HST", "price": 0.65}
+      ],
+      "total": 5.64,
+      "payment": "Cash"
+    },
+    {
+      "date": "2026-06-18",
+      "time": "13:22",
+      "category": "汽車保養",
+      "desc": "Canadian Tire #126 — CA12289 引擎空氣濾芯",
+      "note": "6310 Yonge St. & Steeles Ave., Thornhill, ON",
+      "items": [
+        {"name": "CA12289 Engine Air Filter 引擎空氣濾芯", "price": 22.99},
+        {"name": "HST", "price": 2.99}
+      ],
+      "total": 25.98,
+      "payment": "Visa ****4106"
+    },
+    {
+      "date": "2026-06-19",
+      "time": "12:59",
+      "category": "禮品",
+      "desc": "Indigo #968 — Birthday Card",
+      "note": "9350 Yonge St., Richmond Hill, ON L4C 5G2",
+      "items": [
+        {"name": "EVDY LOVE LETTER WIFE BIRTHD", "price": 10.49},
+        {"name": "HST", "price": 1.36}
+      ],
+      "total": 11.85,
+      "payment": "Visa ****4106"
     }
   ],
   "fuel": {
@@ -1117,6 +1187,18 @@
         "total": 71.06,
         "ptsEarn": 480,
         "ptsBal": 7791
+      },
+      {
+        "date": "2026-06-19",
+        "time": "18:16",
+        "station": "Esso Express Pay",
+        "addr": "1485 Elgin Mills Road E, Richmond Hill, ON L4S",
+        "litres": 19.675,
+        "ppl": 1.579,
+        "total": 31.07,
+        "ptsEarn": 190,
+        "ptsBal": 8081,
+        "km": 279
       }
     ],
     "c300": [
