@@ -566,34 +566,13 @@
       "store": "Chuang's Company LTD（莊記）",
       "addr": "110 Denison St. Unit #8, Markham, ON L3R 1B6",
       "items": [
-        {
-          "name": "Rice Cake Chips ×2",
-          "price": 6.0
-        },
-        {
-          "name": "Seaweed Tempura Chips ×2",
-          "price": 6.0
-        },
-        {
-          "name": "Pepper Tempura Chips ×2",
-          "price": 6.0
-        },
-        {
-          "name": "Chili Oil",
-          "price": 2.2
-        },
-        {
-          "name": "Garlic Kelp Knot",
-          "price": 1.5
-        },
-        {
-          "name": "Spicy Kelp Knot",
-          "price": 1.5
-        },
-        {
-          "name": "HST",
-          "price": 2.73
-        }
+        {"name": "Rice Cake Chips ×2", "price": 6.00},
+        {"name": "Seaweed Tempura Chips ×2", "price": 6.00},
+        {"name": "Pepper Tempura Chips ×2", "price": 6.00},
+        {"name": "Chili Oil", "price": 2.20},
+        {"name": "Garlic Kelp Knot", "price": 1.50},
+        {"name": "Spicy Kelp Knot", "price": 1.50},
+        {"name": "HST", "price": 2.73}
       ],
       "hst": 2.73,
       "total": 25.93,
@@ -605,16 +584,10 @@
       "store": "Kuo Hua Showroom 國華",
       "addr": "270 Ferrier Street, Markham, ON L3R 2Z5",
       "items": [
-        {
-          "name": "TC Black Pepper Bean Curd 270g",
-          "price": 5.99
-        },
-        {
-          "name": "TC Satay Bean Curd 270g",
-          "price": 5.99
-        }
+        {"name": "TC Black Pepper Bean Curd 270g", "price": 5.99},
+        {"name": "TC Satay Bean Curd 270g", "price": 5.99}
       ],
-      "hst": 0.0,
+      "hst": 0.00,
       "total": 11.98,
       "payment": "Debit"
     }
@@ -811,102 +784,6 @@
       "hst": 3.51,
       "total": 30.51,
       "payment": "Visa"
-    },
-    {
-      "date": "2026-06-20",
-      "time": "19:13",
-      "store": "Bistro 1640",
-      "addr": "16 Rue Sainte-Anne, Québec, QC G1R 3X2",
-      "items": [
-        {
-          "name": "餐點 6+ 項（韃靼牛、田螺、Burrata、海鮮 Pizza、Fish & Shrimp、Blue Moon 等）",
-          "price": 196.6
-        },
-        {
-          "name": "小費 Tip",
-          "price": 35.37
-        }
-      ],
-      "hst": 29.33,
-      "total": 261.3,
-      "payment": "Visa ****0199"
-    },
-    {
-      "date": "2026-06-21",
-      "time": "19:55",
-      "store": "MOCO Downtown",
-      "addr": "100 Regent St, Fredericton, NB E3B 3W4",
-      "items": [
-        {
-          "name": "餐費（僅信用卡簽單，無明細）",
-          "price": 227.7
-        },
-        {
-          "name": "小費 Tip",
-          "price": 45.54
-        }
-      ],
-      "hst": 0.0,
-      "total": 273.24,
-      "payment": "Visa ****0199"
-    },
-    {
-      "date": "2026-06-22",
-      "time": "14:19",
-      "store": "Blue Mussel Cafe",
-      "addr": "5033 Rustico Road Rte 6, Rustico, PE C0A 1N0",
-      "items": [
-        {
-          "name": "Oysters – 1 Dozen",
-          "price": 42.0
-        },
-        {
-          "name": "Lobster Dip",
-          "price": 30.0
-        },
-        {
-          "name": "Mussels",
-          "price": 20.0
-        },
-        {
-          "name": "Garden Market Salad (with Lobster)",
-          "price": 40.0
-        },
-        {
-          "name": "小費 Tip",
-          "price": 27.32
-        }
-      ],
-      "hst": 19.8,
-      "total": 179.12,
-      "payment": "Visa ****0199"
-    },
-    {
-      "date": "2026-06-22",
-      "time": "17:17",
-      "store": "New Glasgow Lobster Suppers",
-      "addr": "604 Route 258, New Glasgow, PE C0A 1N0",
-      "items": [
-        {
-          "name": "Surf N Turf ×2",
-          "price": 127.9
-        },
-        {
-          "name": "Salmon",
-          "price": 50.95
-        },
-        {
-          "name": "Draft Beer",
-          "price": 6.3
-        },
-        {
-          "name": "小費 Tip",
-          "price": 45.0
-        }
-      ],
-      "hst": 27.77,
-      "total": 257.92,
-      "payment": "Visa ****0199（兩張單合計 $205.68 + $52.24）"
     }
   ],
   "other": [
@@ -1084,14 +961,8 @@
       "desc": "Indigo #958 — Mother's Day Card",
       "note": "9350 Yonge St., Richmond Hill, ON L4C 5G2",
       "items": [
-        {
-          "name": "MOTHER TWO AVOCADOS HOLDING",
-          "price": 4.99
-        },
-        {
-          "name": "HST",
-          "price": 0.65
-        }
+        {"name": "MOTHER TWO AVOCADOS HOLDING", "price": 4.99},
+        {"name": "HST", "price": 0.65}
       ],
       "total": 5.64,
       "payment": "Cash"
@@ -1103,14 +974,8 @@
       "desc": "Canadian Tire #126 — CA12289 引擎空氣濾芯",
       "note": "6310 Yonge St. & Steeles Ave., Thornhill, ON",
       "items": [
-        {
-          "name": "CA12289 Engine Air Filter 引擎空氣濾芯",
-          "price": 22.99
-        },
-        {
-          "name": "HST",
-          "price": 2.99
-        }
+        {"name": "CA12289 Engine Air Filter 引擎空氣濾芯", "price": 22.99},
+        {"name": "HST", "price": 2.99}
       ],
       "total": 25.98,
       "payment": "Visa ****4106"
@@ -1122,14 +987,8 @@
       "desc": "Indigo #968 — Birthday Card",
       "note": "9350 Yonge St., Richmond Hill, ON L4C 5G2",
       "items": [
-        {
-          "name": "EVDY LOVE LETTER WIFE BIRTHD",
-          "price": 10.49
-        },
-        {
-          "name": "HST",
-          "price": 1.36
-        }
+        {"name": "EVDY LOVE LETTER WIFE BIRTHD", "price": 10.49},
+        {"name": "HST", "price": 1.36}
       ],
       "total": 11.85,
       "payment": "Visa ****4106"
@@ -1340,17 +1199,6 @@
         "ptsEarn": 190,
         "ptsBal": 8081,
         "km": 279
-      },
-      {
-        "date": "2026-06-22",
-        "time": "08:42",
-        "station": "Esso Express Pay",
-        "addr": "361 Main St, Fredericton, NB E3A 1E6",
-        "litres": 49.698,
-        "ppl": 1.694,
-        "total": 84.19,
-        "ptsEarn": 490,
-        "ptsBal": 11731
       }
     ],
     "c300": [
