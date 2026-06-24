@@ -1351,6 +1351,28 @@
         "total": 84.19,
         "ptsEarn": 490,
         "ptsBal": 11731
+      },
+      {
+        "date": "2026-06-20",
+        "time": "13:35",
+        "station": "Esso (Couche-Tard #1905)",
+        "addr": "275 Dorchester, Québec, QC G1K 5Z3",
+        "litres": 58.154,
+        "ppl": 1.679,
+        "total": 97.64,
+        "ptsEarn": 2580,
+        "ptsBal": 11241
+      },
+      {
+        "date": "2026-06-23",
+        "time": "19:25",
+        "station": "Esso Express Pay (Proxi Chebucto)",
+        "addr": "7151 Chebucto Road, Halifax, NS B3L 1N5",
+        "litres": 56.578,
+        "ppl": 1.653,
+        "total": 93.52,
+        "ptsEarn": 560,
+        "ptsBal": 12291
       }
     ],
     "c300": [
