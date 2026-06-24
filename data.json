@@ -907,6 +907,29 @@
       "hst": 27.77,
       "total": 257.92,
       "payment": "Visa ****0199（兩張單合計 $205.68 + $52.24）"
+    },
+    {
+      "date": "2026-06-23",
+      "time": "11:01",
+      "store": "COWS Queen St.",
+      "addr": "150 Queen St., Charlottetown, PE C1A 4B5",
+      "items": [
+        {
+          "name": "Double Scoop",
+          "price": 8.0
+        },
+        {
+          "name": "Peanuts/Sprinkle Upgrade",
+          "price": 1.5
+        },
+        {
+          "name": "小費 Tip",
+          "price": 1.31
+        }
+      ],
+      "hst": 1.43,
+      "total": 12.24,
+      "payment": "Card ****4106"
     }
   ],
   "other": [
@@ -1350,7 +1373,8 @@
         "ppl": 1.694,
         "total": 84.19,
         "ptsEarn": 490,
-        "ptsBal": 11731
+        "ptsBal": 11731,
+        "km": 646
       },
       {
         "date": "2026-06-20",
@@ -1361,7 +1385,8 @@
         "ppl": 1.679,
         "total": 97.64,
         "ptsEarn": 2580,
-        "ptsBal": 11241
+        "ptsBal": 11241,
+        "km": 784
       },
       {
         "date": "2026-06-23",
@@ -1372,7 +1397,8 @@
         "ppl": 1.653,
         "total": 93.52,
         "ptsEarn": 560,
-        "ptsBal": 12291
+        "ptsBal": 12291,
+        "km": 740
       }
     ],
     "c300": [
