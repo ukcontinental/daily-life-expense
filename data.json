@@ -1399,6 +1399,18 @@
         "ptsEarn": 560,
         "ptsBal": 12291,
         "km": 740
+      },
+      {
+        "date": "2026-06-25",
+        "time": "19:17",
+        "station": "Esso Express Pay (Couche-Tard 233)",
+        "addr": "1380 Trunk Tch, Bras d'Or, NS B1V 2H5",
+        "litres": 60.478,
+        "ppl": 1.672,
+        "total": 101.12,
+        "ptsEarn": 600,
+        "ptsBal": 12891,
+        "km": 747
       }
     ],
     "c300": [
