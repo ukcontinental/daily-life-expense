@@ -617,6 +617,21 @@
       "hst": 0.0,
       "total": 11.98,
       "payment": "Debit"
+    },
+    {
+      "date": "2026-06-29",
+      "time": "12:24",
+      "store": "FreshPro Foodmart",
+      "addr": "10488 Yonge Street, Richmond Hill ON",
+      "items": [
+        {
+          "name": "Green Kale 甘藍菜",
+          "price": 2.59
+        }
+      ],
+      "hst": 0.0,
+      "total": 2.6,
+      "payment": "現金"
     }
   ],
   "dining": [
@@ -930,6 +945,21 @@
       "hst": 1.43,
       "total": 12.24,
       "payment": "Card ****4106"
+    },
+    {
+      "date": "2026-06-26",
+      "time": "20:17",
+      "store": "Esso (Elmwood Drive, Moncton)",
+      "addr": "365 Elmwood Dr, Moncton NB",
+      "items": [
+        {
+          "name": "Starbucks Frappuccino x2 + deposit",
+          "price": 7.68
+        }
+      ],
+      "hst": 0.98,
+      "total": 7.68,
+      "payment": "VISA"
     }
   ],
   "other": [
@@ -1411,6 +1441,39 @@
         "ptsEarn": 600,
         "ptsBal": 12891,
         "km": 747
+      },
+      {
+        "date": "2026-06-27",
+        "time": "12:36",
+        "station": "Depanneur Esso",
+        "addr": "86 Rte 132 O, La Pocatière QC",
+        "litres": 51.532,
+        "ppl": 1.789,
+        "total": 92.19,
+        "ptsEarn": 510,
+        "ptsBal": 13751
+      },
+      {
+        "date": "2026-06-28",
+        "time": "09:27",
+        "station": "Esso Couche-Tard",
+        "addr": "Boul Marcel-Laurin, Saint-Laurent QC",
+        "litres": 26.737,
+        "ppl": 1.759,
+        "total": 47.03,
+        "ptsEarn": 1040,
+        "ptsBal": 14791
+      },
+      {
+        "date": "2026-06-29",
+        "time": "23:10",
+        "station": "Esso Circle K",
+        "addr": "13330 Yonge St, Richmond Hill ON",
+        "litres": 49.274,
+        "ppl": 1.419,
+        "total": 69.92,
+        "ptsEarn": 490,
+        "ptsBal": 15281
       }
     ],
     "c300": [
