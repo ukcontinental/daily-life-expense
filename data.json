@@ -632,6 +632,40 @@
       "hst": 0.0,
       "total": 2.6,
       "payment": "現金"
+    },
+    {
+      "date": "2026-07-07",
+      "time": "17:40",
+      "store": "Costco Wholesale (Richmond Hill #592)",
+      "addr": "35 John Birchall Road, Richmond Hill, ON L4S 0B2",
+      "items": [
+        {
+          "name": "KS FR EGGS",
+          "price": 8.99
+        },
+        {
+          "name": "BANANAS",
+          "price": 1.69
+        }
+      ],
+      "hst": 0.0,
+      "total": 10.68,
+      "payment": "Mastercard"
+    },
+    {
+      "date": "2026-07-10",
+      "time": "11:24",
+      "store": "Freshway Foodmart",
+      "addr": "3275 Highway 7, Markham, ON",
+      "items": [
+        {
+          "name": "Green Kale 甘藍菜",
+          "price": 1.99
+        }
+      ],
+      "hst": 0.0,
+      "total": 1.99,
+      "payment": "Visa"
     }
   ],
   "dining": [
