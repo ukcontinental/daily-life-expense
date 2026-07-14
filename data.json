@@ -1519,6 +1519,17 @@
         "total": 55.82,
         "ptsEarn": 380,
         "ptsBal": 15661
+      },
+      {
+        "date": "2026-07-13",
+        "time": "23:25",
+        "station": "Esso Circle K",
+        "addr": "12338 Yonge St, Richmond Hill ON L4E 0W5",
+        "litres": 39.136,
+        "ppl": 1.526,
+        "total": 59.72,
+        "ptsEarn": 390,
+        "ptsBal": 16661
       }
     ],
     "c300": [
